@@ -33,6 +33,9 @@ class ViewController: UIViewController, ModelDelegate {
         self.model = Model()
         self.model.delegate = self
     }
+
+    // MARK: - Loading View Methods
+
     /**
      *  Shows an overlay view to indicate a loading state.
      *  - Note: When the loading process is done, use *hideLoadingView()* method to remove the view.
@@ -48,6 +51,9 @@ class ViewController: UIViewController, ModelDelegate {
         self.loadingView.stopProgress()
         self.loadingView.removeFromSuperview()
     }
+    
+    // MARK: - Alert Methods
+    
     /**
      *  Display an alert message to the user.
      *  - Parameters:

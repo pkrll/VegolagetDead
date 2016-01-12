@@ -31,7 +31,7 @@ class TableViewController: ViewController, DataSourceDelegate {
      *      - tableView: The table view with which to register the nib objects.
      *  - Note: Call this method for the table view to know which cells to use.
      */
-    final func registerNib(nibName: String, forCellReuseIdentifier identifier: String, withTableView tableView: UITableView) {
+    func registerNib(nibName: String, forCellReuseIdentifier identifier: String, withTableView tableView: UITableView) {
         let nib = UINib(nibName: nibName, bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: identifier)
     }    

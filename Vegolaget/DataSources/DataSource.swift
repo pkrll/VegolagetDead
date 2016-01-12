@@ -13,12 +13,12 @@ class DataSource: NSObject, UITableViewDataSource {
     /**
      *  The items to be displayed.
      */
-    internal var data: [Item] = []
+    internal var items: [Item] = []
     /**
      *  Loads and sorts the items.
      */
     func loadData(data: [Item]) {
-        self.data = data.sort ({ $0.0.id < $0.1.id })
+        self.items = data.sort ({ $0.0.id < $0.1.id })
         self.delegate?.didFinishLoadDataSource(self)
     }
     /**
@@ -27,11 +27,11 @@ class DataSource: NSObject, UITableViewDataSource {
      *  - Returns: An object of type Item.
      */
     func itemAtIndexPath(indexPath: NSIndexPath) -> Item? {
-        return (self.data.count > 0) ? self.data[indexPath.row] : nil
+        return (self.items.count > 0) ? self.items[indexPath.row] : nil
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.data.count
+        return self.items.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

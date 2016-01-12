@@ -21,7 +21,9 @@ class CategoryViewController: TableViewController, UITableViewDelegate {
     }
     
     override func loadDatasource() {
-
+        self.dataSource = CategoryDataSource()
+        self.dataSource.delegate = self
+        self.tableView.dataSource = self.dataSource
     }
     
     override func loadModel() {
