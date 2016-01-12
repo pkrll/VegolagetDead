@@ -29,4 +29,10 @@ public enum Constants {
         
     }
     
+    enum Nib: String {
+
+        case BaseCell
+        case CategoryCell
+        
+    }
 }

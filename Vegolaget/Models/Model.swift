@@ -12,11 +12,17 @@ class Model: NSObject, APIManagerDelegate {
     
     internal weak var delegate: ModelDelegate?
     
-    internal var coreDataEntity: String?
+    internal var coreDataEntity: String? {
+        return nil
+    }
         
-    internal var coreDataPredicate: NSPredicate?
+    internal var coreDataPredicate: NSPredicate? {
+        return nil
+    }
 
-    internal var endPoint: String = String()
+    internal var endPoint: String {
+        return String()
+    }
     
     internal lazy var dataController: DataController = {
         return (UIApplication.sharedApplication().delegate as! AppDelegate).dataController

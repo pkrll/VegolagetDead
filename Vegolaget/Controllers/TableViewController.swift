@@ -5,14 +5,25 @@
 //  Created by Ardalan Samimi on 12/01/16.
 //  Copyright © 2016 Saturn Five. All rights reserved.
 //
-
 import UIKit
 
-class TableViewController: ViewController {
+class TableViewController: ViewController, DataSourceDelegate {
 
-
+    internal var dataSource: DataSource!
+    
     func loadDatasource() {
-        
+        self.dataSource = DataSource()
+        self.dataSource.delegate = self
+    }
+    /**
+     *  Invoked when the data source has finished loading the data received from the controller.
+     *  - Note: Will reload the table view if there is one set. Override this method if there are other operations needed to be run.
+     */
+    func didFinishLoadDataSource(_: DataSource) {
+        if self.respondsToSelector("tableView") {
+            let tableView = self.valueForKey("tableView")
+            tableView?.reloadData()
+        }
     }
     /**
      *  Registers a nib object containing a cell with the table view under a specified identifier.

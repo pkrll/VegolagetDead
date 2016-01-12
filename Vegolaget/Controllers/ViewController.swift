@@ -7,9 +7,11 @@
 //
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, ModelDelegate {
 
-    final internal lazy var loadingView: LoadingView = {
+    internal var model: Model!
+    
+    internal lazy var loadingView: LoadingView = {
         [unowned self] in
         return LoadingView(frame: self.view.frame)
     }()
@@ -20,6 +22,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.showLoadingView()
         self.navigationItem.title = self.viewTitle
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: Constants.UserInterface.backButtonTitle, style: .Plain, target: nil, action: nil)
     }
@@ -27,7 +30,8 @@ class ViewController: UIViewController {
      *  Load the model in this method.
      */
     func loadModel() {
-    
+        self.model = Model()
+        self.model.delegate = self
     }
     /**
      *  Shows an overlay view to indicate a loading state.
@@ -56,4 +60,15 @@ class ViewController: UIViewController {
         self.presentViewController(alertController, animated: true, completion: nil)
     }
 
+    // MARK: - Model Delegate Methods
+    
+    func model(_: Model, didFinishLoadingData data: [Item]) {
+        self.hideLoadingView()
+    }
+    
+    func model(_: Model, didFinishLoadingWithError errorDescription: String) {
+        self.hideLoadingView()
+        self.showAlert(withMessage: errorDescription)
+    }
+    
 }

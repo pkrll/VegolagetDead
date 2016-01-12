@@ -16,7 +16,7 @@ public enum APIEndPoint {
     }
     
     
-    enum categories: String {
+    enum Categories: String {
         
         case Root = "/categories/"
         
