@@ -33,6 +33,18 @@ public enum Constants {
 
         case BaseCell
         case CategoryCell
+        case ProducerCell
+        case ProductCell
+        case LoadingCell
+        case StoreCell
+        case StoreLocationCell
+
+    }
+    
+    enum Segue: String {
         
+        case ShowCategory
+        case ShowProducer
+
     }
 }

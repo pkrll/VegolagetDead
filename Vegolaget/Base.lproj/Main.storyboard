@@ -28,7 +28,7 @@
         <scene sceneID="PeL-i9-wI3">
             <objects>
                 <navigationController title="Navigation Category" automaticallyAdjustsScrollViewInsets="NO" id="CLH-iE-Xdn" customClass="NavigationController" customModule="Vegolaget" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="vLz-AW-EGF"/>
+                    <tabBarItem key="tabBarItem" title="Producenter" id="vLz-AW-EGF"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Wzq-Lu-H1G">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -55,10 +55,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="KgG-KV-gHt">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="100" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="KgG-KV-gHt">
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                <view key="tableFooterView" contentMode="scaleToFill" id="UM0-1N-2Au">
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <view key="tableHeaderView" contentMode="scaleToFill" id="UM0-1N-2Au">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="84"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
@@ -87,10 +87,42 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="UwB-MR-PiY"/>
+                    <connections>
+                        <outlet property="tableView" destination="KgG-KV-gHt" id="Vw6-UC-k6H"/>
+                        <segue destination="dOu-98-ZRa" kind="show" identifier="ShowCategory" id="D6p-bk-ewE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vnK-gT-dOg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="878.5" y="334.5"/>
+        </scene>
+        <!--Producers-->
+        <scene sceneID="mD6-RB-p5i">
+            <objects>
+                <viewController title="Producers" automaticallyAdjustsScrollViewInsets="NO" id="dOu-98-ZRa" customClass="ProducersViewController" customModule="Vegolaget" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Cx2-JV-ay2"/>
+                        <viewControllerLayoutGuide type="bottom" id="BnG-by-oDv"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="J9Z-6W-pcL">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="B6n-2H-tNa">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="B6n-2H-tNa" id="SRN-0G-kUQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NS4-i0-hlc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1268.5" y="334.5"/>
         </scene>
     </scenes>
 </document>

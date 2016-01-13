@@ -12,17 +12,11 @@ class Model: NSObject, APIManagerDelegate {
     
     internal weak var delegate: ModelDelegate?
     
-    internal var coreDataEntity: String? {
-        return nil
-    }
+    internal var coreDataEntity: String?
         
-    internal var coreDataPredicate: NSPredicate? {
-        return nil
-    }
+    internal var coreDataPredicate: NSPredicate?
 
-    internal var endPoint: String {
-        return String()
-    }
+    internal var endPoint: String = String()
     
     internal lazy var dataController: DataController = {
         return (UIApplication.sharedApplication().delegate as! AppDelegate).dataController
@@ -53,8 +47,8 @@ class Model: NSObject, APIManagerDelegate {
         self.dataController.loadItems(fromEntity: self.coreDataEntity, withPredicate: self.coreDataPredicate) { (success: Bool, data: [AnyObject]?, error: NSError?) -> Void in
             dispatch_async(dispatch_get_main_queue()) {
                 if let data = data where data.count > 0 {
-                    let elements = self.didLoadFromCoreData(data)
-                    self.willPassDataToDelegate(elements)
+                    let items = self.didLoadFromCoreData(data)
+                    self.willPassDataToDelegate(items)
                 } else {
                     self.manager.callNode(self.endPoint,
                         success: self.managerDidCompleteRequest,

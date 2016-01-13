@@ -7,11 +7,11 @@
 //
 import UIKit
 
-class TableViewController: ViewController, DataSourceDelegate {
+class TableViewController: ViewController, DataSourceDelegate, UITableViewDelegate {
 
     internal var dataSource: DataSource!
     
-    func loadDatasource() {
+    func loadDataSource() {
         self.dataSource = DataSource()
         self.dataSource.delegate = self
     }

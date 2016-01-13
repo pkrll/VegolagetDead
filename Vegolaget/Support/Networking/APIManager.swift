@@ -27,6 +27,7 @@ class APIManager {
      *  - parameter endPoint: The URL to call.
      */
     func callNode(endPoint: String, success: APIManagerCallback?, failure:APIManagerCallback?) {
+        print("Calling \(endPoint)")
         let request = NSURLRequest(URL: NSURL(string: endPoint)!)
         self.requestedURL = endPoint
         self.execute(request) { (data: NSData?, URLResponse: NSURLResponse?, error: NSError?) -> Void in

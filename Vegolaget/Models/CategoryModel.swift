@@ -9,13 +9,11 @@ import Foundation
 import SwiftyJSON
 
 class CategoryModel: Model {
-    
-    override internal var coreDataEntity: String? {
-        return "Category"
-    }
- 
-    override internal var endPoint: String {
-        return APIEndPoint.Categories.Root.string
+
+    override init() {
+        super.init()
+        self.coreDataEntity = "Category"
+        self.endPoint = APIEndPoint.Categories.Root.string
     }
     
     override func didLoadFromCoreData(data: [AnyObject]) -> [Item] {

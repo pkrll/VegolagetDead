@@ -16,9 +16,9 @@ class ViewController: UIViewController, ModelDelegate {
         return LoadingView(frame: self.view.frame)
     }()
 
-    internal lazy var viewTitle: String = {
+    internal var viewTitle: String {
         return Constants.Application.name
-    }()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
