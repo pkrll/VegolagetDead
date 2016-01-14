@@ -12,7 +12,7 @@ class CategoryModel: Model {
 
     override init() {
         super.init()
-        self.coreDataEntity = "Category"
+        self.coreDataEntity = .Category
         self.endPoint = APIEndPoint.Categories.Root.string
     }
     

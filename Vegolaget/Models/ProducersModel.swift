@@ -12,7 +12,7 @@ class ProducersModel: Model {
 
     override init() {
         super.init()
-        self.coreDataEntity = "Producer"
+        self.coreDataEntity = .Producer
         self.endPoint = APIEndPoint.Producers.Root.string
     }
     

@@ -23,6 +23,10 @@ class ProducersViewController: SearchViewController {
         return Constants.UserInterface.scopeButtonTitles
     }
     
+    override internal var searchBarPlaceholder: String {
+        return "Sök bland %i producenter"
+    }
+    
     override internal var viewTitle: String {
         return "Producenter"
     }
@@ -65,19 +69,23 @@ class ProducersViewController: SearchViewController {
     }
     
     override func model(model: Model, didFinishLoadingData data: [Item]) {
-        self.searchBar.placeholder = "Sök bland \(data.count) producenter"
+        self.searchBar.placeholder = String(format: self.searchBarPlaceholder, data.count)
         self.dataSource.loadData(data)
         super.model(self.model, didFinishLoadingData: [])
     }
 
     override func didFinishFilterDataSource(_: SearchDataSource) {
         let dataSource = self.dataSource as! ProducersDataSource
-        self.searchBar.placeholder = "Sök bland \(dataSource.numberOfSearchableItems) producenter"
+        self.searchBar.placeholder = String(format: self.searchBarPlaceholder, dataSource.numberOfSearchableItems)
         super.didFinishFilterDataSource(dataSource)
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-
+        if let viewController = segue.destinationViewController as? ProducerViewController, let sender = sender as? UITableViewCell {
+            let indexPath = self.tableView.indexPathForCell(sender)!
+            let producer = self.dataSource.itemAtIndexPath(indexPath) as! Producer
+            viewController.producer = producer
+        }
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

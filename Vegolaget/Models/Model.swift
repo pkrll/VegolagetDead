@@ -12,7 +12,7 @@ class Model: NSObject, APIManagerDelegate {
     
     internal weak var delegate: ModelDelegate?
     
-    internal var coreDataEntity: String?
+    internal var coreDataEntity: CoreDataEntities?
         
     internal var coreDataPredicate: NSPredicate?
 
@@ -37,14 +37,14 @@ class Model: NSObject, APIManagerDelegate {
      */
     func saveData(data: [Item]) {
         if let entity = self.coreDataEntity {
-            self.dataController.insertItems(data, toEntity: entity)
+            self.dataController.insertItems(data, toEntity: entity.rawValue)
         }
     }
     /**
      *  Loads from core data.
      */
     func loadData() {
-        self.dataController.loadItems(fromEntity: self.coreDataEntity, withPredicate: self.coreDataPredicate) { (success: Bool, data: [AnyObject]?, error: NSError?) -> Void in
+        self.dataController.loadItems(fromEntity: self.coreDataEntity?.rawValue, withPredicate: self.coreDataPredicate) { (success: Bool, data: [AnyObject]?, error: NSError?) -> Void in
             dispatch_async(dispatch_get_main_queue()) {
                 if let data = data where data.count > 0 {
                     let items = self.didLoadFromCoreData(data)

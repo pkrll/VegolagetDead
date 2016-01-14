@@ -14,6 +14,9 @@ public enum APIEndPoint {
     private static var BaseURL: String {
         return self.address + self.version
     }
+    
+    static internal var productTypeInStock = "inStock"
+    static internal var productTypeListing = "listing"
 
     enum Categories: String {
         

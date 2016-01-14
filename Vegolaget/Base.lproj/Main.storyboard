@@ -118,11 +118,65 @@
                     </view>
                     <connections>
                         <outlet property="tableView" destination="B6n-2H-tNa" id="SRN-0G-kUQ"/>
+                        <segue destination="zjO-CF-hRw" kind="show" identifier="ShowProducer" id="Enz-6w-4tj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NS4-i0-hlc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1268.5" y="334.5"/>
+            <point key="canvasLocation" x="1308.5" y="334.5"/>
+        </scene>
+        <!--Producer-->
+        <scene sceneID="WTf-c7-B2I">
+            <objects>
+                <viewController title="Producer" automaticallyAdjustsScrollViewInsets="NO" id="zjO-CF-hRw" customClass="ProducerViewController" customModule="Vegolaget" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3em-TC-dUT"/>
+                        <viewControllerLayoutGuide type="bottom" id="JS4-oC-vrq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ngj-wC-e36">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="BQi-bU-vKM">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <view key="tableHeaderView" contentMode="scaleToFill" id="1T7-aB-E3u">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="117"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S4a-2C-JI2">
+                                            <rect key="frame" x="27" y="15" width="320" height="87"/>
+                                            <string key="text">På grund av skillnader mellan Systembolagets och Barnivores respektive data går det inte att med säkerhet avgöra vilka produkter i Systembolagets lager som är veganska. Var god jämför nedan.</string>
+                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
+                                            <color key="textColor" red="0.59064503209999997" green="0.12130524650000001" blue="0.12121884569999999" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstItem="S4a-2C-JI2" firstAttribute="leading" secondItem="1T7-aB-E3u" secondAttribute="leading" constant="27" id="0Oq-bA-fhk"/>
+                                        <constraint firstItem="S4a-2C-JI2" firstAttribute="centerX" secondItem="1T7-aB-E3u" secondAttribute="centerX" id="C8T-Fi-fPR"/>
+                                        <constraint firstItem="S4a-2C-JI2" firstAttribute="centerY" secondItem="1T7-aB-E3u" secondAttribute="centerY" id="VBQ-gD-ea3"/>
+                                        <constraint firstItem="S4a-2C-JI2" firstAttribute="top" secondItem="1T7-aB-E3u" secondAttribute="top" constant="15" id="rxp-3F-5HE"/>
+                                    </constraints>
+                                </view>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="BQi-bU-vKM" firstAttribute="top" secondItem="3em-TC-dUT" secondAttribute="bottom" id="G7N-tP-uQt"/>
+                            <constraint firstItem="BQi-bU-vKM" firstAttribute="leading" secondItem="Ngj-wC-e36" secondAttribute="leading" id="RO8-Mz-U6y"/>
+                            <constraint firstAttribute="trailing" secondItem="BQi-bU-vKM" secondAttribute="trailing" id="ict-94-bmr"/>
+                            <constraint firstItem="BQi-bU-vKM" firstAttribute="bottom" secondItem="JS4-oC-vrq" secondAttribute="top" id="yH0-Of-xAc"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="BQi-bU-vKM" id="ICN-iY-P8i"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TfJ-XK-Usn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1726.5" y="334.5"/>
         </scene>
     </scenes>
 </document>

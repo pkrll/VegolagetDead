@@ -45,6 +45,7 @@ public enum Constants {
         
         case ShowCategory
         case ShowProducer
+        case ShowProduct
 
     }
 }
