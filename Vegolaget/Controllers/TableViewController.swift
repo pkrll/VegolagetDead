@@ -6,11 +6,29 @@
 //  Copyright © 2016 Saturn Five. All rights reserved.
 //
 import UIKit
-
+/**
+ *  This class is a sub class of the View Controller class and provides extra functionality for using a table view.
+ *  - Note: This class conforms to the Data Source Delegate.
+ */
 class TableViewController: ViewController, DataSourceDelegate, UITableViewDelegate {
-
+    /**
+     *  The data source of the table view.
+     */
     internal var dataSource: DataSource!
-    
+    /**
+     *  The refresh control allows the user to reload the table views content.
+     *  - Note: Must be added to the table view as a sub view.
+     */
+    internal lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.attributedTitle = NSAttributedString(string: "Dra ned för att ladda om")
+        refreshControl.addTarget(self, action: "didRequestRefresh:", forControlEvents: .ValueChanged)
+        
+        return refreshControl
+    }()
+    /**
+     *  Load the data source in this method.
+     */
     func loadDataSource() {
         self.dataSource = DataSource()
         self.dataSource.delegate = self
@@ -24,6 +42,13 @@ class TableViewController: ViewController, DataSourceDelegate, UITableViewDelega
             let tableView = self.valueForKey("tableView")
             tableView?.reloadData()
         }
+    }
+    /**
+     *  Invoked when the table view was pulled to refresh its content.
+     *  - Note: You must add *refreshControl* as a sub view to the table view to use it.
+     */
+    func didRequestRefresh(sender: AnyObject) {
+        self.refreshControl.endRefreshing()
     }
     /**
      *  Registers a nib object containing a cell with the table view under a specified identifier.

@@ -25,7 +25,7 @@ class ProducerModel: Model {
                 items.appendContentsOf(results)
             }
             
-            self.loadFromEntity(self.coreDataEntities[0].rawValue, completionHandler: { (results) -> Void in
+            self.loadFromEntity(self.coreDataEntities[1].rawValue, completionHandler: { (results) -> Void in
                 if let results = results {
                     items.appendContentsOf(results)
                 }
@@ -35,10 +35,7 @@ class ProducerModel: Model {
                         let items = self.didLoadFromCoreData(items)
                         self.willPassDataToDelegate(items)
                     } else {
-                        self.manager.callNode(self.endPoint,
-                            success: self.managerDidCompleteRequest,
-                            failure: self.managerFailedRequest
-                        )
+                        self.refreshData()
                     }
                 }
             })

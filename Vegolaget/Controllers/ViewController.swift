@@ -6,7 +6,12 @@
 //  Copyright © 2016 Saturn Five. All rights reserved.
 //
 import UIKit
-
+/**
+ *  This class serves as the basis of all View Controller classes.
+ *  
+ *  The View Controller class extends the UIViewController and contains basic methods that all sub view controllers can access.
+ *  - Note: This class conforms to the Model Delegate.
+ */
 class ViewController: UIViewController, ModelDelegate {
 
     internal var model: Model!

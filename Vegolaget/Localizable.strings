@@ -1,0 +1,10 @@
+"WINE"="Vin";
+"BEER"="Öl";
+"LIQUOR"="Sprit";
+"VEGAN FRIENDLY"="Veganvänlig";
+"NOT VEGAN FRIENDLY"="Inte veganvänlig";
+"HAS SOME VEGAN OPTIONS"="Har veganska alternativ";
+"UNKNOWN"="Veganstatus okänd";
+"FRANCE"="Frankrike";
+"SWEDEN"="Sverige";
+"ITALY"="Italien";

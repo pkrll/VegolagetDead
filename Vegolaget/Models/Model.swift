@@ -7,7 +7,10 @@
 //
 import UIKit
 import SwiftyJSON
-
+/**
+ *  This class serves as the basis of all Model classes and contains the basic methods, for example for loading and saving data, that can be accessed by all subclasses.
+ *
+ */
 class Model: NSObject, APIManagerDelegate {
     
     internal weak var delegate: ModelDelegate?
@@ -50,13 +53,17 @@ class Model: NSObject, APIManagerDelegate {
                     let items = self.didLoadFromCoreData(data)
                     self.willPassDataToDelegate(items)
                 } else {
-                    self.manager.callNode(self.endPoint,
-                        success: self.managerDidCompleteRequest,
-                        failure: self.managerFailedRequest
-                    )
+                    self.refreshData()
                 }
             }
         }
+    }
+    
+    func refreshData() {
+        self.manager.callNode(self.endPoint,
+            success: self.managerDidCompleteRequest,
+            failure: self.managerFailedRequest
+        )
     }
     /**
      *  This method is called by *loadData()*, providing the results of the core data query.

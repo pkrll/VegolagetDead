@@ -6,7 +6,10 @@
 //  Copyright © 2016 Saturn Five. All rights reserved.
 //
 import UIKit
-
+/**
+ *  This class is a sub class of the Table View Controller class and provides extra functionality for using a search controller.
+ *  - Note: This class conforms to the Search Data Source Delegate.
+ */
 class SearchViewController: TableViewController, SearchDataSourceDelegate, UISearchResultsUpdating, UISearchBarDelegate {
     /**
      *  Manages the display of search results. The search controller does not use its own results controller. The view controller extending the search controller must provide its own table view.

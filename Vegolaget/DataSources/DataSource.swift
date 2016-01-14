@@ -6,7 +6,10 @@
 //  Copyright © 2016 Saturn Five. All rights reserved.
 //
 import UIKit
-
+/**
+ *  This class serves as the basis of all Data Source classes and contains the base methods that all data source objects share.
+ *
+ */
 class DataSource: NSObject, UITableViewDataSource {
     
     internal var delegate: DataSourceDelegate?

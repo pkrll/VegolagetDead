@@ -61,6 +61,25 @@ public enum APIEndPoint {
         }
         
     }
+    /**
+     *  Returns details on a specific product.
+     */
+    enum Product: String {
+        
+        case Root = "/products/"
+        
+        var string: String {
+            return APIEndPoint.BaseURL + self.rawValue
+        }
+        /**
+         *  Returns details about all the stores that has it in stock.
+         *  - Parameters:
+         *      - id: The location id of the product.
+         *  - Returns: String representation of the the API end point enum.
+         */
+        static func withId(id: Int) -> String {
+            return self.Root.string + id.description
+        }
+    }
 
-    
 }

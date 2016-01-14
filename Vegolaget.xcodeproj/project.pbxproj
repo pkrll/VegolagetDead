@@ -39,6 +39,15 @@
 		6ADCCFEF1C47AFE600AAF1AA /* ProductInStock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ADCCFEE1C47AFE600AAF1AA /* ProductInStock.swift */; };
 		6ADCCFF21C47B09C00AAF1AA /* ProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6ADCCFF01C47B09C00AAF1AA /* ProductCell.xib */; };
 		6ADCCFF41C47B32700AAF1AA /* ProducerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ADCCFF31C47B32700AAF1AA /* ProducerDataSource.swift */; };
+		6ADCCFF81C47CA7900AAF1AA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6ADCCFF71C47CA7900AAF1AA /* Localizable.strings */; };
+		6ADCCFFA1C47CFEF00AAF1AA /* ProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ADCCFF91C47CFEF00AAF1AA /* ProductViewController.swift */; };
+		6ADCCFFD1C47E27C00AAF1AA /* StoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6ADCCFFB1C47E27C00AAF1AA /* StoreCell.xib */; };
+		6ADCCFFF1C47E33C00AAF1AA /* ProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ADCCFFE1C47E33C00AAF1AA /* ProductModel.swift */; };
+		6ADCD0011C47E3C900AAF1AA /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ADCD0001C47E3C900AAF1AA /* Store.swift */; };
+		6ADCD0031C47E40600AAF1AA /* DateTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ADCD0021C47E40600AAF1AA /* DateTime.swift */; };
+		6ADCD0051C47E49300AAF1AA /* Weekday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ADCD0041C47E49300AAF1AA /* Weekday.swift */; };
+		6ADCD0071C47E4B100AAF1AA /* Month.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ADCD0061C47E4B100AAF1AA /* Month.swift */; };
+		6ADCD00B1C47E7F300AAF1AA /* ProductDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ADCD00A1C47E7F300AAF1AA /* ProductDataSource.swift */; };
 		6AF5E21A1C44E65B00B9EF59 /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF5E2191C44E65B00B9EF59 /* APIResponse.swift */; };
 		6AF5E21C1C44E70700B9EF59 /* StatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF5E21B1C44E70700B9EF59 /* StatusCode.swift */; };
 		6AF5E21E1C44E77500B9EF59 /* NSURLResponse+statusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF5E21D1C44E77500B9EF59 /* NSURLResponse+statusCode.swift */; };
@@ -98,6 +107,15 @@
 		6ADCCFEE1C47AFE600AAF1AA /* ProductInStock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProductInStock.swift; path = Objects/ProductInStock.swift; sourceTree = "<group>"; };
 		6ADCCFF11C47B09C00AAF1AA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ProductCell.xib; sourceTree = "<group>"; };
 		6ADCCFF31C47B32700AAF1AA /* ProducerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProducerDataSource.swift; path = DataSources/ProducerDataSource.swift; sourceTree = "<group>"; };
+		6ADCCFF71C47CA7900AAF1AA /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		6ADCCFF91C47CFEF00AAF1AA /* ProductViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProductViewController.swift; path = Controllers/ProductViewController.swift; sourceTree = "<group>"; };
+		6ADCCFFC1C47E27C00AAF1AA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/StoreCell.xib; sourceTree = "<group>"; };
+		6ADCCFFE1C47E33C00AAF1AA /* ProductModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProductModel.swift; path = Models/ProductModel.swift; sourceTree = "<group>"; };
+		6ADCD0001C47E3C900AAF1AA /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Store.swift; path = Objects/Store.swift; sourceTree = "<group>"; };
+		6ADCD0021C47E40600AAF1AA /* DateTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DateTime.swift; path = Support/DateTime.swift; sourceTree = "<group>"; };
+		6ADCD0041C47E49300AAF1AA /* Weekday.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Weekday.swift; path = Support/Weekday.swift; sourceTree = "<group>"; };
+		6ADCD0061C47E4B100AAF1AA /* Month.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Month.swift; path = Support/Month.swift; sourceTree = "<group>"; };
+		6ADCD00A1C47E7F300AAF1AA /* ProductDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProductDataSource.swift; path = DataSources/ProductDataSource.swift; sourceTree = "<group>"; };
 		6AF5E2191C44E65B00B9EF59 /* APIResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIResponse.swift; path = Support/Networking/APIResponse.swift; sourceTree = "<group>"; };
 		6AF5E21B1C44E70700B9EF59 /* StatusCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StatusCode.swift; path = Support/Networking/StatusCode.swift; sourceTree = "<group>"; };
 		6AF5E21D1C44E77500B9EF59 /* NSURLResponse+statusCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSURLResponse+statusCode.swift"; path = "Support/Extensions/NSURLResponse+statusCode.swift"; sourceTree = "<group>"; };
@@ -184,6 +202,7 @@
 				6A3AED701C4532E5001364E5 /* CategoryCell.xib */,
 				6A83917A1C4694AF00D8E96A /* ProducerCell.xib */,
 				6ADCCFF01C47B09C00AAF1AA /* ProductCell.xib */,
+				6ADCCFFB1C47E27C00AAF1AA /* StoreCell.xib */,
 				6A8391811C469B7400D8E96A /* LoadingCell.xib */,
 				6A8296851C44033E00012945 /* LaunchScreen.storyboard */,
 			);
@@ -195,6 +214,7 @@
 			children = (
 				6A8296831C44033E00012945 /* Assets.xcassets */,
 				6A8296881C44033E00012945 /* Info.plist */,
+				6ADCCFF71C47CA7900AAF1AA /* Localizable.strings */,
 			);
 			name = Other;
 			sourceTree = "<group>";
@@ -204,11 +224,12 @@
 			children = (
 				6AF5E2211C44EF7E00B9EF59 /* NavigationController.swift */,
 				6AF5E2271C44F14B00B9EF59 /* ViewController.swift */,
-				6A83916C1C467F0D00D8E96A /* SearchViewController.swift */,
 				6AF5E2291C44F26800B9EF59 /* TableViewController.swift */,
+				6A83916C1C467F0D00D8E96A /* SearchViewController.swift */,
 				6AF5E23E1C451F1000B9EF59 /* CategoryViewController.swift */,
 				6A83916A1C467EF100D8E96A /* ProducersViewController.swift */,
 				6ADCCFE21C47AA9200AAF1AA /* ProducerViewController.swift */,
+				6ADCCFF91C47CFEF00AAF1AA /* ProductViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -220,6 +241,7 @@
 				6AF5E2401C45207300B9EF59 /* CategoryModel.swift */,
 				6A8391741C468BB200D8E96A /* ProducersModel.swift */,
 				6ADCCFE41C47ABEB00AAF1AA /* ProducerModel.swift */,
+				6ADCCFFE1C47E33C00AAF1AA /* ProductModel.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -232,6 +254,7 @@
 				6A3AED6C1C452F24001364E5 /* CategoryDataSource.swift */,
 				6A83917F1C46959600D8E96A /* ProducersDataSource.swift */,
 				6ADCCFF31C47B32700AAF1AA /* ProducerDataSource.swift */,
+				6ADCD00A1C47E7F300AAF1AA /* ProductDataSource.swift */,
 			);
 			name = DataSources;
 			sourceTree = "<group>";
@@ -244,6 +267,7 @@
 				6A8391761C46901E00D8E96A /* Producer.swift */,
 				6ADCCFEC1C47AFCE00AAF1AA /* Product.swift */,
 				6ADCCFEE1C47AFE600AAF1AA /* ProductInStock.swift */,
+				6ADCD0001C47E3C900AAF1AA /* Store.swift */,
 			);
 			name = Objects;
 			sourceTree = "<group>";
@@ -278,6 +302,9 @@
 				6AF5E2231C44EFD500B9EF59 /* Constants.swift */,
 				6A83917D1C4694F800D8E96A /* CategoryType.swift */,
 				6ADCCFE61C47AE1200AAF1AA /* CoreDataEntities.swift */,
+				6ADCD0021C47E40600AAF1AA /* DateTime.swift */,
+				6ADCD0041C47E49300AAF1AA /* Weekday.swift */,
+				6ADCD0061C47E4B100AAF1AA /* Month.swift */,
 			);
 			name = Support;
 			sourceTree = "<group>";
@@ -390,7 +417,9 @@
 				6ADCCFF21C47B09C00AAF1AA /* ProductCell.xib in Resources */,
 				6A8391831C469B7400D8E96A /* LoadingCell.xib in Resources */,
 				6A8296821C44033E00012945 /* Main.storyboard in Resources */,
+				6ADCCFF81C47CA7900AAF1AA /* Localizable.strings in Resources */,
 				6A3AED721C4532E5001364E5 /* CategoryCell.xib in Resources */,
+				6ADCCFFD1C47E27C00AAF1AA /* StoreCell.xib in Resources */,
 				6A83917C1C4694AF00D8E96A /* ProducerCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -471,6 +500,7 @@
 				6A82969B1C4405EE00012945 /* APIManager.swift in Sources */,
 				6AF5E21C1C44E70700B9EF59 /* StatusCode.swift in Sources */,
 				6AF5E21E1C44E77500B9EF59 /* NSURLResponse+statusCode.swift in Sources */,
+				6ADCD0071C47E4B100AAF1AA /* Month.swift in Sources */,
 				6AF5E22C1C44F30800B9EF59 /* LoadingView.swift in Sources */,
 				6AF5E23B1C451B1900B9EF59 /* DataSource.swift in Sources */,
 				6ADCCFF41C47B32700AAF1AA /* ProducerDataSource.swift in Sources */,
@@ -479,9 +509,12 @@
 				6ADCCFE91C47AF9800AAF1AA /* ProductInStockManagedObject.swift in Sources */,
 				6AF5E22F1C44F3C100B9EF59 /* Model.swift in Sources */,
 				6A83917E1C4694F800D8E96A /* CategoryType.swift in Sources */,
+				6ADCD0011C47E3C900AAF1AA /* Store.swift in Sources */,
 				6ADCCFE71C47AE1200AAF1AA /* CoreDataEntities.swift in Sources */,
 				6AF5E2311C44F95F00B9EF59 /* DataController.swift in Sources */,
+				6ADCD0031C47E40600AAF1AA /* DateTime.swift in Sources */,
 				6ADCCFEF1C47AFE600AAF1AA /* ProductInStock.swift in Sources */,
+				6ADCD00B1C47E7F300AAF1AA /* ProductDataSource.swift in Sources */,
 				6ADCCFE51C47ABEB00AAF1AA /* ProducerModel.swift in Sources */,
 				6A8391711C46823300D8E96A /* String.swift in Sources */,
 				6AF5E23D1C451B4B00B9EF59 /* DataSourceDelegate.swift in Sources */,
@@ -496,6 +529,7 @@
 				6AF5E2351C450B1100B9EF59 /* CoreDataError.swift in Sources */,
 				6AF5E2261C44F0F400B9EF59 /* UIColor+drawImage.swift in Sources */,
 				6ADCCFE31C47AA9200AAF1AA /* ProducerViewController.swift in Sources */,
+				6ADCCFFA1C47CFEF00AAF1AA /* ProductViewController.swift in Sources */,
 				6A8391751C468BB200D8E96A /* ProducersModel.swift in Sources */,
 				6AF5E23F1C451F1000B9EF59 /* CategoryViewController.swift in Sources */,
 				6ADCCFEB1C47AFAD00AAF1AA /* ProductManagedObject.swift in Sources */,
@@ -503,6 +537,8 @@
 				6A83916D1C467F0D00D8E96A /* SearchViewController.swift in Sources */,
 				6A3AED6F1C452F38001364E5 /* CategoryManagedObject.swift in Sources */,
 				6AF5E2201C44E8CC00B9EF59 /* APIEndPoint.swift in Sources */,
+				6ADCD0051C47E49300AAF1AA /* Weekday.swift in Sources */,
+				6ADCCFFF1C47E33C00AAF1AA /* ProductModel.swift in Sources */,
 				6A83916B1C467EF100D8E96A /* ProducersViewController.swift in Sources */,
 				6AF5E2371C450E1700B9EF59 /* ModelDelegate.swift in Sources */,
 				6AF5E2241C44EFD500B9EF59 /* Constants.swift in Sources */,
@@ -559,6 +595,14 @@
 				6ADCCFF11C47B09C00AAF1AA /* Base */,
 			);
 			name = ProductCell.xib;
+			sourceTree = "<group>";
+		};
+		6ADCCFFB1C47E27C00AAF1AA /* StoreCell.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6ADCCFFC1C47E27C00AAF1AA /* Base */,
+			);
+			name = StoreCell.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

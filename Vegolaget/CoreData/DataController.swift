@@ -93,14 +93,21 @@ class DataController: NSObject {
     }
     
     func insertItems(items: [AnyObject], toEntity: String) {
-//        dispatch_async(self.queue) {
-//            let items = items.filter({ (item: Item) -> Bool in
-//                return self.doesObjectExist(item.id, entityName: toEntity)
-//            })
-//            
-//            for item in items {
-//            }
-//        }
+        dispatch_async(self.queue) {
+            let items = items.filter {
+                self.doesObjectExist(($0 as! Item).id, entityName: toEntity) == false
+            }
+            
+            print("Saving \(items.count) objects")
+            
+            if items.count > 0 {
+                for item in items {
+                    self.insertItem(item, toEntity: toEntity)
+                }
+                
+                self.save(nil)
+            }
+        }
     }
     
     func loadItems(fromEntity entity: String?, withPredicate predicate: NSPredicate?, completionHandler: CoreDataCompletionHandler?) {
@@ -151,8 +158,58 @@ class DataController: NSObject {
     
 }
 
-// MARK: - Private Methods
 private extension DataController {
+
+    func insertItem(item: AnyObject, toEntity: String) {
+        guard let managedObjectContext = self.managedObjectContext else {
+            return
+        }
+        
+        if item is ProductInStock {
+            let item = item as! ProductInStock
+            let object = NSEntityDescription.insertNewObjectForEntityForName(toEntity, inManagedObjectContext: managedObjectContext) as? ProductInStockManagedObject
+            object?.setValue(item.id, forKey: "id")
+            object?.setValue(item.companyID, forKey: "companyID")
+            object?.setValue(item.locationID, forKey: "locationID")
+            object?.setValue(item.name, forKey: "name")
+            object?.setValue(item.detailName, forKey: "detailName")
+            object?.setValue(item.type, forKey: "type")
+            object?.setValue(item.price, forKey: "price")
+            object?.setValue(item.volume, forKey: "volume")
+            object?.setValue(item.package, forKey: "package")
+            object?.setValue(item.year, forKey: "year")
+            object?.setValue(item.alcohol, forKey: "alcohol")
+            object?.setValue(item.organic, forKey: "organic")
+        } else if item is Product {
+            let item = item as! Product
+            let object = NSEntityDescription.insertNewObjectForEntityForName(toEntity, inManagedObjectContext: managedObjectContext) as? ProductManagedObject
+            object?.setValue(item.id, forKey: "id")
+            object?.setValue(item.name, forKey: "name")
+            object?.setValue(item.type, forKey: "type")
+            object?.setValue(item.status, forKey: "status")
+            object?.setValue(item.companyID, forKey: "companyID")
+        } else if item is Producer {
+            let item = item as! Producer
+            let object = NSEntityDescription.insertNewObjectForEntityForName(toEntity, inManagedObjectContext: managedObjectContext) as? ProducerManagedObject
+            object?.setValue(item.id, forKey: "id")
+            object?.setValue(item.name, forKey: "name")
+            object?.setValue(item.country, forKey: "country")
+            object?.setValue(item.notes, forKey: "notes")
+            object?.setValue(item.tag, forKey: "tag")
+            object?.setValue(item.status, forKey: "status")
+            object?.setValue(item.doesWine, forKey: "doesWine")
+            object?.setValue(item.doesBeer, forKey: "doesBeer")
+            object?.setValue(item.doesLiquor, forKey: "doesLiquor")
+        } else if item is Category {
+            let item = item as! Category
+            let object = NSEntityDescription.insertNewObjectForEntityForName(toEntity, inManagedObjectContext: managedObjectContext) as? CategoryManagedObject
+            object?.setValue(item.id, forKey: "id")
+            object?.setValue(item.tag, forKey: "tag")
+            object?.setValue(item.name, forKey: "name")
+            object?.setValue(item.title, forKey: "title")
+            object?.setValue(item.count, forKey: "count")
+        }
+    }
     
     func doesObjectExist(id: Int, entityName: String) -> Bool {
         guard let managedObjectContext = self.managedObjectContext else {

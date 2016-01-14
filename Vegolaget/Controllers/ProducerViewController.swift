@@ -26,6 +26,7 @@ class ProducerViewController: TableViewController {
         self.tableView.delegate = self
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 80.0
+        self.tableView.addSubview(self.refreshControl)
         
         self.loadDataSource()
         self.loadModel()
@@ -46,10 +47,15 @@ class ProducerViewController: TableViewController {
         }
     }
     
+    override func didRequestRefresh(sender: AnyObject) {
+        self.model.refreshData()
+    }
+    
     // MARK: - Model Delegate Methods
     
     override func model(model: Model, didFinishLoadingData data: [Item]) {
         self.dataSource.loadData(data)
+        self.refreshControl.endRefreshing()
         super.model(model, didFinishLoadingData: [])
     }
     
@@ -62,4 +68,13 @@ class ProducerViewController: TableViewController {
             self.performSegueWithIdentifier(Constants.Segue.ShowProduct.rawValue, sender: sender)
         }
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let viewController = segue.destinationViewController as? ProductViewController, let sender = sender as? UITableViewCell {
+            let index = self.tableView.indexPathForCell(sender)!
+            let item = self.dataSource.itemAtIndexPath(index) as! ProductInStock
+            viewController.product = item
+        }
+    }
+
 }
