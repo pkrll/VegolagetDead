@@ -16,8 +16,12 @@ class ProductDataSource: DataSource {
         let stores = data.sort { ($0.0 as! Store).city < ($0.1 as! Store).city }
         // The product data source will only load and display the unique locations/cities, retrieved from the Stores array.
         for store in stores as! [Store] {
+            guard let initialCharacter = store.city.characters.first else {
+                continue
+            }
+            
             let city = store.city
-            let index = String(city.characters.first!)
+            let index = String(initialCharacter)
             
             if self.locations[index] == nil {
                 self.locations[index] = []
@@ -56,7 +60,7 @@ class ProductDataSource: DataSource {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(Constants.Nib.StoreCell.rawValue)!
+        let cell = tableView.dequeueReusableCellWithIdentifier(Constants.Nib.StoreLocationCell.rawValue)!
         let index = self.indexTitle[indexPath.section]
         let item = self.locations[index]?[indexPath.row]
         

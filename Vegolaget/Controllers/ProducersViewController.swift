@@ -34,10 +34,8 @@ class ProducersViewController: SearchViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let producerCell = Constants.Nib.ProducerCell.rawValue
-        let loadingCell = Constants.Nib.LoadingCell.rawValue
-        self.registerNib(producerCell, forCellReuseIdentifier: producerCell, withTableView: self.tableView)
-        self.registerNib(loadingCell, forCellReuseIdentifier: loadingCell, withTableView: self.tableView)
+        self.registerNib(Constants.Nib.ProducerCell.rawValue)
+        self.registerNib(Constants.Nib.LoadingCell.rawValue)
         
         self.searchBar.placeholder = "Sök efter producent"
         self.searchBar.delegate = self

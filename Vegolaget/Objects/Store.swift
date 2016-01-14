@@ -19,27 +19,28 @@ class Store: Item {
     
     override init(data: JSON) {
         self.address = data["address"].stringValue.capitalizedString
-        self.postalCode = data["address3"].stringValue
-        self.city = data["address4"].stringValue.capitalizedString
-        self.county = data["address5"].stringValue.capitalizedString
+        self.postalCode = data["postalCode"].stringValue
+        self.city = data["city"].stringValue.capitalizedString
+        self.county = data["county"].stringValue.capitalizedString
         self.phone = data["phone"].stringValue
         self.openHours = []
         // Parse open hours
         let openHours = data["openHours"].stringValue
-        let array = openHours.componentsSeparatedByString("!")
-        for date in array {
-            let dateComponents = date.componentsSeparatedByString(";")
-            if dateComponents.count > 0 {
-                let date = dateComponents[0]
-                let hour = dateComponents[1]
-                self.openHours.append(DateTime(date: date, time: hour))
+        if openHours.isEmpty == false {
+            let array = openHours.componentsSeparatedByString("!")
+            for date in array {
+                let dateComponents = date.componentsSeparatedByString(";")
+                if dateComponents.count > 0 {
+                    let date = dateComponents[0]
+                    let hour = dateComponents[1]
+                    self.openHours.append(DateTime(date: date, time: hour))
+                }
             }
+            
+            self.openHours.sortInPlace { $0.0.date < $0.1.date }
         }
-        
-        self.openHours.sortInPlace { $0.0.date < $0.1.date }
 
         super.init(data: data)
-
     }
     
 }

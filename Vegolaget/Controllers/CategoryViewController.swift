@@ -13,8 +13,8 @@ class CategoryViewController: TableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let nibName = Constants.Nib.CategoryCell.rawValue
-        self.registerNib(nibName, forCellReuseIdentifier: nibName, withTableView: self.tableView)
+
+        self.registerNib(Constants.Nib.CategoryCell.rawValue)
         self.tableView.delegate = self
         self.loadDataSource()
         self.loadModel()

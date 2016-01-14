@@ -20,8 +20,7 @@ class ProducerViewController: TableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let productCell = Constants.Nib.ProductCell.rawValue
-        self.registerNib(productCell, forCellReuseIdentifier: productCell, withTableView: self.tableView)
+        self.registerNib(Constants.Nib.ProductCell.rawValue)
         
         self.tableView.delegate = self
         self.tableView.rowHeight = UITableViewAutomaticDimension

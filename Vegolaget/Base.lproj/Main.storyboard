@@ -180,6 +180,24 @@
             </objects>
             <point key="canvasLocation" x="1717.5" y="334.5"/>
         </scene>
+        <!--Store-->
+        <scene sceneID="NPO-DF-2WK">
+            <objects>
+                <viewController title="Store" automaticallyAdjustsScrollViewInsets="NO" id="U4R-h4-VZz" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="euM-Kx-sYr"/>
+                        <viewControllerLayoutGuide type="bottom" id="Iko-7i-TGb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="tc6-Gw-XbN">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0Vw-KF-ERe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2606.5" y="-493.5"/>
+        </scene>
         <!--Product View Controller-->
         <scene sceneID="uDh-aR-TNC">
             <objects>
@@ -202,7 +220,7 @@
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" text="Produkt" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6D6-tB-9jH">
                                             <rect key="frame" x="20" y="10" width="335" height="29"/>
-                                            <fontDescription key="fontDescription" type="system" weight="thin" pointSize="24"/>
+                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="24"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="aJD-mQ-a27">
@@ -210,7 +228,7 @@
                                             <constraints>
                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="24" id="QkB-ru-olk"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" weight="thin" pointSize="15"/>
+                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -290,6 +308,7 @@
                         <outlet property="labelPrice" destination="rz4-38-JXA" id="Az1-0C-Yvu"/>
                         <outlet property="labelYear" destination="lRh-Yi-dxB" id="NBQ-RQ-ppl"/>
                         <outlet property="tableView" destination="kwn-Mg-FbP" id="mP8-jL-LU8"/>
+                        <segue destination="U4R-h4-VZz" kind="show" identifier="ShowStore" id="YNI-M3-bOM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hPh-cp-LFX" userLabel="First Responder" sceneMemberID="firstResponder"/>

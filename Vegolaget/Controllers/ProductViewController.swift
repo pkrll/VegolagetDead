@@ -22,8 +22,7 @@ class ProductViewController: TableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let storeCell = Constants.Nib.StoreCell.rawValue
-        self.registerNib(storeCell, forCellReuseIdentifier: storeCell, withTableView: self.tableView)
+        self.registerNib(Constants.Nib.StoreLocationCell.rawValue)
         self.tableView.delegate = self
 
         self.loadTextLabels()
@@ -57,6 +56,11 @@ class ProductViewController: TableViewController {
     override func model(_: Model, didFinishLoadingData data: [Item]) {
         self.dataSource.loadData(data)
         super.model(self.model, didFinishLoadingData: [])
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if let sender = self.dataSource.itemAtIndexPath(indexPath) as? Store {
+        }
     }
     
 }
