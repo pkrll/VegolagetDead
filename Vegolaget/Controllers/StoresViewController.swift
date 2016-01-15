@@ -12,23 +12,20 @@ class StoresViewController: TableViewController {
 
     @IBOutlet var tableView: UITableView!
     
-    internal var store: Store?
+    internal var location: Location?
     
     override internal var viewTitle: String {
-        return self.store?.city ?? "Butiker"
+        return self.location?.name ?? "Butiker"
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.registerNib(Constants.Nib.StoreCell.rawValue)
         self.tableView.delegate = self
-        
+        self.registerNib(Constants.Nib.StoreCell.rawValue)
         self.loadDataSource()
         self.loadModel()
     }
 
-    
     override func loadDataSource() {
         self.dataSource = StoresDataSource()
         self.dataSource.delegate = self
@@ -36,7 +33,7 @@ class StoresViewController: TableViewController {
     }
     
     override func loadModel() {
-        self.model = StoresModel(city: self.store!.city)
+        self.model = StoresModel(city: self.location!.name)
         self.model.delegate = self
         self.model.loadData()
     }

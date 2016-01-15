@@ -86,7 +86,7 @@ class DataController: NSObject {
             do {
                 try managedObjectContext.save()
                 completionHandler?(success: true, data: nil, error: nil)
-            } catch {
+            } catch let error as NSError {
                 completionHandler?(success: false, data: nil, error: error as NSError)
             }
         }
@@ -190,10 +190,9 @@ class DataController: NSObject {
 private extension DataController {
 
     func updateItem(item: AnyObject, inEntity entity: String) {
-        if let result = self.fetchObjectWithId(item.id, inEntity: entity) as? StoresManagedObject, let item = item as? Store {
+        if let result = self.fetchObjectWithId(item.id, inEntity: entity) as? StoreManagedObject, let item = item as? Store {
             result.id = item.id
             result.name = item.name
-            result.locationID = item.locationID
             result.address = item.address
             result.postalCode = item.postalCode
             result.city = item.city
@@ -208,9 +207,10 @@ private extension DataController {
             return
         }
         
+        let object = NSEntityDescription.insertNewObjectForEntityForName(toEntity, inManagedObjectContext: managedObjectContext) as? ItemManagedObject
+        
         if item is ProductInStock {
             let item = item as! ProductInStock
-            let object = NSEntityDescription.insertNewObjectForEntityForName(toEntity, inManagedObjectContext: managedObjectContext) as? ProductInStockManagedObject
             object?.setValue(item.id, forKey: "id")
             object?.setValue(item.companyID, forKey: "companyID")
             object?.setValue(item.locationID, forKey: "locationID")
@@ -225,7 +225,6 @@ private extension DataController {
             object?.setValue(item.organic, forKey: "organic")
         } else if item is Product {
             let item = item as! Product
-            let object = NSEntityDescription.insertNewObjectForEntityForName(toEntity, inManagedObjectContext: managedObjectContext) as? ProductManagedObject
             object?.setValue(item.id, forKey: "id")
             object?.setValue(item.name, forKey: "name")
             object?.setValue(item.type, forKey: "type")
@@ -233,7 +232,6 @@ private extension DataController {
             object?.setValue(item.companyID, forKey: "companyID")
         } else if item is Producer {
             let item = item as! Producer
-            let object = NSEntityDescription.insertNewObjectForEntityForName(toEntity, inManagedObjectContext: managedObjectContext) as? ProducerManagedObject
             object?.setValue(item.id, forKey: "id")
             object?.setValue(item.name, forKey: "name")
             object?.setValue(item.country, forKey: "country")
@@ -243,12 +241,15 @@ private extension DataController {
             object?.setValue(item.doesWine, forKey: "doesWine")
             object?.setValue(item.doesBeer, forKey: "doesBeer")
             object?.setValue(item.doesLiquor, forKey: "doesLiquor")
-        } else if item is Store {
-            let item = item as! Store
-            let object = NSEntityDescription.insertNewObjectForEntityForName(toEntity, inManagedObjectContext: managedObjectContext) as? StoresManagedObject
+        } else if item is Location {
+            let item = item as! Location
             object?.setValue(item.id, forKey: "id")
             object?.setValue(item.name, forKey: "name")
             object?.setValue(item.locationID, forKey: "locationID")
+        } else if item is Store {
+            let item = item as! Store
+            object?.setValue(item.id, forKey: "id")
+            object?.setValue(item.name, forKey: "name")
             object?.setValue(item.address, forKey: "address")
             object?.setValue(item.postalCode, forKey: "postalCode")
             object?.setValue(item.city, forKey: "city")
@@ -257,7 +258,6 @@ private extension DataController {
             object?.setValue(item.rawOpenHours, forKey: "openHours")
         } else if item is Category {
             let item = item as! Category
-            let object = NSEntityDescription.insertNewObjectForEntityForName(toEntity, inManagedObjectContext: managedObjectContext) as? CategoryManagedObject
             object?.setValue(item.id, forKey: "id")
             object?.setValue(item.tag, forKey: "tag")
             object?.setValue(item.name, forKey: "name")

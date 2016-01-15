@@ -10,7 +10,6 @@ import SwiftyJSON
 
 class Store: Item {
     
-    let locationID: NSNumber
     let address: String
     let postalCode: String
     let city: String
@@ -20,7 +19,6 @@ class Store: Item {
     let rawOpenHours: String
     
     override init(data: JSON) {
-        self.locationID = data["locationID"].intValue
         self.address = data["address"].stringValue.capitalizedString
         self.postalCode = data["postalCode"].stringValue
         self.city = data["city"].stringValue.capitalizedString

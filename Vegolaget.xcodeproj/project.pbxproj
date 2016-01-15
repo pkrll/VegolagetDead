@@ -10,8 +10,11 @@
 		007A473EC5721DA26E162D93 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E62223F48BECB61C7B994FF /* Pods.framework */; };
 		6A12A8A31C48EB0400B5B4E4 /* StoresModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A12A8A21C48EB0400B5B4E4 /* StoresModel.swift */; };
 		6A12A8A51C48EFB500B5B4E4 /* StoresDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A12A8A41C48EFB500B5B4E4 /* StoresDataSource.swift */; };
-		6A12A8A71C48FC8600B5B4E4 /* StoresManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A12A8A61C48FC8600B5B4E4 /* StoresManagedObject.swift */; };
+		6A12A8A71C48FC8600B5B4E4 /* StoreManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A12A8A61C48FC8600B5B4E4 /* StoreManagedObject.swift */; };
 		6A12A8A91C48FCC400B5B4E4 /* ItemManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A12A8A81C48FCC400B5B4E4 /* ItemManagedObject.swift */; };
+		6A3592CA1C49895900E9B2D4 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3592C91C49895900E9B2D4 /* Location.swift */; };
+		6A3592CC1C498E1000E9B2D4 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3592CB1C498E1000E9B2D4 /* Dictionary.swift */; };
+		6A3592CE1C4992F100E9B2D4 /* LocationManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3592CD1C4992F100E9B2D4 /* LocationManagedObject.swift */; };
 		6A3AED691C452C77001364E5 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3AED681C452C77001364E5 /* Category.swift */; };
 		6A3AED6D1C452F24001364E5 /* CategoryDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3AED6C1C452F24001364E5 /* CategoryDataSource.swift */; };
 		6A3AED6F1C452F38001364E5 /* CategoryManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3AED6E1C452F38001364E5 /* CategoryManagedObject.swift */; };
@@ -83,8 +86,11 @@
 		324E82C322EA8389B3CAE82D /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		6A12A8A21C48EB0400B5B4E4 /* StoresModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StoresModel.swift; path = Models/StoresModel.swift; sourceTree = "<group>"; };
 		6A12A8A41C48EFB500B5B4E4 /* StoresDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StoresDataSource.swift; path = DataSources/StoresDataSource.swift; sourceTree = "<group>"; };
-		6A12A8A61C48FC8600B5B4E4 /* StoresManagedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StoresManagedObject.swift; path = CoreData/StoresManagedObject.swift; sourceTree = "<group>"; };
+		6A12A8A61C48FC8600B5B4E4 /* StoreManagedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StoreManagedObject.swift; path = CoreData/StoreManagedObject.swift; sourceTree = "<group>"; };
 		6A12A8A81C48FCC400B5B4E4 /* ItemManagedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemManagedObject.swift; path = CoreData/ItemManagedObject.swift; sourceTree = "<group>"; };
+		6A3592C91C49895900E9B2D4 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Location.swift; path = Objects/Location.swift; sourceTree = "<group>"; };
+		6A3592CB1C498E1000E9B2D4 /* Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Dictionary.swift; path = Support/Extensions/Dictionary.swift; sourceTree = "<group>"; };
+		6A3592CD1C4992F100E9B2D4 /* LocationManagedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationManagedObject.swift; path = CoreData/LocationManagedObject.swift; sourceTree = "<group>"; };
 		6A3AED681C452C77001364E5 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Category.swift; path = Objects/Category.swift; sourceTree = "<group>"; };
 		6A3AED6C1C452F24001364E5 /* CategoryDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategoryDataSource.swift; path = DataSources/CategoryDataSource.swift; sourceTree = "<group>"; };
 		6A3AED6E1C452F38001364E5 /* CategoryManagedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategoryManagedObject.swift; path = CoreData/CategoryManagedObject.swift; sourceTree = "<group>"; };
@@ -216,10 +222,10 @@
 				6A3AED701C4532E5001364E5 /* CategoryCell.xib */,
 				6A83917A1C4694AF00D8E96A /* ProducerCell.xib */,
 				6ADCCFF01C47B09C00AAF1AA /* ProductCell.xib */,
+				6A96FF871C484710007177F1 /* StoreLocationCell.xib */,
 				6ADCCFFB1C47E27C00AAF1AA /* StoreCell.xib */,
 				6A8391811C469B7400D8E96A /* LoadingCell.xib */,
 				6A8296851C44033E00012945 /* LaunchScreen.storyboard */,
-				6A96FF871C484710007177F1 /* StoreLocationCell.xib */,
 			);
 			name = "Storyboards & Nib";
 			sourceTree = "<group>";
@@ -286,6 +292,7 @@
 				6A8391761C46901E00D8E96A /* Producer.swift */,
 				6ADCCFEC1C47AFCE00AAF1AA /* Product.swift */,
 				6ADCCFEE1C47AFE600AAF1AA /* ProductInStock.swift */,
+				6A3592C91C49895900E9B2D4 /* Location.swift */,
 				6ADCD0001C47E3C900AAF1AA /* Store.swift */,
 			);
 			name = Objects;
@@ -334,6 +341,7 @@
 				6AF5E21D1C44E77500B9EF59 /* NSURLResponse+statusCode.swift */,
 				6AF5E2251C44F0F400B9EF59 /* UIColor+drawImage.swift */,
 				6A8391701C46823300D8E96A /* String.swift */,
+				6A3592CB1C498E1000E9B2D4 /* Dictionary.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -348,7 +356,8 @@
 				6A8391781C46906C00D8E96A /* ProducerManagedObject.swift */,
 				6ADCCFEA1C47AFAD00AAF1AA /* ProductManagedObject.swift */,
 				6ADCCFE81C47AF9800AAF1AA /* ProductInStockManagedObject.swift */,
-				6A12A8A61C48FC8600B5B4E4 /* StoresManagedObject.swift */,
+				6A3592CD1C4992F100E9B2D4 /* LocationManagedObject.swift */,
+				6A12A8A61C48FC8600B5B4E4 /* StoreManagedObject.swift */,
 				6A3AED731C4536CF001364E5 /* Vegolaget.xcdatamodeld */,
 			);
 			name = Coredata;
@@ -520,6 +529,8 @@
 				6A8391771C46901E00D8E96A /* Producer.swift in Sources */,
 				6A3AED6D1C452F24001364E5 /* CategoryDataSource.swift in Sources */,
 				6A82969B1C4405EE00012945 /* APIManager.swift in Sources */,
+				6A3592CA1C49895900E9B2D4 /* Location.swift in Sources */,
+				6A3592CE1C4992F100E9B2D4 /* LocationManagedObject.swift in Sources */,
 				6AF5E21C1C44E70700B9EF59 /* StatusCode.swift in Sources */,
 				6AF5E21E1C44E77500B9EF59 /* NSURLResponse+statusCode.swift in Sources */,
 				6ADCD0071C47E4B100AAF1AA /* Month.swift in Sources */,
@@ -530,7 +541,7 @@
 				6AF5E2411C45207300B9EF59 /* CategoryModel.swift in Sources */,
 				6ADCCFE91C47AF9800AAF1AA /* ProductInStockManagedObject.swift in Sources */,
 				6A12A8A31C48EB0400B5B4E4 /* StoresModel.swift in Sources */,
-				6A12A8A71C48FC8600B5B4E4 /* StoresManagedObject.swift in Sources */,
+				6A12A8A71C48FC8600B5B4E4 /* StoreManagedObject.swift in Sources */,
 				6AF5E22F1C44F3C100B9EF59 /* Model.swift in Sources */,
 				6A83917E1C4694F800D8E96A /* CategoryType.swift in Sources */,
 				6ADCD0011C47E3C900AAF1AA /* Store.swift in Sources */,
@@ -542,6 +553,7 @@
 				6ADCCFE51C47ABEB00AAF1AA /* ProducerModel.swift in Sources */,
 				6A8391711C46823300D8E96A /* String.swift in Sources */,
 				6A96FF8D1C4849C6007177F1 /* StoreModel.swift in Sources */,
+				6A3592CC1C498E1000E9B2D4 /* Dictionary.swift in Sources */,
 				6AF5E23D1C451B4B00B9EF59 /* DataSourceDelegate.swift in Sources */,
 				6A3AED751C4536CF001364E5 /* Vegolaget.xcdatamodeld in Sources */,
 				6AF5E21A1C44E65B00B9EF59 /* APIResponse.swift in Sources */,

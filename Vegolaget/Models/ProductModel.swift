@@ -12,33 +12,30 @@ class ProductModel: Model {
 
     init(locationID: Int) {
         super.init()
-        self.coreDataEntity = .Store
+        self.coreDataEntity = .Location
         self.endPoint = APIEndPoint.Product.withId(locationID)
     }
     
     override func didLoadFromCoreData(data: [AnyObject]) -> [Item] {
-        var items: [Store] = []
+        var items: [Stock] = []
         
-        if let stores = data as? [StoresManagedObject] {
-            for store in stores {
-                let json = JSON(
-                    [
-                        "id": store.id,
-                        "name": store.name,
-                        "locationID": store.locationID
-                    ]
-                )
-                
-                let item = self.createItem(json) as! Store
-                items.append(item)
-            }
-        }
+//        if let locations = data as? [StockManagedObject] {
+//            for location in locations {
+//                let json = JSON([
+//                    "id": location.id,
+//                    "name": location.name,
+//                    "locationID": location.locationID
+//                    ])
+//                let item = self.createItem(json) as! Location
+//                items.append(item)
+//            }
+//        }
         
         return items
     }
  
     override func createItem(json: JSON) -> Item {
-        return Store(data: json)
+        return Stock(data: json)
     }
     
 }

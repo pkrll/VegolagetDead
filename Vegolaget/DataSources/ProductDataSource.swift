@@ -9,14 +9,14 @@ import UIKit
 
 class ProductDataSource: DataSource {
 
-    private var locations = [String: [Store]]()
+    private var locations = [String: [Stock]]()
     private var indexTitle = [String]()
     
     override func loadData(data: [Item]) {
-        let stores = data.sort { ($0.0 as! Store).city < ($0.1 as! Store).city }
-        // The product data source will only load and display the unique locations/cities, retrieved from the Stores array.
-        for store in stores as! [Store] {
-            guard let initialCharacter = store.city.characters.first else {
+        let locations = data.sort { ($0.0 as! Stock).name < ($0.1 as! Stock).name }
+
+        for location in locations as! [Stock] {
+            guard let initialCharacter = location.name.characters.first else {
                 continue
             }
             
@@ -25,13 +25,15 @@ class ProductDataSource: DataSource {
             if self.locations[index] == nil {
                 self.locations[index] = []
             }
+
+            let locationAlreadyAdded = self.locations[index]?.contains { $0.name == location.name }
             
-            if self.locations[index]?.contains(store) == false {
-                self.locations[index]?.append(store)
+            if locationAlreadyAdded == false {
+                self.locations[index]?.append(location)
             }
         }
         // Alphabeticaly sorts the keys, with Swedish characters.
-        self.items = stores
+        self.items = locations
         self.indexTitle = self.locations.keys.sort { self.compare($0.0, withString: $0.1, localeIdentifier: "se") }
         self.delegate?.didFinishLoadDataSource(self)
     }
@@ -70,7 +72,7 @@ class ProductDataSource: DataSource {
         let item = self.locations[index]?[indexPath.row]
         
         if let textLabel = cell.viewWithTag(101) as? UILabel {
-            textLabel.text = item?.city
+            textLabel.text = item?.name
         }
         
         return cell

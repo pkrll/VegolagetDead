@@ -15,7 +15,7 @@ class Item: NSObject {
     
     init(data: JSON) {
         self.id = data["id"].intValue
-        self.name = data["name"].stringValue
+        self.name = data["name"].stringValue.capitalizedString
         
         super.init()
     }

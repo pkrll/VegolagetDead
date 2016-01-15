@@ -13,6 +13,7 @@ enum CoreDataEntities: String {
     case Producer
     case Product
     case ProductInStock
+    case Location
     case Store
     
 }
