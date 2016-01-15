@@ -6,6 +6,7 @@
 //  Copyright © 2016 Saturn Five. All rights reserved.
 //
 import Foundation
+import SwiftyJSON
 
 typealias APIManagerCallback = (response: APIResponse) -> Void
 
@@ -15,53 +16,46 @@ class APIManager {
     /**
      *  Returns the last requested URL.
      */
-    internal var requestedURL = String()
+    private(set) var requestedURL: NSURL?
+    /**
+     *  The parameters of the request.
+     */
+    private(set) var parameters: NSData?
+    
+    private lazy var URLRequest: NSMutableURLRequest = {
+        return NSMutableURLRequest()
+    }()
     /**
      *  Returns a shared singleton session object.
      */
     private lazy var session: NSURLSession = {
         return NSURLSession.sharedSession()
     }()
-    /**
-     *  Make a request.
-     *  - parameter endPoint: The URL to call.
-     */
-    func callNode(endPoint: String, success: APIManagerCallback?, failure:APIManagerCallback?) {
-        print("Calling \(endPoint)")
-        let request = NSURLRequest(URL: NSURL(string: endPoint)!)
-        self.requestedURL = endPoint
-        self.execute(request) { (data: NSData?, URLResponse: NSURLResponse?, error: NSError?) -> Void in
-            var response: APIResponse
-            
-            if let URLResponse = URLResponse {
-                let statusCode = StatusCode(rawValue: URLResponse.statusCode)!
+    
+    func setRequestURL(string: String) {
+        self.requestedURL = NSURL(string: string)!
+    }
+    
+    func setHttpMethod(httpMethod: String) {
+        self.URLRequest.HTTPMethod = httpMethod
+    }
+    
+    func setParameters(parameters: [String: String]) {
+        var httpBody = String()
+
+        for (key, value) in parameters {
+            httpBody += "\(key)=\(value)&"
+        }
                 
-                if statusCode.isSuccess {
-                    // A 200 - 299 response
-                    response = APIResponse(
-                        statusCode: statusCode.rawValue,
-                        allHeaders: URLResponse.allHeaders,
-                        data: data,
-                        error: error?.localizedDescription
-                    )
-                } else {
-                    // Status code indicates failure
-                    response = APIResponse(
-                        statusCode: statusCode.rawValue,
-                        allHeaders: URLResponse.allHeaders,
-                        data: data,
-                        error: error?.localizedDescription
-                    )
-                }
-            } else {
-                // A nil URLResponse
-                response = APIResponse(
-                    statusCode: 0,
-                    allHeaders: nil,
-                    data: nil,
-                    error: error?.localizedDescription
-                )
-            }
+        self.URLRequest.HTTPBody = httpBody.dataUsingEncoding(NSUTF8StringEncoding)
+    }
+    
+    
+    func executeRequest(success: APIManagerCallback?, failure: APIManagerCallback?) {
+        self.URLRequest.URL = self.requestedURL
+        print("Calling \(self.requestedURL)")
+        self.session.dataTaskWithRequest(self.URLRequest) { (data, URLResponse, error) -> Void in
+            let response = self.handleResponse(data, URLResponse: URLResponse, error: error)
             
             if response.didSucceed() {
                 if let success = success {
@@ -76,15 +70,46 @@ class APIManager {
                     self.delegate?.manager(self, failedRequest: response)
                 }
             }
-        }
+        }.resume()
     }
     
 }
 // MARK: - Private Methods
 private extension APIManager {
 
-    func execute(request: NSURLRequest, completionHandler: (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void) {
-        self.session.dataTaskWithRequest(request, completionHandler: completionHandler).resume()
+    func handleResponse(data: NSData?, URLResponse: NSURLResponse?, error: NSError?) -> APIResponse {
+        var response: APIResponse
+        
+        if let URLResponse = URLResponse {
+            let statusCode = StatusCode(rawValue: URLResponse.statusCode)!
+            
+            if statusCode.isSuccess {
+                // A 200 - 299 response
+                response = APIResponse(
+                    statusCode: statusCode.rawValue,
+                    allHeaders: URLResponse.allHeaders,
+                    data: data,
+                    error: error?.localizedDescription
+                )
+            } else {
+                // Status code indicates failure
+                response = APIResponse(
+                    statusCode: statusCode.rawValue,
+                    allHeaders: URLResponse.allHeaders,
+                    data: data,
+                    error: error?.localizedDescription
+                )
+            }
+        } else {
+            // A nil URLResponse
+            response = APIResponse(
+                statusCode: 0,
+                allHeaders: nil,
+                data: nil,
+                error: error?.localizedDescription
+            )
+        }
+        
+        return response
     }
-    
 }

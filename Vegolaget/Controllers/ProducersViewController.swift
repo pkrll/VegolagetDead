@@ -68,8 +68,8 @@ class ProducersViewController: SearchViewController {
     
     override func model(model: Model, didFinishLoadingData data: [Item]) {
         self.searchBar.placeholder = String(format: self.searchBarPlaceholder, data.count)
-        self.dataSource.loadData(data)
-        super.model(self.model, didFinishLoadingData: [])
+//        self.dataSource.loadData(data)
+        super.model(self.model, didFinishLoadingData: data)
     }
 
     override func didFinishFilterDataSource(_: SearchDataSource) {

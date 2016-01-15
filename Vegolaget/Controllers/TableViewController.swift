@@ -43,6 +43,11 @@ class TableViewController: ViewController, DataSourceDelegate, UITableViewDelega
             tableView?.reloadData()
         }
     }
+    
+    override func model(_: Model, didFinishLoadingData data: [Item]) {
+        self.dataSource.loadData(data)
+        super.model(self.model, didFinishLoadingData: data)
+    }
     /**
      *  Invoked when the table view was pulled to refresh its content.
      *  - Note: You must add *refreshControl* as a sub view to the table view to use it.

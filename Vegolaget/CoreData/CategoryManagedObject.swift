@@ -9,11 +9,9 @@ import Foundation
 import CoreData
 
 @objc(CategoryManagedObject)
-class CategoryManagedObject: NSManagedObject {
+class CategoryManagedObject: ItemManagedObject {
     
-    @NSManaged var id: NSNumber
     @NSManaged var tag: String
-    @NSManaged var name: String
     @NSManaged var title: String
     @NSManaged var count: NSNumber
     

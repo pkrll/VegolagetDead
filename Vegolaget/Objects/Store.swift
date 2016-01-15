@@ -10,14 +10,17 @@ import SwiftyJSON
 
 class Store: Item {
     
+    let locationID: NSNumber
     let address: String
     let postalCode: String
     let city: String
     let county: String
     let phone: String
     var openHours: [DateTime]
+    let rawOpenHours: String
     
     override init(data: JSON) {
+        self.locationID = data["locationID"].intValue
         self.address = data["address"].stringValue.capitalizedString
         self.postalCode = data["postalCode"].stringValue
         self.city = data["city"].stringValue.capitalizedString
@@ -39,7 +42,9 @@ class Store: Item {
             
             self.openHours.sortInPlace { $0.0.date < $0.1.date }
         }
-
+        
+        self.rawOpenHours = openHours
+        
         super.init(data: data)
     }
     

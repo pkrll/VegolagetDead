@@ -81,5 +81,20 @@ public enum APIEndPoint {
             return self.Root.string + id.description
         }
     }
+    
+    enum Store: String {
+        
+        case Root = "/stores/"
+        
+        case City = "/stores/city/"
+
+        var string: String {
+            return APIEndPoint.BaseURL + self.rawValue
+        }
+        
+        static func withId(id: Int) -> String {
+            return self.Root.string + id.description
+        }
+    }
 
 }

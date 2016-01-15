@@ -10,14 +10,33 @@ import SwiftyJSON
 
 class ProductModel: Model {
 
-    private var locationID: Int
-    
     init(locationID: Int) {
-        self.locationID = locationID
         super.init()
-        self.endPoint = APIEndPoint.Product.withId(self.locationID)
+        self.coreDataEntity = .Store
+        self.endPoint = APIEndPoint.Product.withId(locationID)
     }
     
+    override func didLoadFromCoreData(data: [AnyObject]) -> [Item] {
+        var items: [Store] = []
+        
+        if let stores = data as? [StoresManagedObject] {
+            for store in stores {
+                let json = JSON(
+                    [
+                        "id": store.id,
+                        "name": store.name,
+                        "locationID": store.locationID
+                    ]
+                )
+                
+                let item = self.createItem(json) as! Store
+                items.append(item)
+            }
+        }
+        
+        return items
+    }
+ 
     override func createItem(json: JSON) -> Item {
         return Store(data: json)
     }

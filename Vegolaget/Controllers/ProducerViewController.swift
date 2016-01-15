@@ -53,9 +53,9 @@ class ProducerViewController: TableViewController {
     // MARK: - Model Delegate Methods
     
     override func model(model: Model, didFinishLoadingData data: [Item]) {
-        self.dataSource.loadData(data)
+//        self.dataSource.loadData(data)
         self.refreshControl.endRefreshing()
-        super.model(model, didFinishLoadingData: [])
+        super.model(model, didFinishLoadingData: data)
     }
     
     // MARK: - Table View Delegate Methods
@@ -63,16 +63,14 @@ class ProducerViewController: TableViewController {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         // Barnivore items and System Company items differ
         if indexPath.section == 1 {
-            let sender = tableView.cellForRowAtIndexPath(indexPath)
+            let sender = self.dataSource.itemAtIndexPath(indexPath) as? ProductInStock
             self.performSegueWithIdentifier(Constants.Segue.ShowProduct.rawValue, sender: sender)
         }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let viewController = segue.destinationViewController as? ProductViewController, let sender = sender as? UITableViewCell {
-            let index = self.tableView.indexPathForCell(sender)!
-            let item = self.dataSource.itemAtIndexPath(index) as! ProductInStock
-            viewController.product = item
+        if let viewController = segue.destinationViewController as? ProductViewController, let sender = sender as? ProductInStock {
+            viewController.product = sender
         }
     }
 

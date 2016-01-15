@@ -32,10 +32,10 @@ class CategoryViewController: TableViewController {
         self.model.loadData()
     }
 
-    override func model(model: Model, didFinishLoadingData data: [Item]) {
-        self.dataSource.loadData(data)
-        super.model(model, didFinishLoadingData: [])
-    }
+//    override func model(model: Model, didFinishLoadingData data: [Item]) {
+//        self.dataSource.loadData(data)
+//        super.model(model, didFinishLoadingData: [])
+//    }
 
     override func didFinishLoadDataSource(_: DataSource) {
         self.tableView.reloadData()

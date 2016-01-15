@@ -92,6 +92,35 @@ class DataController: NSObject {
         }
     }
     
+    func insertAndUpdateItems(items: [AnyObject], inEntity entity: String) {
+        dispatch_async(self.queue) {
+            let newItems = items.filter {
+                self.doesObjectExist(($0 as! Item).id, entityName: entity) == false
+            }
+            // Already added items should be updated.
+            let oldItems = items.filter {
+                self.doesObjectExist(($0 as! Item).id, entityName: entity) == true
+            }
+            
+            print("Saving \(newItems.count) objects")
+            print("Updating \(oldItems.count) objects")
+            
+            if newItems.count > 0 {
+                for item in newItems {
+                    self.insertItem(item, toEntity: entity)
+                }
+            }
+            
+            if oldItems.count > 0 {
+                for item in oldItems {
+                    self.updateItem(item, inEntity: entity)
+                }
+            }
+            
+            self.save(nil)
+        }
+    }
+    
     func insertItems(items: [AnyObject], toEntity: String) {
         dispatch_async(self.queue) {
             let items = items.filter {
@@ -160,6 +189,20 @@ class DataController: NSObject {
 
 private extension DataController {
 
+    func updateItem(item: AnyObject, inEntity entity: String) {
+        if let result = self.fetchObjectWithId(item.id, inEntity: entity) as? StoresManagedObject, let item = item as? Store {
+            result.id = item.id
+            result.name = item.name
+            result.locationID = item.locationID
+            result.address = item.address
+            result.postalCode = item.postalCode
+            result.city = item.city
+            result.county = item.county
+            result.phone = item.phone
+            result.openHours = item.rawOpenHours
+        }
+    }
+    
     func insertItem(item: AnyObject, toEntity: String) {
         guard let managedObjectContext = self.managedObjectContext else {
             return
@@ -200,6 +243,18 @@ private extension DataController {
             object?.setValue(item.doesWine, forKey: "doesWine")
             object?.setValue(item.doesBeer, forKey: "doesBeer")
             object?.setValue(item.doesLiquor, forKey: "doesLiquor")
+        } else if item is Store {
+            let item = item as! Store
+            let object = NSEntityDescription.insertNewObjectForEntityForName(toEntity, inManagedObjectContext: managedObjectContext) as? StoresManagedObject
+            object?.setValue(item.id, forKey: "id")
+            object?.setValue(item.name, forKey: "name")
+            object?.setValue(item.locationID, forKey: "locationID")
+            object?.setValue(item.address, forKey: "address")
+            object?.setValue(item.postalCode, forKey: "postalCode")
+            object?.setValue(item.city, forKey: "city")
+            object?.setValue(item.county, forKey: "county")
+            object?.setValue(item.phone, forKey: "phone")
+            object?.setValue(item.rawOpenHours, forKey: "openHours")
         } else if item is Category {
             let item = item as! Category
             let object = NSEntityDescription.insertNewObjectForEntityForName(toEntity, inManagedObjectContext: managedObjectContext) as? CategoryManagedObject
@@ -212,18 +267,29 @@ private extension DataController {
     }
     
     func doesObjectExist(id: Int, entityName: String) -> Bool {
+        let objects = self.fetchObjectWithId(id, inEntity: entityName)
+        return objects?.count > 0
+    }
+    
+    func fetchObjectWithId(id: Int, inEntity entity: String) -> AnyObject? {
         guard let managedObjectContext = self.managedObjectContext else {
-            return false
+            return nil
         }
         
+        let result: AnyObject?
+        let request = NSFetchRequest(entityName: entity)
         let predicate = NSPredicate(format: "id = %i", id)
-        let fetchRequest = NSFetchRequest(entityName: entityName)
-        fetchRequest.predicate = predicate
-        fetchRequest.fetchLimit = 1
+        request.predicate = predicate
+        request.fetchLimit = 1
         
-        let count = managedObjectContext.countForFetchRequest(fetchRequest, error: nil)
+        do {
+            let results = try managedObjectContext.executeFetchRequest(request)
+            result = (results.count > 0) ? results[0] : nil
+        } catch  {
+            return nil
+        }
         
-        return count > 0
+        return result
     }
     /**
      *  Returns an error object.

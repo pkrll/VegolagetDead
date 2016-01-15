@@ -49,17 +49,20 @@ class ProductViewController: TableViewController {
     
     override func loadModel() {
         self.model = ProductModel(locationID: self.product!.locationID)
+        self.model.coreDataPredicate = NSPredicate(format: "locationID = %i", self.product!.locationID)
         self.model.delegate = self
         self.model.loadData()
     }
     
-    override func model(_: Model, didFinishLoadingData data: [Item]) {
-        self.dataSource.loadData(data)
-        super.model(self.model, didFinishLoadingData: [])
-    }
-    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if let sender = self.dataSource.itemAtIndexPath(indexPath) as? Store {
+            self.performSegueWithIdentifier(Constants.Segue.ShowStore.rawValue, sender: sender)
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let viewController = segue.destinationViewController as? StoresViewController, let sender = sender as? Store {
+            viewController.store = sender
         }
     }
     

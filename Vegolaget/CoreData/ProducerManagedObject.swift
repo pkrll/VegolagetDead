@@ -9,10 +9,8 @@ import UIKit
 import CoreData
 
 @objc(ProducerManagedObject)
-class ProducerManagedObject: NSManagedObject {
+class ProducerManagedObject: ItemManagedObject {
     
-    @NSManaged var id: NSNumber
-    @NSManaged var name: String
     @NSManaged var country: String
     @NSManaged var notes: String
     @NSManaged var tag: String

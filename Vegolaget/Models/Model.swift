@@ -60,10 +60,8 @@ class Model: NSObject, APIManagerDelegate {
     }
     
     func refreshData() {
-        self.manager.callNode(self.endPoint,
-            success: self.managerDidCompleteRequest,
-            failure: self.managerFailedRequest
-        )
+        self.manager.setRequestURL(self.endPoint)
+        self.manager.executeRequest(self.managerDidCompleteRequest, failure: self.managerFailedRequest)
     }
     /**
      *  This method is called by *loadData()*, providing the results of the core data query.

@@ -180,10 +180,10 @@
             </objects>
             <point key="canvasLocation" x="1717.5" y="334.5"/>
         </scene>
-        <!--Store-->
+        <!--Stores-->
         <scene sceneID="NPO-DF-2WK">
             <objects>
-                <viewController title="Store" automaticallyAdjustsScrollViewInsets="NO" id="U4R-h4-VZz" sceneMemberID="viewController">
+                <viewController title="Stores" automaticallyAdjustsScrollViewInsets="NO" id="U4R-h4-VZz" customClass="StoresViewController" customModule="Vegolaget" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="euM-Kx-sYr"/>
                         <viewControllerLayoutGuide type="bottom" id="Iko-7i-TGb"/>
@@ -191,8 +191,23 @@
                     <view key="view" contentMode="scaleToFill" id="tc6-Gw-XbN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cYR-5T-F2E">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="cYR-5T-F2E" secondAttribute="trailing" id="CHJ-UY-WwN"/>
+                            <constraint firstItem="cYR-5T-F2E" firstAttribute="leading" secondItem="tc6-Gw-XbN" secondAttribute="leading" id="F7p-tN-h9A"/>
+                            <constraint firstItem="cYR-5T-F2E" firstAttribute="top" secondItem="euM-Kx-sYr" secondAttribute="bottom" id="Gxy-pX-Wf9"/>
+                            <constraint firstItem="cYR-5T-F2E" firstAttribute="bottom" secondItem="Iko-7i-TGb" secondAttribute="top" id="I0j-jn-wKS"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="cYR-5T-F2E" id="BVi-5J-QTj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Vw-KF-ERe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

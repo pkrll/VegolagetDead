@@ -9,12 +9,10 @@ import UIKit
 import CoreData
 
 @objc(ProductInStockManagedObject)
-class ProductInStockManagedObject: NSManagedObject {
+class ProductInStockManagedObject: ItemManagedObject {
     
-    @NSManaged var id: NSNumber
     @NSManaged var companyID: NSNumber
     @NSManaged var locationID: NSNumber
-    @NSManaged var name: String
     @NSManaged var detailName: String
     @NSManaged var type: String
     @NSManaged var price: Double

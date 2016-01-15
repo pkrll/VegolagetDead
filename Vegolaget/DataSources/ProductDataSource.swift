@@ -9,7 +9,7 @@ import UIKit
 
 class ProductDataSource: DataSource {
 
-    private var locations = [String: [String]]()
+    private var locations = [String: [Store]]()
     private var indexTitle = [String]()
     
     override func loadData(data: [Item]) {
@@ -20,20 +20,25 @@ class ProductDataSource: DataSource {
                 continue
             }
             
-            let city = store.city
             let index = String(initialCharacter)
             
             if self.locations[index] == nil {
                 self.locations[index] = []
             }
             
-            if self.locations[index]?.contains(city) == false {
-                self.locations[index]?.append(city)
+            if self.locations[index]?.contains(store) == false {
+                self.locations[index]?.append(store)
             }
         }
         // Alphabeticaly sorts the keys, with Swedish characters.
+        self.items = stores
         self.indexTitle = self.locations.keys.sort { self.compare($0.0, withString: $0.1, localeIdentifier: "se") }
         self.delegate?.didFinishLoadDataSource(self)
+    }
+    
+    override func itemAtIndexPath(indexPath: NSIndexPath) -> Item? {
+        let index = self.indexTitle[indexPath.section]
+        return self.locations[index]?[indexPath.row] ?? nil
     }
     
     // MARK: - Table View Data Source Delegate Methods
@@ -65,7 +70,7 @@ class ProductDataSource: DataSource {
         let item = self.locations[index]?[indexPath.row]
         
         if let textLabel = cell.viewWithTag(101) as? UILabel {
-            textLabel.text = item
+            textLabel.text = item?.city
         }
         
         return cell
