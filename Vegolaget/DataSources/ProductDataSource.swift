@@ -9,13 +9,13 @@ import UIKit
 
 class ProductDataSource: DataSource {
 
-    private var locations = [String: [Stock]]()
+    private var locations = [String: [Location]]()
     private var indexTitle = [String]()
     
     override func loadData(data: [Item]) {
-        let locations = data.sort { ($0.0 as! Stock).name < ($0.1 as! Stock).name }
+        let locations = data.sort { ($0.0 as! Location).name < ($0.1 as! Location).name }
 
-        for location in locations as! [Stock] {
+        for location in locations as! [Location] {
             guard let initialCharacter = location.name.characters.first else {
                 continue
             }

@@ -102,9 +102,6 @@ class DataController: NSObject {
                 self.doesObjectExist(($0 as! Item).id, entityName: entity) == true
             }
             
-            print("Saving \(newItems.count) objects")
-            print("Updating \(oldItems.count) objects")
-            
             if newItems.count > 0 {
                 for item in newItems {
                     self.insertItem(item, toEntity: entity)
@@ -112,6 +109,7 @@ class DataController: NSObject {
             }
             
             if oldItems.count > 0 {
+                print("Updating \(oldItems.count) objects")
                 for item in oldItems {
                     self.updateItem(item, inEntity: entity)
                 }
@@ -188,17 +186,37 @@ class DataController: NSObject {
 }
 
 private extension DataController {
-
+    
     func updateItem(item: AnyObject, inEntity entity: String) {
-        if let result = self.fetchObjectWithId(item.id, inEntity: entity) as? StoreManagedObject, let item = item as? Store {
-            result.id = item.id
-            result.name = item.name
-            result.address = item.address
-            result.postalCode = item.postalCode
-            result.city = item.city
-            result.county = item.county
-            result.phone = item.phone
-            result.openHours = item.rawOpenHours
+        // Checks if the object is of specified type
+        func isObject<ClassType>(object: AnyObject?, OfType type: ClassType.Type) -> Bool {
+            if object is ClassType {
+                return true
+            }
+            
+            return false
+        }
+        
+        let object = self.fetchObjectWithId(item.id, inEntity: entity)
+        
+        if isObject(object, OfType: StoreManagedObject.self) && isObject(item, OfType: Store.self) {
+            let object = object as! StoreManagedObject
+            let item = item as! Store
+            
+            object.id = item.id
+            object.name = item.name
+            object.address = item.address
+            object.postalCode = item.postalCode
+            object.city = item.city
+            object.county = item.county
+            object.phone = item.phone
+            object.openHours = item.rawOpenHours
+        } else if isObject(object, OfType: LocationManagedObject.self) && isObject(item, OfType: Location.self) {
+            let object = object as! LocationManagedObject
+            let item = item as! Location
+            
+            object.id = item.id
+            object.locationID = item.locationID
         }
     }
     
@@ -244,7 +262,6 @@ private extension DataController {
         } else if item is Location {
             let item = item as! Location
             object?.setValue(item.id, forKey: "id")
-            object?.setValue(item.name, forKey: "name")
             object?.setValue(item.locationID, forKey: "locationID")
         } else if item is Store {
             let item = item as! Store

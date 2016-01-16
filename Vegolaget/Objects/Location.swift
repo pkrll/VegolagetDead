@@ -18,17 +18,3 @@ class Location: Item {
     }
     
 }
-
-
-class Stock: Item {
-    
-    let locationID: Int
-    let storeID: Int
-
-    override init(data: JSON) {
-        self.locationID = data["locationID"].intValue
-        self.storeID = data["storeID"].intValue
-        super.init(data: data)
-    }
-    
-}
