@@ -50,11 +50,6 @@ class ProductDataSource: DataSource {
 
         return allItems
     }
-
-    override func itemAtIndexPath(indexPath: NSIndexPath) -> Item? {
-        let index = self.indexTitle[indexPath.section]
-        return self.locations[index]?[indexPath.row] ?? nil
-    }
     
     // MARK: - Table View Data Source Delegate Methods
     

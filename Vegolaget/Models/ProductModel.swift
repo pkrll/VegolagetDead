@@ -45,7 +45,8 @@ class ProductModel: Model {
                         "id": item.id,
                         "locationID": (item as! LocationManagedObject).locationID,
                         "storeID": (item as! LocationManagedObject).storeID,
-                        "city": (item as! LocationManagedObject).city
+                        "city": (item as! LocationManagedObject).city,
+                        "name": (item as! LocationManagedObject).name
                         ])
                     let location = Location(data: json)
                     list.append(location)

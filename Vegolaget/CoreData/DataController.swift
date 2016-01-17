@@ -93,7 +93,7 @@ class DataController: NSObject {
     }
     
     func insertAndUpdateItems(items: [AnyObject], inEntity entity: String) {
-//        dispatch_async(self.queue) {
+
             let newItems = items.filter {
                 return self.doesObjectExist(($0 as! Item).id, entityName: entity) == false
             }
@@ -115,9 +115,9 @@ class DataController: NSObject {
                     self.updateItem(item, inEntity: entity)
                 }
             }
-            
+        dispatch_async(self.queue) {
             self.save(nil)
-//        }
+        }
     }
     
     func insertItems(items: [AnyObject], toEntity: String) {
@@ -187,6 +187,9 @@ class DataController: NSObject {
 }
 
 private extension DataController {
+    
+    
+    
     
     func updateItem(item: AnyObject, inEntity entity: String) {
         if let object = self.fetchObjectWithId(item.id, inEntity: entity) as? ItemManagedObject, let item = item as? Item {
@@ -260,6 +263,7 @@ private extension DataController {
             object?.setValue(item.id, forKey: "id")
             object?.setValue(item.locationID, forKey: "locationID")
             object?.setValue(item.storeID, forKey: "storeID")
+            object?.setValue(item.name, forKey: "name")
             object?.setValue(item.city, forKey: "city")
         } else if item is Store {
             let item = item as! Store
