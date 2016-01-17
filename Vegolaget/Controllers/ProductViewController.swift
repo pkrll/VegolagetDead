@@ -55,15 +55,15 @@ class ProductViewController: TableViewController {
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//        if let sender = self.dataSource.itemAtIndexPath(indexPath) as? Stock {
-//            self.performSegueWithIdentifier(Constants.Segue.ShowStore.rawValue, sender: sender)
-//        }
+        if let sender = (self.dataSource as! ProductDataSource).itemsAtIndexPath(indexPath) as? [Location] {
+            self.performSegueWithIdentifier(Constants.Segue.ShowStore.rawValue, sender: sender)
+        }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        if let viewController = segue.destinationViewController as? StoresViewController, let sender = sender as? Stock {
-//            viewController.stock = sender
-//        }
+        if let viewController = segue.destinationViewController as? StoresViewController, let sender = sender as? [Location] {
+            viewController.locations = sender
+        }
     }
     
 }

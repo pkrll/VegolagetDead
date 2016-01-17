@@ -10,7 +10,10 @@ import SwiftyJSON
 
 class ProductModel: Model {
 
+    let locationID: Int
+    
     init(locationID: Int) {
+        self.locationID = locationID
         super.init()
         self.coreDataEntity = .Location
         self.endPoint = APIEndPoint.Product.withId(locationID)
@@ -19,7 +22,7 @@ class ProductModel: Model {
     override func saveData(data: [Item]) {
         var locations = [Location]()
         var stores = [Store]()
-        // The API returns a Store object, but we want to create two different objects out of it.
+        // Save both the Stores and Locations object.
         for item in data {
             if item is Location {
                 locations.append(item as! Location)
@@ -33,24 +36,24 @@ class ProductModel: Model {
     }
     
     override func didLoadFromCoreData(data: [AnyObject]) -> [Item] {
-        var locations = [Location]()
+        var list = [Location]()
 
         if let items = data as? [ItemManagedObject] {
             for item in items {
                 if item is LocationManagedObject {
                     let json = JSON([
-                            "id": item.id,
-                            "name": item.name,
-                            "locationID": (item as! LocationManagedObject).locationID
+                        "id": item.id,
+                        "locationID": (item as! LocationManagedObject).locationID,
+                        "storeID": (item as! LocationManagedObject).storeID,
+                        "city": (item as! LocationManagedObject).city
                         ])
-                    let location = self.createItem(json) as! Location
-                    locations.append(location)
+                    let location = Location(data: json)
+                    list.append(location)
                 }
             }
-            
         }
-        
-        return locations
+
+        return list
     }
  
     override func parseResponseData(data: NSData?) -> [Item] {
@@ -60,9 +63,10 @@ class ProductModel: Model {
             let data = JSON(data: data)
             
             for (_, json): (String, JSON) in data {
+                // The API returns a JSON object with the stores information, but we want to create two different objects out of it.
+                // Create both the Store object, but also the Location object from parts of the Store information that will be used by this model's controller.
                 let location = Location(data: json)
                 list.append(location)
-                
                 let store = Store(data: json)
                 list.append(store)
             }
@@ -71,11 +75,8 @@ class ProductModel: Model {
         return list
     }
 
-    override func createItem(json: JSON) -> Item {
-        return Location(data: json)
-    }
-    
     override func willPassDataToDelegate(data: [Item]) {
+        // Only the Location objects should be passed on. Disregard the Store objects, as they now have been saved.
         let data = data.filter { $0 is Location }
         super.willPassDataToDelegate(data)
     }

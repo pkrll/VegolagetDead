@@ -93,14 +93,16 @@ class DataController: NSObject {
     }
     
     func insertAndUpdateItems(items: [AnyObject], inEntity entity: String) {
-        dispatch_async(self.queue) {
+//        dispatch_async(self.queue) {
             let newItems = items.filter {
-                self.doesObjectExist(($0 as! Item).id, entityName: entity) == false
+                return self.doesObjectExist(($0 as! Item).id, entityName: entity) == false
             }
             // Already added items should be updated.
             let oldItems = items.filter {
-                self.doesObjectExist(($0 as! Item).id, entityName: entity) == true
+                return self.doesObjectExist(($0 as! Item).id, entityName: entity) == true
             }
+            print("Inserting \(newItems.count) objects")
+            print("Updating \(oldItems.count) objects")
             
             if newItems.count > 0 {
                 for item in newItems {
@@ -109,14 +111,13 @@ class DataController: NSObject {
             }
             
             if oldItems.count > 0 {
-                print("Updating \(oldItems.count) objects")
                 for item in oldItems {
                     self.updateItem(item, inEntity: entity)
                 }
             }
             
             self.save(nil)
-        }
+//        }
     }
     
     func insertItems(items: [AnyObject], toEntity: String) {
@@ -188,36 +189,31 @@ class DataController: NSObject {
 private extension DataController {
     
     func updateItem(item: AnyObject, inEntity entity: String) {
-        // Checks if the object is of specified type
-        func isObject<ClassType>(object: AnyObject?, OfType type: ClassType.Type) -> Bool {
-            if object is ClassType {
-                return true
-            }
-            
-            return false
-        }
-        
-        let object = self.fetchObjectWithId(item.id, inEntity: entity)
-        
-        if isObject(object, OfType: StoreManagedObject.self) && isObject(item, OfType: Store.self) {
-            let object = object as! StoreManagedObject
-            let item = item as! Store
-            
+        if let object = self.fetchObjectWithId(item.id, inEntity: entity) as? ItemManagedObject, let item = item as? Item {
             object.id = item.id
             object.name = item.name
-            object.address = item.address
-            object.postalCode = item.postalCode
-            object.city = item.city
-            object.county = item.county
-            object.phone = item.phone
-            object.openHours = item.rawOpenHours
-        } else if isObject(object, OfType: LocationManagedObject.self) && isObject(item, OfType: Location.self) {
-            let object = object as! LocationManagedObject
-            let item = item as! Location
             
-            object.id = item.id
-            object.locationID = item.locationID
+            if object.isOfClassType(StoreManagedObject.self) && item.isOfClassType(Store.self) {
+                (object as! StoreManagedObject).address = (item as! Store).address
+                (object as! StoreManagedObject).postalCode = (item as! Store).postalCode
+                (object as! StoreManagedObject).city = (item as! Store).city
+                (object as! StoreManagedObject).county = (item as! Store).county
+                (object as! StoreManagedObject).phone = (item as! Store).phone
+                (object as! StoreManagedObject).openHours = (item as! Store).rawOpenHours
+            } else if object.isOfClassType(LocationManagedObject.self) && item.isOfClassType(Location.self) {
+                (object as! LocationManagedObject).locationID = (item as! Location).locationID
+                (object as! LocationManagedObject).storeID = (item as! Location).storeID
+                (object as! LocationManagedObject).city = (item as! Location).city
+            } else if object.isOfClassType(ProductManagedObject) && item.isOfClassType(Product.self) {
+                
+            } else if object.isOfClassType(ProducerManagedObject) && item.isOfClassType(Producer.self) {
+                
+            } else if object.isOfClassType(Category) && item.isOfClassType(Category.self) {
+                
+            }
+
         }
+
     }
     
     func insertItem(item: AnyObject, toEntity: String) {
@@ -226,7 +222,7 @@ private extension DataController {
         }
         
         let object = NSEntityDescription.insertNewObjectForEntityForName(toEntity, inManagedObjectContext: managedObjectContext) as? ItemManagedObject
-        
+
         if item is ProductInStock {
             let item = item as! ProductInStock
             object?.setValue(item.id, forKey: "id")
@@ -263,6 +259,8 @@ private extension DataController {
             let item = item as! Location
             object?.setValue(item.id, forKey: "id")
             object?.setValue(item.locationID, forKey: "locationID")
+            object?.setValue(item.storeID, forKey: "storeID")
+            object?.setValue(item.city, forKey: "city")
         } else if item is Store {
             let item = item as! Store
             object?.setValue(item.id, forKey: "id")
@@ -284,8 +282,11 @@ private extension DataController {
     }
     
     func doesObjectExist(id: Int, entityName: String) -> Bool {
-        let objects = self.fetchObjectWithId(id, inEntity: entityName)
-        return objects?.count > 0
+        if let _ = self.fetchObjectWithId(id, inEntity: entityName) as? ItemManagedObject {
+            return true
+        }
+
+        return false
     }
     
     func fetchObjectWithId(id: Int, inEntity entity: String) -> AnyObject? {

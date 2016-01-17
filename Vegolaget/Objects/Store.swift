@@ -18,7 +18,8 @@ class Store: Item {
     var openHours: [DateTime]
     let rawOpenHours: String
     
-    override init(data: JSON) {
+    override init(var data: JSON) {
+        data["id"] = data["storeID"]
         self.address = data["address"].stringValue.capitalizedString
         self.postalCode = data["postalCode"].stringValue
         self.city = data["city"].stringValue.capitalizedString

@@ -15,7 +15,14 @@ class StoreModel: Model {
         self.endPoint = APIEndPoint.Store.withId(storeID)
     }
     
-    override func refreshData() {
+    override func saveData(data: [Item]) {
+        
+    }
+    
+
+    
+    override func createItem(json: JSON) -> Item {
+        return Store(data: json)
     }
     
 

@@ -12,5 +12,7 @@ import CoreData
 class LocationManagedObject: ItemManagedObject {
 
     @NSManaged var locationID: NSNumber
+    @NSManaged var storeID: NSNumber
+    @NSManaged var city: String
     
 }

@@ -11,9 +11,14 @@ import SwiftyJSON
 class Location: Item {
 
     let locationID: Int
+    let storeID: Int
+    let city: String
     
-    override init(data: JSON) {
+    override init(var data: JSON) {
+        data["id"] = data["storeID"]
         self.locationID = data["locationID"].intValue
+        self.storeID = data["storeID"].intValue
+        self.city = data["city"].stringValue.capitalizedString
         super.init(data: data)
     }
     

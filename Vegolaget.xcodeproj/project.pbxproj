@@ -13,13 +13,15 @@
 		6A12A8A71C48FC8600B5B4E4 /* StoreManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A12A8A61C48FC8600B5B4E4 /* StoreManagedObject.swift */; };
 		6A12A8A91C48FCC400B5B4E4 /* ItemManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A12A8A81C48FCC400B5B4E4 /* ItemManagedObject.swift */; };
 		6A3592CA1C49895900E9B2D4 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3592C91C49895900E9B2D4 /* Location.swift */; };
-		6A3592CC1C498E1000E9B2D4 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3592CB1C498E1000E9B2D4 /* Dictionary.swift */; };
 		6A3592CE1C4992F100E9B2D4 /* LocationManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3592CD1C4992F100E9B2D4 /* LocationManagedObject.swift */; };
 		6A3AED691C452C77001364E5 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3AED681C452C77001364E5 /* Category.swift */; };
 		6A3AED6D1C452F24001364E5 /* CategoryDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3AED6C1C452F24001364E5 /* CategoryDataSource.swift */; };
 		6A3AED6F1C452F38001364E5 /* CategoryManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3AED6E1C452F38001364E5 /* CategoryManagedObject.swift */; };
 		6A3AED721C4532E5001364E5 /* CategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A3AED701C4532E5001364E5 /* CategoryCell.xib */; };
 		6A3AED751C4536CF001364E5 /* Vegolaget.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6A3AED731C4536CF001364E5 /* Vegolaget.xcdatamodeld */; };
+		6A4C5BFB1C4BCC3900A6C20D /* localeSensitive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4C5BFA1C4BCC3900A6C20D /* localeSensitive.swift */; };
+		6A4C5BFD1C4BCC7A00A6C20D /* Operator+LocaleComparision.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4C5BFC1C4BCC7A00A6C20D /* Operator+LocaleComparision.swift */; };
+		6A4C5BFF1C4C06AA00A6C20D /* NSObject+isOfClassType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4C5BFE1C4C06AA00A6C20D /* NSObject+isOfClassType.swift */; };
 		6A82967D1C44033E00012945 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A82967C1C44033E00012945 /* AppDelegate.swift */; };
 		6A8296821C44033E00012945 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A8296801C44033E00012945 /* Main.storyboard */; };
 		6A8296841C44033E00012945 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A8296831C44033E00012945 /* Assets.xcassets */; };
@@ -89,13 +91,15 @@
 		6A12A8A61C48FC8600B5B4E4 /* StoreManagedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StoreManagedObject.swift; path = CoreData/StoreManagedObject.swift; sourceTree = "<group>"; };
 		6A12A8A81C48FCC400B5B4E4 /* ItemManagedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemManagedObject.swift; path = CoreData/ItemManagedObject.swift; sourceTree = "<group>"; };
 		6A3592C91C49895900E9B2D4 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Location.swift; path = Objects/Location.swift; sourceTree = "<group>"; };
-		6A3592CB1C498E1000E9B2D4 /* Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Dictionary.swift; path = Support/Extensions/Dictionary.swift; sourceTree = "<group>"; };
 		6A3592CD1C4992F100E9B2D4 /* LocationManagedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationManagedObject.swift; path = CoreData/LocationManagedObject.swift; sourceTree = "<group>"; };
 		6A3AED681C452C77001364E5 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Category.swift; path = Objects/Category.swift; sourceTree = "<group>"; };
 		6A3AED6C1C452F24001364E5 /* CategoryDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategoryDataSource.swift; path = DataSources/CategoryDataSource.swift; sourceTree = "<group>"; };
 		6A3AED6E1C452F38001364E5 /* CategoryManagedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategoryManagedObject.swift; path = CoreData/CategoryManagedObject.swift; sourceTree = "<group>"; };
 		6A3AED711C4532E5001364E5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CategoryCell.xib; sourceTree = "<group>"; };
 		6A3AED741C4536CF001364E5 /* Vegolaget.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Vegolaget.xcdatamodel; sourceTree = "<group>"; };
+		6A4C5BFA1C4BCC3900A6C20D /* localeSensitive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = localeSensitive.swift; path = Support/Extensions/localeSensitive.swift; sourceTree = "<group>"; };
+		6A4C5BFC1C4BCC7A00A6C20D /* Operator+LocaleComparision.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Operator+LocaleComparision.swift"; path = "Support/Extensions/Operator+LocaleComparision.swift"; sourceTree = "<group>"; };
+		6A4C5BFE1C4C06AA00A6C20D /* NSObject+isOfClassType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSObject+isOfClassType.swift"; path = "Support/Extensions/NSObject+isOfClassType.swift"; sourceTree = "<group>"; };
 		6A8296791C44033E00012945 /* Vegolaget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vegolaget.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A82967C1C44033E00012945 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6A8296811C44033E00012945 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -341,7 +345,9 @@
 				6AF5E21D1C44E77500B9EF59 /* NSURLResponse+statusCode.swift */,
 				6AF5E2251C44F0F400B9EF59 /* UIColor+drawImage.swift */,
 				6A8391701C46823300D8E96A /* String.swift */,
-				6A3592CB1C498E1000E9B2D4 /* Dictionary.swift */,
+				6A4C5BFA1C4BCC3900A6C20D /* localeSensitive.swift */,
+				6A4C5BFC1C4BCC7A00A6C20D /* Operator+LocaleComparision.swift */,
+				6A4C5BFE1C4C06AA00A6C20D /* NSObject+isOfClassType.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -524,9 +530,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				6AF5E2281C44F14B00B9EF59 /* ViewController.swift in Sources */,
+				6A4C5BFF1C4C06AA00A6C20D /* NSObject+isOfClassType.swift in Sources */,
 				6A82967D1C44033E00012945 /* AppDelegate.swift in Sources */,
 				6A83916F1C46812600D8E96A /* SearchDataSource.swift in Sources */,
 				6A8391771C46901E00D8E96A /* Producer.swift in Sources */,
+				6A4C5BFB1C4BCC3900A6C20D /* localeSensitive.swift in Sources */,
 				6A3AED6D1C452F24001364E5 /* CategoryDataSource.swift in Sources */,
 				6A82969B1C4405EE00012945 /* APIManager.swift in Sources */,
 				6A3592CA1C49895900E9B2D4 /* Location.swift in Sources */,
@@ -553,8 +561,8 @@
 				6ADCCFE51C47ABEB00AAF1AA /* ProducerModel.swift in Sources */,
 				6A8391711C46823300D8E96A /* String.swift in Sources */,
 				6A96FF8D1C4849C6007177F1 /* StoreModel.swift in Sources */,
-				6A3592CC1C498E1000E9B2D4 /* Dictionary.swift in Sources */,
 				6AF5E23D1C451B4B00B9EF59 /* DataSourceDelegate.swift in Sources */,
+				6A4C5BFD1C4BCC7A00A6C20D /* Operator+LocaleComparision.swift in Sources */,
 				6A3AED751C4536CF001364E5 /* Vegolaget.xcdatamodeld in Sources */,
 				6AF5E21A1C44E65B00B9EF59 /* APIResponse.swift in Sources */,
 				6AF5E22A1C44F26800B9EF59 /* TableViewController.swift in Sources */,

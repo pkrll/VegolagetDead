@@ -13,10 +13,10 @@ class ProductDataSource: DataSource {
     private var indexTitle = [String]()
     
     override func loadData(data: [Item]) {
-        let locations = data.sort { ($0.0 as! Location).name < ($0.1 as! Location).name }
+        let locations = data.sort { ($0.0 as! Location).city < ($0.1 as! Location).city }
 
         for location in locations as! [Location] {
-            guard let initialCharacter = location.name.characters.first else {
+            guard let initialCharacter = location.city.characters.first else {
                 continue
             }
             
@@ -26,18 +26,31 @@ class ProductDataSource: DataSource {
                 self.locations[index] = []
             }
 
-            let locationAlreadyAdded = self.locations[index]?.contains { $0.name == location.name }
-            
-            if locationAlreadyAdded == false {
+            if self.locations[index]?.contains({ $0.city == location.city }) == false {
                 self.locations[index]?.append(location)
             }
         }
-        // Alphabeticaly sorts the keys, with Swedish characters.
+        // Alphabeticaly sorts the keys with regards to Swedish characters.
         self.items = locations
-        self.indexTitle = self.locations.keys.sort { self.compare($0.0, withString: $0.1, localeIdentifier: "se") }
+        self.indexTitle = self.locations.keys.sort { $0.0 <? $0.1 }
         self.delegate?.didFinishLoadDataSource(self)
     }
     
+    func itemsAtIndexPath(indexPath: NSIndexPath) -> [Item]? {
+        let index = self.indexTitle[indexPath.section]
+        let selected = self.locations[index]?[indexPath.row]
+        let allItems = self.items.filter { (item: Item) -> Bool in
+            let item = item as! Location
+            if item.city == selected?.city {
+                return true
+            }
+            
+            return false
+        }
+
+        return allItems
+    }
+
     override func itemAtIndexPath(indexPath: NSIndexPath) -> Item? {
         let index = self.indexTitle[indexPath.section]
         return self.locations[index]?[indexPath.row] ?? nil
@@ -72,22 +85,10 @@ class ProductDataSource: DataSource {
         let item = self.locations[index]?[indexPath.row]
         
         if let textLabel = cell.viewWithTag(101) as? UILabel {
-            textLabel.text = item?.name
+            textLabel.text = item?.city
         }
         
         return cell
-    }
-    
-}
-
-private extension ProductDataSource {
-    
-    func compare(string: String, withString compare: String, localeIdentifier: String) -> Bool {
-        let locale = NSLocale(localeIdentifier: localeIdentifier)
-        let string = string as NSString
-        let compare = compare as NSString
-        
-        return string.compare(compare as String, options: .CaseInsensitiveSearch, range: NSMakeRange(0, string.length), locale: locale) == NSComparisonResult.OrderedAscending
     }
     
 }
