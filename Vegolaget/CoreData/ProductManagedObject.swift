@@ -10,9 +10,9 @@ import CoreData
 
 @objc(ProductManagedObject)
 class ProductManagedObject: ItemManagedObject {
-    
-    @NSManaged var companyID: NSNumber
-    @NSManaged var type: String
-    @NSManaged var status: String
-    
+  
+  @NSManaged var companyID: NSNumber
+  @NSManaged var type: String
+  @NSManaged var status: String
+  
 }

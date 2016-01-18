@@ -8,16 +8,16 @@
 import Foundation
 import SwiftyJSON
 
-class Item: NSObject {
+class Item: CoreDataHelperItem {
+  
+  let id: Int
+  let name: String
+  
+  init(data: JSON) {
+    self.id = data["id"].intValue
+    self.name = data["name"].stringValue.capitalizedString
     
-    let id: Int
-    let name: String
-    
-    init(data: JSON) {
-        self.id = data["id"].intValue
-        self.name = data["name"].stringValue.capitalizedString
-        
-        super.init()
-    }
-    
+    super.init()
+  }
+
 }

@@ -5,7 +5,7 @@
 //  Created by Ardalan Samimi on 12/01/16.
 //  Copyright © 2016 Saturn Five. All rights reserved.
 //
-import Foundation
+/*import Foundation
 import CoreData
 
 typealias CoreDataCompletionHandler = (success: Bool, data: [AnyObject]?, error: NSError?) -> Void
@@ -330,6 +330,5 @@ private extension DataController {
         
         return error
     }
-    
 }
-
+    */

@@ -9,17 +9,17 @@ import Foundation
 import SwiftyJSON
 
 class Category: Item {
+  
+  let tag: String
+  let title: String
+  let count: Int
+  
+  override init(data: JSON) {
+    self.tag = data["tag"].stringValue
+    self.count = data["count"].intValue
+    self.title = data["title"].stringValue.stringByReplacingOccurrencesOfString("($)", withString: "\(self.count)")
     
-    let tag: String
-    let title: String
-    let count: Int
-    
-    override init(data: JSON) {
-        self.tag = data["tag"].stringValue
-        self.count = data["count"].intValue
-        self.title = data["title"].stringValue.stringByReplacingOccurrencesOfString("($)", withString: "\(self.count)")
-        
-        super.init(data: data)
-    }
-    
+    super.init(data: data)
+  }
+  
 }

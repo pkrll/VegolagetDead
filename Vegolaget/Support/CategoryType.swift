@@ -8,9 +8,9 @@
 import Foundation
 
 enum CategoryType: String {
-    
-    case Wine
-    case Beer
-    case Liquor
-    
+  
+  case Wine
+  case Beer
+  case Liquor
+  
 }

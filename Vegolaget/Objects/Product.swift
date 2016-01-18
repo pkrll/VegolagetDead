@@ -9,17 +9,17 @@ import Foundation
 import SwiftyJSON
 
 class Product: Item {
+  
+  let companyID: Int
+  let status: String
+  let type: String
+  
+  override init(data: JSON) {
+    self.companyID = data["companyID"].intValue
+    self.status = data["status"].stringValue
+    self.type = data["type"].stringValue
     
-    let companyID: Int
-    let status: String
-    let type: String
-    
-    override init(data: JSON) {
-        self.companyID = data["companyID"].intValue
-        self.status = data["status"].stringValue
-        self.type = data["type"].stringValue
-        
-        super.init(data: data)
-    }
-    
+    super.init(data: data)
+  }
+  
 }

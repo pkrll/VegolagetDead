@@ -8,6 +8,6 @@
 import UIKit
 
 protocol SearchDataSourceDelegate: DataSourceDelegate {
-    var searchController: UISearchController { get }
-    func didFinishFilterDataSource(_:SearchDataSource)
+  var searchController: UISearchController { get }
+  func didFinishFilterDataSource(_:SearchDataSource)
 }

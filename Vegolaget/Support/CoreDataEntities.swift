@@ -8,12 +8,12 @@
 import Foundation
 
 enum CoreDataEntities: String {
-    
-    case Category
-    case Producer
-    case Product
-    case ProductInStock
-    case Location
-    case Store
-    
+  
+  case Category
+  case Producer
+  case Product
+  case ProductInStock
+  case Location
+  case Store
+  
 }

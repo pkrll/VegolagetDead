@@ -8,5 +8,5 @@
 import Foundation
 
 protocol DataSourceDelegate {
-    func didFinishLoadDataSource(_: DataSource)
+  func didFinishLoadDataSource(_: DataSource)
 }

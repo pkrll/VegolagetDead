@@ -8,6 +8,6 @@
 import Foundation
 
 protocol APIManagerDelegate: class {
-    func manager(_: APIManager, didCompleteRequest response: APIResponse)
-    func manager(_: APIManager, failedRequest response: APIResponse)
+  func manager(_: APIManager, didCompleteRequest response: APIResponse)
+  func manager(_: APIManager, failedRequest response: APIResponse)
 }

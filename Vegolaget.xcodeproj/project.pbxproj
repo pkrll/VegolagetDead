@@ -19,8 +19,7 @@
 		6A3AED6F1C452F38001364E5 /* CategoryManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3AED6E1C452F38001364E5 /* CategoryManagedObject.swift */; };
 		6A3AED721C4532E5001364E5 /* CategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A3AED701C4532E5001364E5 /* CategoryCell.xib */; };
 		6A3AED751C4536CF001364E5 /* Vegolaget.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6A3AED731C4536CF001364E5 /* Vegolaget.xcdatamodeld */; };
-		6A4C5BFB1C4BCC3900A6C20D /* localeSensitive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4C5BFA1C4BCC3900A6C20D /* localeSensitive.swift */; };
-		6A4C5BFD1C4BCC7A00A6C20D /* Operator+LocaleComparision.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4C5BFC1C4BCC7A00A6C20D /* Operator+LocaleComparision.swift */; };
+		6A4C5BFB1C4BCC3900A6C20D /* LocaleSensitive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4C5BFA1C4BCC3900A6C20D /* LocaleSensitive.swift */; };
 		6A4C5BFF1C4C06AA00A6C20D /* NSObject+isOfClassType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4C5BFE1C4C06AA00A6C20D /* NSObject+isOfClassType.swift */; };
 		6A82967D1C44033E00012945 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A82967C1C44033E00012945 /* AppDelegate.swift */; };
 		6A8296821C44033E00012945 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A8296801C44033E00012945 /* Main.storyboard */; };
@@ -39,9 +38,13 @@
 		6A83917E1C4694F800D8E96A /* CategoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A83917D1C4694F800D8E96A /* CategoryType.swift */; };
 		6A8391801C46959600D8E96A /* ProducersDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A83917F1C46959600D8E96A /* ProducersDataSource.swift */; };
 		6A8391831C469B7400D8E96A /* LoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A8391811C469B7400D8E96A /* LoadingCell.xib */; };
+		6A84F0A81C4CE626005B33C5 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A84F0A71C4CE626005B33C5 /* CoreDataStack.swift */; };
+		6A84F0AA1C4CE649005B33C5 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A84F0A91C4CE649005B33C5 /* CoreDataHelper.swift */; };
+		6A84F0AC1C4CF9BA005B33C5 /* NSManagedObjectContext+saveContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A84F0AB1C4CF9BA005B33C5 /* NSManagedObjectContext+saveContext.swift */; };
+		6A84F0D91C4D1CBB005B33C5 /* CoreDataHelperItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A84F0D81C4D1CBB005B33C5 /* CoreDataHelperItem.swift */; };
+		6A84F0DB1C4D24E1005B33C5 /* Mirror+Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A84F0DA1C4D24E1005B33C5 /* Mirror+Properties.swift */; };
 		6A96FF891C484710007177F1 /* StoreLocationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A96FF871C484710007177F1 /* StoreLocationCell.xib */; };
 		6A96FF8B1C4847EA007177F1 /* StoresViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A96FF8A1C4847EA007177F1 /* StoresViewController.swift */; };
-		6A96FF8D1C4849C6007177F1 /* StoreModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A96FF8C1C4849C6007177F1 /* StoreModel.swift */; };
 		6ADCCFE31C47AA9200AAF1AA /* ProducerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ADCCFE21C47AA9200AAF1AA /* ProducerViewController.swift */; };
 		6ADCCFE51C47ABEB00AAF1AA /* ProducerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ADCCFE41C47ABEB00AAF1AA /* ProducerModel.swift */; };
 		6ADCCFE71C47AE1200AAF1AA /* CoreDataEntities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ADCCFE61C47AE1200AAF1AA /* CoreDataEntities.swift */; };
@@ -73,7 +76,6 @@
 		6AF5E22F1C44F3C100B9EF59 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF5E22E1C44F3C100B9EF59 /* Model.swift */; };
 		6AF5E2311C44F95F00B9EF59 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF5E2301C44F95F00B9EF59 /* DataController.swift */; };
 		6AF5E2331C44FD3C00B9EF59 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF5E2321C44FD3C00B9EF59 /* Item.swift */; };
-		6AF5E2351C450B1100B9EF59 /* CoreDataError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF5E2341C450B1100B9EF59 /* CoreDataError.swift */; };
 		6AF5E2371C450E1700B9EF59 /* ModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF5E2361C450E1700B9EF59 /* ModelDelegate.swift */; };
 		6AF5E2391C450FE600B9EF59 /* APIManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF5E2381C450FE600B9EF59 /* APIManagerDelegate.swift */; };
 		6AF5E23B1C451B1900B9EF59 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF5E23A1C451B1900B9EF59 /* DataSource.swift */; };
@@ -97,8 +99,7 @@
 		6A3AED6E1C452F38001364E5 /* CategoryManagedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategoryManagedObject.swift; path = CoreData/CategoryManagedObject.swift; sourceTree = "<group>"; };
 		6A3AED711C4532E5001364E5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CategoryCell.xib; sourceTree = "<group>"; };
 		6A3AED741C4536CF001364E5 /* Vegolaget.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Vegolaget.xcdatamodel; sourceTree = "<group>"; };
-		6A4C5BFA1C4BCC3900A6C20D /* localeSensitive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = localeSensitive.swift; path = Support/Extensions/localeSensitive.swift; sourceTree = "<group>"; };
-		6A4C5BFC1C4BCC7A00A6C20D /* Operator+LocaleComparision.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Operator+LocaleComparision.swift"; path = "Support/Extensions/Operator+LocaleComparision.swift"; sourceTree = "<group>"; };
+		6A4C5BFA1C4BCC3900A6C20D /* LocaleSensitive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocaleSensitive.swift; path = Support/Extensions/LocaleSensitive.swift; sourceTree = "<group>"; };
 		6A4C5BFE1C4C06AA00A6C20D /* NSObject+isOfClassType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSObject+isOfClassType.swift"; path = "Support/Extensions/NSObject+isOfClassType.swift"; sourceTree = "<group>"; };
 		6A8296791C44033E00012945 /* Vegolaget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vegolaget.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A82967C1C44033E00012945 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -119,9 +120,13 @@
 		6A83917D1C4694F800D8E96A /* CategoryType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategoryType.swift; path = Support/CategoryType.swift; sourceTree = "<group>"; };
 		6A83917F1C46959600D8E96A /* ProducersDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProducersDataSource.swift; path = DataSources/ProducersDataSource.swift; sourceTree = "<group>"; };
 		6A8391821C469B7400D8E96A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LoadingCell.xib; sourceTree = "<group>"; };
+		6A84F0A71C4CE626005B33C5 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreDataStack.swift; path = Support/CoreData/CoreDataStack.swift; sourceTree = "<group>"; };
+		6A84F0A91C4CE649005B33C5 /* CoreDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreDataHelper.swift; path = Support/CoreData/CoreDataHelper.swift; sourceTree = "<group>"; };
+		6A84F0AB1C4CF9BA005B33C5 /* NSManagedObjectContext+saveContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSManagedObjectContext+saveContext.swift"; path = "Support/Extensions/NSManagedObjectContext+saveContext.swift"; sourceTree = "<group>"; };
+		6A84F0D81C4D1CBB005B33C5 /* CoreDataHelperItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreDataHelperItem.swift; path = Support/CoreData/CoreDataHelperItem.swift; sourceTree = "<group>"; };
+		6A84F0DA1C4D24E1005B33C5 /* Mirror+Properties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Mirror+Properties.swift"; path = "Support/Extensions/Mirror+Properties.swift"; sourceTree = "<group>"; };
 		6A96FF881C484710007177F1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/StoreLocationCell.xib; sourceTree = "<group>"; };
 		6A96FF8A1C4847EA007177F1 /* StoresViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StoresViewController.swift; path = Controllers/StoresViewController.swift; sourceTree = "<group>"; };
-		6A96FF8C1C4849C6007177F1 /* StoreModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StoreModel.swift; path = Models/StoreModel.swift; sourceTree = "<group>"; };
 		6ADCCFE21C47AA9200AAF1AA /* ProducerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProducerViewController.swift; path = Controllers/ProducerViewController.swift; sourceTree = "<group>"; };
 		6ADCCFE41C47ABEB00AAF1AA /* ProducerModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProducerModel.swift; path = Models/ProducerModel.swift; sourceTree = "<group>"; };
 		6ADCCFE61C47AE1200AAF1AA /* CoreDataEntities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreDataEntities.swift; path = Support/CoreDataEntities.swift; sourceTree = "<group>"; };
@@ -153,7 +158,6 @@
 		6AF5E22E1C44F3C100B9EF59 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Model.swift; path = Models/Model.swift; sourceTree = "<group>"; };
 		6AF5E2301C44F95F00B9EF59 /* DataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataController.swift; path = CoreData/DataController.swift; sourceTree = "<group>"; };
 		6AF5E2321C44FD3C00B9EF59 /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Item.swift; path = Objects/Item.swift; sourceTree = "<group>"; };
-		6AF5E2341C450B1100B9EF59 /* CoreDataError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreDataError.swift; path = CoreData/CoreDataError.swift; sourceTree = "<group>"; };
 		6AF5E2361C450E1700B9EF59 /* ModelDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ModelDelegate.swift; path = Protocols/ModelDelegate.swift; sourceTree = "<group>"; };
 		6AF5E2381C450FE600B9EF59 /* APIManagerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIManagerDelegate.swift; path = Protocols/APIManagerDelegate.swift; sourceTree = "<group>"; };
 		6AF5E23A1C451B1900B9EF59 /* DataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataSource.swift; path = DataSources/DataSource.swift; sourceTree = "<group>"; };
@@ -269,7 +273,6 @@
 				6ADCCFE41C47ABEB00AAF1AA /* ProducerModel.swift */,
 				6ADCCFFE1C47E33C00AAF1AA /* ProductModel.swift */,
 				6A12A8A21C48EB0400B5B4E4 /* StoresModel.swift */,
-				6A96FF8C1C4849C6007177F1 /* StoreModel.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -329,6 +332,7 @@
 			children = (
 				6A8296961C44048F00012945 /* Networking */,
 				6A8296981C4404BE00012945 /* Extensions */,
+				6A84F0A61C4CE5B4005B33C5 /* CoreData */,
 				6AF5E2231C44EFD500B9EF59 /* Constants.swift */,
 				6A83917D1C4694F800D8E96A /* CategoryType.swift */,
 				6ADCCFE61C47AE1200AAF1AA /* CoreDataEntities.swift */,
@@ -342,12 +346,13 @@
 		6A8296981C4404BE00012945 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				6AF5E21D1C44E77500B9EF59 /* NSURLResponse+statusCode.swift */,
-				6AF5E2251C44F0F400B9EF59 /* UIColor+drawImage.swift */,
 				6A8391701C46823300D8E96A /* String.swift */,
-				6A4C5BFA1C4BCC3900A6C20D /* localeSensitive.swift */,
-				6A4C5BFC1C4BCC7A00A6C20D /* Operator+LocaleComparision.swift */,
+				6A4C5BFA1C4BCC3900A6C20D /* LocaleSensitive.swift */,
+				6A84F0DA1C4D24E1005B33C5 /* Mirror+Properties.swift */,
+				6AF5E2251C44F0F400B9EF59 /* UIColor+drawImage.swift */,
 				6A4C5BFE1C4C06AA00A6C20D /* NSObject+isOfClassType.swift */,
+				6AF5E21D1C44E77500B9EF59 /* NSURLResponse+statusCode.swift */,
+				6A84F0AB1C4CF9BA005B33C5 /* NSManagedObjectContext+saveContext.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -356,7 +361,6 @@
 			isa = PBXGroup;
 			children = (
 				6AF5E2301C44F95F00B9EF59 /* DataController.swift */,
-				6AF5E2341C450B1100B9EF59 /* CoreDataError.swift */,
 				6A12A8A81C48FCC400B5B4E4 /* ItemManagedObject.swift */,
 				6A3AED6E1C452F38001364E5 /* CategoryManagedObject.swift */,
 				6A8391781C46906C00D8E96A /* ProducerManagedObject.swift */,
@@ -367,6 +371,16 @@
 				6A3AED731C4536CF001364E5 /* Vegolaget.xcdatamodeld */,
 			);
 			name = Coredata;
+			sourceTree = "<group>";
+		};
+		6A84F0A61C4CE5B4005B33C5 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				6A84F0A71C4CE626005B33C5 /* CoreDataStack.swift */,
+				6A84F0A91C4CE649005B33C5 /* CoreDataHelper.swift */,
+				6A84F0D81C4D1CBB005B33C5 /* CoreDataHelperItem.swift */,
+			);
+			name = CoreData;
 			sourceTree = "<group>";
 		};
 		6AF5E22D1C44F30C00B9EF59 /* Views */ = {
@@ -534,13 +548,14 @@
 				6A82967D1C44033E00012945 /* AppDelegate.swift in Sources */,
 				6A83916F1C46812600D8E96A /* SearchDataSource.swift in Sources */,
 				6A8391771C46901E00D8E96A /* Producer.swift in Sources */,
-				6A4C5BFB1C4BCC3900A6C20D /* localeSensitive.swift in Sources */,
+				6A4C5BFB1C4BCC3900A6C20D /* LocaleSensitive.swift in Sources */,
 				6A3AED6D1C452F24001364E5 /* CategoryDataSource.swift in Sources */,
 				6A82969B1C4405EE00012945 /* APIManager.swift in Sources */,
 				6A3592CA1C49895900E9B2D4 /* Location.swift in Sources */,
 				6A3592CE1C4992F100E9B2D4 /* LocationManagedObject.swift in Sources */,
 				6AF5E21C1C44E70700B9EF59 /* StatusCode.swift in Sources */,
 				6AF5E21E1C44E77500B9EF59 /* NSURLResponse+statusCode.swift in Sources */,
+				6A84F0DB1C4D24E1005B33C5 /* Mirror+Properties.swift in Sources */,
 				6ADCD0071C47E4B100AAF1AA /* Month.swift in Sources */,
 				6AF5E22C1C44F30800B9EF59 /* LoadingView.swift in Sources */,
 				6AF5E23B1C451B1900B9EF59 /* DataSource.swift in Sources */,
@@ -560,9 +575,8 @@
 				6ADCD00B1C47E7F300AAF1AA /* ProductDataSource.swift in Sources */,
 				6ADCCFE51C47ABEB00AAF1AA /* ProducerModel.swift in Sources */,
 				6A8391711C46823300D8E96A /* String.swift in Sources */,
-				6A96FF8D1C4849C6007177F1 /* StoreModel.swift in Sources */,
 				6AF5E23D1C451B4B00B9EF59 /* DataSourceDelegate.swift in Sources */,
-				6A4C5BFD1C4BCC7A00A6C20D /* Operator+LocaleComparision.swift in Sources */,
+				6A84F0D91C4D1CBB005B33C5 /* CoreDataHelperItem.swift in Sources */,
 				6A3AED751C4536CF001364E5 /* Vegolaget.xcdatamodeld in Sources */,
 				6AF5E21A1C44E65B00B9EF59 /* APIResponse.swift in Sources */,
 				6AF5E22A1C44F26800B9EF59 /* TableViewController.swift in Sources */,
@@ -572,10 +586,10 @@
 				6A96FF8B1C4847EA007177F1 /* StoresViewController.swift in Sources */,
 				6AF5E2391C450FE600B9EF59 /* APIManagerDelegate.swift in Sources */,
 				6A8391791C46906C00D8E96A /* ProducerManagedObject.swift in Sources */,
-				6AF5E2351C450B1100B9EF59 /* CoreDataError.swift in Sources */,
 				6AF5E2261C44F0F400B9EF59 /* UIColor+drawImage.swift in Sources */,
 				6ADCCFE31C47AA9200AAF1AA /* ProducerViewController.swift in Sources */,
 				6ADCCFFA1C47CFEF00AAF1AA /* ProductViewController.swift in Sources */,
+				6A84F0AC1C4CF9BA005B33C5 /* NSManagedObjectContext+saveContext.swift in Sources */,
 				6A8391751C468BB200D8E96A /* ProducersModel.swift in Sources */,
 				6AF5E23F1C451F1000B9EF59 /* CategoryViewController.swift in Sources */,
 				6ADCCFEB1C47AFAD00AAF1AA /* ProductManagedObject.swift in Sources */,
@@ -588,8 +602,10 @@
 				6ADCCFFF1C47E33C00AAF1AA /* ProductModel.swift in Sources */,
 				6A83916B1C467EF100D8E96A /* ProducersViewController.swift in Sources */,
 				6AF5E2371C450E1700B9EF59 /* ModelDelegate.swift in Sources */,
+				6A84F0AA1C4CE649005B33C5 /* CoreDataHelper.swift in Sources */,
 				6AF5E2241C44EFD500B9EF59 /* Constants.swift in Sources */,
 				6ADCCFED1C47AFCE00AAF1AA /* Product.swift in Sources */,
+				6A84F0A81C4CE626005B33C5 /* CoreDataStack.swift in Sources */,
 				6A12A8A91C48FCC400B5B4E4 /* ItemManagedObject.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

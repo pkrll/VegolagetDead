@@ -10,13 +10,13 @@ import CoreData
 
 @objc(ProducerManagedObject)
 class ProducerManagedObject: ItemManagedObject {
-    
-    @NSManaged var country: String
-    @NSManaged var notes: String
-    @NSManaged var tag: String
-    @NSManaged var status: String
-    @NSManaged var doesWine: Bool
-    @NSManaged var doesBeer: Bool
-    @NSManaged var doesLiquor: Bool
-    
+  
+  @NSManaged var country: String
+  @NSManaged var notes: String
+  @NSManaged var tag: String
+  @NSManaged var status: String
+  @NSManaged var doesWine: Bool
+  @NSManaged var doesBeer: Bool
+  @NSManaged var doesLiquor: Bool
+  
 }

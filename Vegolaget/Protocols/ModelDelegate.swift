@@ -8,6 +8,6 @@
 import Foundation
 
 protocol ModelDelegate: class {
-    func model(_: Model, didFinishLoadingData data: [Item])
-    func model(_: Model, didFinishLoadingWithError errorDescription: String)
+  func model(_: Model, didFinishLoadingData data: [Item])
+  func model(_: Model, didFinishLoadingWithError errorDescription: String)
 }

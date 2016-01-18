@@ -10,12 +10,12 @@ import CoreData
 
 @objc(StoreManagedObject)
 class StoreManagedObject: ItemManagedObject {
-    
-    @NSManaged var postalCode: String
-    @NSManaged var phone: String
-    @NSManaged var openHours: String
-    @NSManaged var county: String
-    @NSManaged var city: String
-    @NSManaged var address: String
-    
+  
+  @NSManaged var postalCode: String
+  @NSManaged var phone: String
+  @NSManaged var openHours: String
+  @NSManaged var county: String
+  @NSManaged var city: String
+  @NSManaged var address: String
+  
 }

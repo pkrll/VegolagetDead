@@ -8,45 +8,45 @@
 import UIKit
 
 public enum Constants {
+  
+  enum Application {
     
-    enum Application {
-        
-        static let name: String = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleName") as! String
-        
-        static let identifier: String = NSBundle.mainBundle().bundleIdentifier!
-        
-    }
+    static let name: String = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleName") as! String
     
-    enum UserInterface {
-        /**
-         *  The application's standard green color.
-         */
-        static let greenColor = UIColor(red: 0.2, green: 0.6, blue: 0.2, alpha: 1.0)
-        
-        static let backButtonTitle = "Bakåt"
-        
-        static let scopeButtonTitles = ["Alla", "Endast veganska"]
-        
-    }
+    static let identifier: String = NSBundle.mainBundle().bundleIdentifier!
     
-    enum Nib: String {
-
-        case BaseCell
-        case CategoryCell
-        case ProducerCell
-        case ProductCell
-        case LoadingCell
-        case StoreCell
-        case StoreLocationCell
-
-    }
+  }
+  
+  enum UserInterface {
+    /**
+     *  The application's standard green color.
+     */
+    static let greenColor = UIColor(red: 0.2, green: 0.6, blue: 0.2, alpha: 1.0)
     
-    enum Segue: String {
-        
-        case ShowCategory
-        case ShowProducer
-        case ShowProduct
-        case ShowStore
-
-    }
+    static let backButtonTitle = "Bakåt"
+    
+    static let scopeButtonTitles = ["Alla", "Endast veganska"]
+    
+  }
+  
+  enum Nib: String {
+    
+    case BaseCell
+    case CategoryCell
+    case ProducerCell
+    case ProductCell
+    case LoadingCell
+    case StoreCell
+    case StoreLocationCell
+    
+  }
+  
+  enum Segue: String {
+    
+    case ShowCategory
+    case ShowProducer
+    case ShowProduct
+    case ShowStore
+    
+  }
 }

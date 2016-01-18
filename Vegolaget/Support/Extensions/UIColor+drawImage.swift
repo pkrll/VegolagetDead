@@ -8,17 +8,15 @@
 import UIKit
 
 extension UIColor{
-    
-    var drawImage: UIImage {
-        let rect = CGRectMake(0,0,1,1)
-        
-        UIGraphicsBeginImageContextWithOptions(rect.size, true, 0)
-        self.setFill()
-        UIRectFill(rect)
-        let image = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        return image
-    }
-    
+  
+  var drawImage: UIImage {
+    let rect = CGRectMake(0,0,1,1)
+    UIGraphicsBeginImageContextWithOptions(rect.size, true, 0)
+    self.setFill()
+    UIRectFill(rect)
+    let image = UIGraphicsGetImageFromCurrentImageContext()
+    UIGraphicsEndImageContext()
+    return image
+  }
+  
 }

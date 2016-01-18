@@ -10,8 +10,8 @@ import CoreData
 
 @objc(ItemManagedObject)
 class ItemManagedObject: NSManagedObject {
-    
-    @NSManaged var id: NSNumber
-    @NSManaged var name: String
-    
+  
+  @NSManaged var id: NSNumber
+  @NSManaged var name: String
+  
 }

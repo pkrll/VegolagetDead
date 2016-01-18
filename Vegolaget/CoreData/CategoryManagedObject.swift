@@ -10,9 +10,9 @@ import CoreData
 
 @objc(CategoryManagedObject)
 class CategoryManagedObject: ItemManagedObject {
-    
-    @NSManaged var tag: String
-    @NSManaged var title: String
-    @NSManaged var count: NSNumber
-    
+  
+  @NSManaged var tag: String
+  @NSManaged var title: String
+  @NSManaged var count: NSNumber
+  
 }
