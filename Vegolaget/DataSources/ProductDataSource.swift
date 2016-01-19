@@ -54,7 +54,12 @@ class ProductDataSource: DataSource {
   // MARK: - Table View Data Source Delegate Methods
   
   func sectionIndexTitlesForTableView(tableView: UITableView) -> [String]? {
-    return self.indexTitle
+    // No reason to show the index titles if there are fewer than 5 items.
+    if self.indexTitle.count > 5 {
+      return self.indexTitle
+    }
+    
+    return nil
   }
   
   func tableView(tableView: UITableView, sectionForSectionIndexTitle title: String, atIndex index: Int) -> Int {

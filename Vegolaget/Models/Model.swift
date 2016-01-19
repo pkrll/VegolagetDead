@@ -61,7 +61,9 @@ class Model: NSObject, APIManagerDelegate {
       }
     }
   }
-  
+  /**
+   *  Reloads the data by calling the API.
+   */
   func refreshData() {
     self.manager.setRequestURL(self.endPoint)
     self.manager.executeRequest(self.managerDidCompleteRequest, failure: self.managerFailedRequest)
@@ -161,6 +163,5 @@ class Model: NSObject, APIManagerDelegate {
       self.delegate?.model(self, didFinishLoadingWithError: errorString)
     }
   }
-  
   
 }

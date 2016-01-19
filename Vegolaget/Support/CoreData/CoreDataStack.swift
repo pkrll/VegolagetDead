@@ -5,7 +5,7 @@
 //  Created by Ardalan Samimi on 18/01/16.
 //  Copyright © 2016 Saturn Five. All rights reserved.
 //
-//  Somewhat inspired by: https://developer.apple.com/library/mac/samplecode/Earthquakes/Listings/Swift_Earthquakes_CoreDataStackManager_swift.html
+//  Somewhat inspired by: http://pawanpoudel.svbtle.com/fixing-core-data-concurrency-violations
 //
 import Foundation
 import CoreData
@@ -13,15 +13,20 @@ import CoreData
  *  Singleton controller to manage the main Core Data stack for the application. It vends a persistent store coordinator, the managed object model, and a URL for the persistent store.
  */
 class CoreDataStack: NSObject {
+  
+  // MARK: - Public Properties
+  
   /**
-   *  Returns the shared core data stack manager object for the process.
+   *  Returns the shared instance of the Core Data Stack.
    */
   static let sharedManager = CoreDataStack()
   
-  private let storeName = Constants.Application.name
+  // MARK: - Public Methods
   
-  // MARK: - Public methods
-  
+  /**
+   *  Creates a new private queue context.
+   *  - Note: Use for background tasks, such as saving.
+   */
   func newPrivateQueueContext() -> NSManagedObjectContext? {
     guard let mainQueueContext = self.mainQueueContext else {
       return nil
@@ -33,13 +38,19 @@ class CoreDataStack: NSObject {
     
     return context
   }
-  
+  /**
+   *  Returns the main queue context.
+   *  - Note: Should be accessed only from the UI.
+   */
   func getMainQueueContext() -> NSManagedObjectContext? {
     return self.mainQueueContext
   }
   
   // MARK: - Queue Properties
   
+  /**
+  *  The main queue context.
+  */
   private lazy var mainQueueContext: NSManagedObjectContext? = { [unowned self] in
     guard let parentContext = self.parentContext else {
       return nil
@@ -51,7 +62,10 @@ class CoreDataStack: NSObject {
     
     return context
   }()
-  
+  /**
+   *  The parent context.
+   *  - Note: The main queue context will use this context as the parent.
+   */
   private lazy var parentContext: NSManagedObjectContext? = { [unowned self] in
     guard let coordinator = self.persistentStoreCoordinator else {
       return nil
@@ -66,10 +80,19 @@ class CoreDataStack: NSObject {
   
   // MARK: - Setup Methods
   
+  /**
+   *  Name of the Core Data store.
+   */
+  private let storeName = Constants.Application.name
+  /**
+   *  Name of the Core Data store file.
+   */
   private lazy var storeFileName: String = { [unowned self] in
     return self.storeName + ".sqlite"
   }()
-  
+  /**
+   *  URL to the Core Data store file.
+   */
   private lazy var storeURL: NSURL = {
     let URLs = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
     return URLs.last!.URLByAppendingPathComponent(self.storeFileName)

@@ -8,9 +8,9 @@
 import Foundation
 import SwiftyJSON
 
-typealias APIManagerCallback = (response: APIResponse) -> Void
-
 class APIManager {
+  
+  typealias APIManagerCallback = (response: APIResponse) -> Void
   
   internal weak var delegate: APIManagerDelegate?
   /**
@@ -50,7 +50,6 @@ class APIManager {
     self.URLRequest.HTTPBody = httpBody.dataUsingEncoding(NSUTF8StringEncoding)
   }
   
-  
   func executeRequest(success: APIManagerCallback?, failure: APIManagerCallback?) {
     self.URLRequest.URL = self.requestedURL
     print("Calling \(self.requestedURL)")
@@ -70,7 +69,7 @@ class APIManager {
           self.delegate?.manager(self, failedRequest: response)
         }
       }
-      }.resume()
+    }.resume()
   }
   
 }
@@ -112,4 +111,5 @@ private extension APIManager {
     
     return response
   }
+  
 }
