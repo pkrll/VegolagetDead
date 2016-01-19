@@ -19,10 +19,6 @@ class ProducersViewController: SearchViewController {
   
   internal var category: Category?
   
-  override internal var scopeButtonTitles: [String] {
-    return Constants.UserInterface.scopeButtonTitles
-  }
-  
   override internal var searchBarPlaceholder: String {
     return "Sök bland %i producenter"
   }
@@ -36,14 +32,16 @@ class ProducersViewController: SearchViewController {
     
     self.registerNib(Constants.Nib.ProducerCell.rawValue)
     self.registerNib(Constants.Nib.LoadingCell.rawValue)
-    
+
+    self.configureSearchBar()
     self.searchBar.placeholder = "Sök efter producent"
+    self.searchBar.scopeButtonTitles = Constants.UserInterface.scopeButtonTitles
     self.searchBar.delegate = self
     self.tableView.delegate = self
     self.tableView.tableHeaderView = self.searchBar
     self.tableView.tableHeaderView?.sizeToFit()
     self.searchController.searchResultsUpdater = self
-    
+
     self.loadDataSource()
     self.loadModel()
   }
