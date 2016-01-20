@@ -76,7 +76,6 @@
 		6AF5E22A1C44F26800B9EF59 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF5E2291C44F26800B9EF59 /* TableViewController.swift */; };
 		6AF5E22C1C44F30800B9EF59 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF5E22B1C44F30800B9EF59 /* LoadingView.swift */; };
 		6AF5E22F1C44F3C100B9EF59 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF5E22E1C44F3C100B9EF59 /* Model.swift */; };
-		6AF5E2311C44F95F00B9EF59 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF5E2301C44F95F00B9EF59 /* DataController.swift */; };
 		6AF5E2331C44FD3C00B9EF59 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF5E2321C44FD3C00B9EF59 /* Item.swift */; };
 		6AF5E2371C450E1700B9EF59 /* ModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF5E2361C450E1700B9EF59 /* ModelDelegate.swift */; };
 		6AF5E2391C450FE600B9EF59 /* APIManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF5E2381C450FE600B9EF59 /* APIManagerDelegate.swift */; };
@@ -160,7 +159,6 @@
 		6AF5E2291C44F26800B9EF59 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TableViewController.swift; path = Controllers/TableViewController.swift; sourceTree = "<group>"; };
 		6AF5E22B1C44F30800B9EF59 /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoadingView.swift; path = Views/LoadingView.swift; sourceTree = "<group>"; };
 		6AF5E22E1C44F3C100B9EF59 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Model.swift; path = Models/Model.swift; sourceTree = "<group>"; };
-		6AF5E2301C44F95F00B9EF59 /* DataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataController.swift; path = CoreData/DataController.swift; sourceTree = "<group>"; };
 		6AF5E2321C44FD3C00B9EF59 /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Item.swift; path = Objects/Item.swift; sourceTree = "<group>"; };
 		6AF5E2361C450E1700B9EF59 /* ModelDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ModelDelegate.swift; path = Protocols/ModelDelegate.swift; sourceTree = "<group>"; };
 		6AF5E2381C450FE600B9EF59 /* APIManagerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIManagerDelegate.swift; path = Protocols/APIManagerDelegate.swift; sourceTree = "<group>"; };
@@ -366,7 +364,6 @@
 		6A8296991C4404CB00012945 /* Coredata */ = {
 			isa = PBXGroup;
 			children = (
-				6AF5E2301C44F95F00B9EF59 /* DataController.swift */,
 				6A12A8A81C48FCC400B5B4E4 /* ItemManagedObject.swift */,
 				6A3AED6E1C452F38001364E5 /* CategoryManagedObject.swift */,
 				6A8391781C46906C00D8E96A /* ProducerManagedObject.swift */,
@@ -576,7 +573,6 @@
 				6A83917E1C4694F800D8E96A /* CategoryType.swift in Sources */,
 				6ADCD0011C47E3C900AAF1AA /* Store.swift in Sources */,
 				6ADCCFE71C47AE1200AAF1AA /* CoreDataEntities.swift in Sources */,
-				6AF5E2311C44F95F00B9EF59 /* DataController.swift in Sources */,
 				6ADCD0031C47E40600AAF1AA /* DateTime.swift in Sources */,
 				6ADCCFEF1C47AFE600AAF1AA /* ProductInStock.swift in Sources */,
 				6A53BB4D1C4E449E00A69860 /* MainSearchViewController.swift in Sources */,

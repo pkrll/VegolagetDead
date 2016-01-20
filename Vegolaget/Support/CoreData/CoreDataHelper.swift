@@ -21,20 +21,20 @@ class CoreDataHelper {
   /**
    *  The shared instance of the Core Data Stack.
    */
-  private lazy var coreData: CoreDataStack = {
+  private lazy var stack: CoreDataStack = {
     return CoreDataStack.sharedManager
   }()
 
   // MARK: - Public Methods
   
   /**
-   *  Save to or update objects in the Core Data store.
+   *  Save to or update objects.
    *  - Parameters:
    *    - items: An array consisting of the objects to be saved. The items must be a subclass of *CoreDataHelperItem* and have the same attributes as the entity.
    *    - toEntity: The entity of the objects.
    */
   func save(items: [CoreDataHelperItem], toEntity: String) {
-    guard let context = self.coreData.newPrivateQueueContext() else {
+    guard let context = self.stack.newPrivateQueueContext() else {
       return
     }
     print("Saving or updating \(items.count) objects.")
@@ -54,20 +54,20 @@ class CoreDataHelper {
       }
     }
     
-    context.saveContexts { (success, error) -> Void in
+    context.saveContext { (success, error) -> Void in
       print(success)
       print(error)
     }
   }
   /**
-   *  Loads items from the Core Data store.
+   *  Fetch items from the Core Data store.
    *  - Parameters:
    *    - fromEntity: The entity to load from.
    *    - withPredicate: A predicate.
    *    - completionHandler: The callback.
    */
   func load(fromEntity entity: String, withPredicate: NSPredicate?, completionHandler: HelperLoadCompletionHandler) {
-    guard let context = self.coreData.getMainQueueContext() else {
+    guard let context = self.stack.getMainQueueContext() else {
       completionHandler(success: false, data: nil, error: nil)
       return
     }
@@ -107,7 +107,7 @@ private extension CoreDataHelper {
    *  - Returns: An object of any type.
    */
   func load(fromEntity: String, itemWithID: Int) -> AnyObject? {
-    guard let context = self.coreData.getMainQueueContext() else {
+    guard let context = self.stack.getMainQueueContext() else {
       return nil
     }
     var results = [AnyObject]?()

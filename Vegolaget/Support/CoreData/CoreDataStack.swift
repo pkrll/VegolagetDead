@@ -25,7 +25,7 @@ class CoreDataStack: NSObject {
   
   /**
    *  Creates a new private queue context.
-   *  - Note: Use for background tasks, such as saving.
+   *  - Note: Asynchronous from the UI. Use for background tasks, such as writing to disk.
    */
   func newPrivateQueueContext() -> NSManagedObjectContext? {
     guard let mainQueueContext = self.mainQueueContext else {

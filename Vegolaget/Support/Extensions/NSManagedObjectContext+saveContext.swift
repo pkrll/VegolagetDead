@@ -11,7 +11,7 @@ typealias saveContextsHandler = (success: Bool, error: NSError?) -> Void
 
 extension NSManagedObjectContext {
   
-  func saveContexts(completionHandler: saveContextsHandler?) {
+  func saveContext(completionHandler: saveContextsHandler?) {
     self.performBlockAndWait { () -> Void in
       // Attempt saving and then call parent context to save.
       if self.hasChanges {
