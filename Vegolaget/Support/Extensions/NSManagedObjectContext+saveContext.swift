@@ -17,7 +17,7 @@ extension NSManagedObjectContext {
       if self.hasChanges {
         do {
           try self.save()
-          self.parentContext?.saveContexts(completionHandler)
+          self.parentContext?.saveContext(completionHandler)
         } catch let error as NSError {
           print(error)
           completionHandler?(success: false, error: error)
