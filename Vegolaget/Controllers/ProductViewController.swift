@@ -19,6 +19,10 @@ class ProductViewController: TableViewController {
   
   internal var product: ProductInStock?
   
+  override internal var viewTitle: String {
+    return self.product?.name ?? super.viewTitle
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     

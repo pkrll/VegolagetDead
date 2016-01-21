@@ -7,26 +7,24 @@
 //
 import CoreData
 
-typealias saveContextsHandler = (success: Bool, error: NSError?) -> Void
-
 extension NSManagedObjectContext {
+
+  typealias saveContextsHandler = (success: Bool, error: NSError?) -> Void
   
   func saveContext(completionHandler: saveContextsHandler?) {
     self.performBlockAndWait { () -> Void in
-      // Attempt saving and then call parent context to save.
-      if self.hasChanges {
-        do {
-          try self.save()
-          self.parentContext?.saveContext(completionHandler)
-        } catch let error as NSError {
-          print(error)
-          completionHandler?(success: false, error: error)
-        }
-      } else {
+      guard self.hasChanges else {
         completionHandler?(success: true, error: nil)
+        return
       }
-      
+      // Attempt saving and then call parent context to save.
+      do {
+        try self.save()
+        self.parentContext?.saveContext(completionHandler)
+      } catch let error as NSError {
+        completionHandler?(success: false, error: error)
+      }
     }
   }
-  
+
 }

@@ -34,29 +34,39 @@ class CoreDataHelper {
    *    - toEntity: The entity of the objects.
    */
   func save(items: [CoreDataHelperItem], toEntity: String) {
-    guard let context = self.stack.newPrivateQueueContext() else {
+    guard let context = self.stack.newBackgroundQueueContext() else {
       return
     }
     print("Saving or updating \(items.count) objects.")
-    for item in items {
-      var entityItem = self.load(toEntity, itemWithID: (item as! Item).id) as? NSManagedObject
-      // Nil means it does not exist, so insert a new one
-      if entityItem == nil {
-        entityItem = NSEntityDescription.insertNewObjectForEntityForName(toEntity, inManagedObjectContext: context)
-      }
-      // Retrieves the attributes (properties) of the current item being looped over. The attributes will be compared to the NS Managed Object item's attributes.
-      let attributes = item.attributes()
-      for (key, value) in attributes {
-        // The entity will ignore attributes it does not have. Though, the Core Data Helper Item must have a value for all non-optional attributes.
-        if entityItem!.respondsToSelector(Selector(key)) {
-          entityItem!.setValue(value, forKey: key)
+    context.performBlock { () -> Void in
+      for item in items {
+        var saves = false
+        // Attempts to retrieve the item
+        var entityItem = self.load(fromEntity: toEntity, inManagedObjectContext: context, itemWithID: (item as! Item).id) as? NSManagedObject
+        // Nil means it does not exist, so insert a new one
+        if entityItem == nil {
+          saves = true
+          entityItem = NSEntityDescription.insertNewObjectForEntityForName(toEntity, inManagedObjectContext: context)
+        }
+        // Retrieves the attributes (properties) of the current item being looped over. The attributes will be compared to the NS Managed Object item's attributes.
+        let attributes = item.attributes()
+        print("Insert a new object? \(saves) : \(object_getClass(item))")
+        for (key, value) in attributes {
+          // Ignore attributes not present in the entity. Though, the Core Data Helper Item objects must have a value for all of the entities non-optional attributes.
+          if entityItem!.respondsToSelector(Selector(key)) {
+            entityItem!.setValue(value, forKey: key)
+          }
         }
       }
-    }
-    
-    context.saveContext { (success, error) -> Void in
-      print(success)
-      print(error)
+      
+      context.saveContext { (success: Bool, error) -> Void in
+        if success {
+          print("Saved \(object_getClass(items.first!))")
+        } else {
+          print(error)
+        }
+
+      }
     }
   }
   /**
@@ -89,10 +99,10 @@ class CoreDataHelper {
         error = loadError
       }
       
-      dispatch_async(dispatch_get_main_queue()) {
+//      dispatch_async(dispatch_get_main_queue()) {
         print("Loading \(results?.count) objects.")
         completionHandler(success: success, data: results, error: error)
-      }
+//      }
     }
   }
 
@@ -102,27 +112,25 @@ private extension CoreDataHelper {
   /**
    *  Loads a single item.
    *  - Parameters:
-   *    - fromEntity: The entity to load from.
+   *    - fromEntity: An entity.
+   *    - inManagedObjectContext: A managed object context.
    *    - itemWithID: The id of the item.
    *  - Returns: An object of any type.
    */
-  func load(fromEntity: String, itemWithID: Int) -> AnyObject? {
-    guard let context = self.stack.getMainQueueContext() else {
-      return nil
-    }
+  func load(fromEntity entity: String, inManagedObjectContext: NSManagedObjectContext, itemWithID id: Int) -> AnyObject? {
     var results = [AnyObject]?()
-    let request = NSFetchRequest(entityName: fromEntity)
-    let predicate = NSPredicate(format: "id = %i", itemWithID)
+    let request = NSFetchRequest(entityName: entity)
+    let predicate = NSPredicate(format: "id = %i", id)
     request.predicate = predicate
     request.fetchLimit = 1
-    
+
     do {
-      results = try context.executeFetchRequest(request)
+      results = try inManagedObjectContext.executeFetchRequest(request)
     } catch  {
       print(error)
     }
-    
+
     return results?.first
   }
-  
+
 }
