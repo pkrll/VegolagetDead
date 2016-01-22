@@ -7,28 +7,7 @@
 //
 import Foundation
 
-extension String: LocaleSensitive {
-  /**
-   *  Compares the string using the specified options and returns the lexical ordering.
-   *  - Returns: A boolean value, indicating the ordering.
-   */
-  func compare(toString: String, withLocale locale: NSLocale, orderBy: NSComparisonResult) -> Bool {
-    if self.compare(toString, options: .CaseInsensitiveSearch, range: nil, locale: locale) == orderBy {
-      return true
-    }
-    
-    return false
-  }
-  
-}
-
 extension String {
-  /**
-   *  Returns the string localized.
-   */
-  var localized: String {
-    return NSLocalizedString(self.uppercaseString, tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: "").capitalizedString
-  }
   /**
    *  Compares a string to check if it contains another string.
    *  - Parameters:

@@ -6,6 +6,7 @@
 //  Copyright © 2016 Saturn Five. All rights reserved.
 //
 import UIKit
+import CoreData
 /**
  *  This class serves as the basis of all Data Source classes and contains the base methods that all data source objects share.
  *

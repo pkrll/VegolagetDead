@@ -12,10 +12,8 @@ import UIKit
  *  The View Controller class extends the UIViewController and contains basic methods that all sub view controllers can access.
  *  - Note: This class conforms to the Model Delegate.
  */
-class ViewController: UIViewController, ModelDelegate {
-  
-  internal var model: Model!
-  
+class ViewController: UIViewController {
+    
   internal lazy var loadingView: LoadingView = {
     [unowned self] in
     return LoadingView(frame: self.view.frame)
@@ -31,13 +29,7 @@ class ViewController: UIViewController, ModelDelegate {
     self.navigationItem.title = self.viewTitle
     self.navigationItem.backBarButtonItem = UIBarButtonItem(title: Constants.UserInterface.backButtonTitle, style: .Plain, target: nil, action: nil)
   }
-  /**
-   *  Load the model in this method.
-   */
-  func loadModel() {
-    self.model = Model()
-    self.model.delegate = self
-  }
+
   
   // MARK: - Loading View Methods
   
@@ -70,16 +62,5 @@ class ViewController: UIViewController, ModelDelegate {
     alertController.addAction(UIAlertAction(title: "Dismiss", style: .Default, handler: nil))
     self.presentViewController(alertController, animated: true, completion: nil)
   }
-  
-  // MARK: - Model Delegate Methods
-  
-  func model(_: Model, didFinishLoadingData data: [Item]) {
-    self.hideLoadingView()
-  }
-  
-  func model(_: Model, didFinishLoadingWithError errorDescription: String) {
-    self.hideLoadingView()
-    self.showAlert(withMessage: errorDescription)
-  }
-  
+
 }

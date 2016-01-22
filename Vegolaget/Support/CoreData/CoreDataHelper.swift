@@ -61,7 +61,12 @@ class CoreDataHelper {
       
       context.saveContext { (success: Bool, error) -> Void in
         if success {
-          print("Saved \(object_getClass(items.first!))")
+          if let item = items.first {
+            print("Saved \(object_getClass(item))")
+          } else {
+            print("Saved \(items)")
+          }
+
         } else {
           print(error)
         }
@@ -74,9 +79,10 @@ class CoreDataHelper {
    *  - Parameters:
    *    - fromEntity: The entity to load from.
    *    - withPredicate: A predicate.
+   *    - sortByKeys: The sort keys.
    *    - completionHandler: The callback.
    */
-  func load(fromEntity entity: String, withPredicate: NSPredicate?, completionHandler: HelperLoadCompletionHandler) {
+  func load(fromEntity entity: String, withPredicate: NSPredicate?, sortByKeys: [String]?, completionHandler: HelperLoadCompletionHandler) {
     guard let context = self.stack.getMainQueueContext() else {
       completionHandler(success: false, data: nil, error: nil)
       return
@@ -90,6 +96,17 @@ class CoreDataHelper {
       // Filter out unwanted items
       if let predicate = withPredicate {
         request.predicate = predicate
+      }
+      
+      if let sortByKey = sortByKeys {
+        var sortDescriptors = [NSSortDescriptor]?()
+        
+        for key in sortByKey {
+          let descriptor = NSSortDescriptor(key: key, ascending: false)
+          sortDescriptors?.append(descriptor)
+        }
+        
+        request.sortDescriptors = sortDescriptors
       }
       
       do {

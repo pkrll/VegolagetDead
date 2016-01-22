@@ -27,3 +27,24 @@ func <?<T: LocaleSensitive>(left: T, right: String) -> Bool {
 func ?><T: LocaleSensitive>(left: T, right: String) -> Bool {
   return left.compare(right, withLocale: NSLocale(localeIdentifier: "se"), orderBy: .OrderedDescending)
 }
+
+extension String: LocaleSensitive {
+  /**
+   *  Returns the string localized.
+   */
+  var localized: String {
+    return NSLocalizedString(self.uppercaseString, tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: "").capitalizedString
+  }
+  /**
+   *  Compares the string using the specified options and returns the lexical ordering.
+   *  - Returns: A boolean value, indicating the ordering.
+   */
+  func compare(toString: String, withLocale locale: NSLocale, orderBy: NSComparisonResult) -> Bool {
+    if self.compare(toString, options: .CaseInsensitiveSearch, range: nil, locale: locale) == orderBy {
+      return true
+    }
+    
+    return false
+  }
+  
+}

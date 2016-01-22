@@ -24,7 +24,7 @@ class CategoryDataSource: DataSource {
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier(Constants.Nib.CategoryCell.rawValue)!
     let item = self.items[indexPath.section] as! Category
-    
+        
     if let imageView = cell.viewWithTag(100) as? UIImageView {
       imageView.image = UIImage(named: item.tag)
     }

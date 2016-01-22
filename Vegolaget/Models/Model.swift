@@ -19,6 +19,8 @@ class Model: NSObject, APIManagerDelegate {
   
   internal var coreDataPredicate: NSPredicate?
   
+  internal var coreDataSortKeys: [String]?
+  
   internal var endPoint: String = String()
   
   internal lazy var coreDataHelper: CoreDataHelper = {
@@ -32,6 +34,7 @@ class Model: NSObject, APIManagerDelegate {
   override init() {
     super.init()
     self.manager.delegate = self
+    self.coreDataSortKeys = ["name", "id"]
   }
   /**
    *  Saves to core data, If an entity is set in the property coreDataEntity.
@@ -44,7 +47,7 @@ class Model: NSObject, APIManagerDelegate {
     }
   }
   /**
-   *  Loads from core data.
+   *  Loads data.
    */
   func loadData() {
     guard let entity = self.coreDataEntity?.rawValue else {
@@ -52,7 +55,7 @@ class Model: NSObject, APIManagerDelegate {
       return
     }
     
-    self.coreDataHelper.load(fromEntity: entity, withPredicate: self.coreDataPredicate) { (success: Bool, data: [AnyObject]?, error: NSError?) -> Void in
+    self.coreDataHelper.load(fromEntity: entity, withPredicate: self.coreDataPredicate, sortByKeys: self.coreDataSortKeys) { (success: Bool, data: [AnyObject]?, error: NSError?) -> Void in
       if let data = data where data.count > 0 {
         let items = self.didLoadFromCoreData(data)
         self.willPassDataToDelegate(items)

@@ -43,7 +43,7 @@ class ProducerModel: Model {
   }
   
   func loadFromEntity(entity: String, completionHandler: (results: [AnyObject]?) -> Void) {
-    self.coreDataHelper.load(fromEntity: entity, withPredicate: self.coreDataPredicate) { (success, data, error) -> Void in
+    self.coreDataHelper.load(fromEntity: entity, withPredicate: self.coreDataPredicate, sortByKeys: self.coreDataSortKeys) { (success, data, error) -> Void in
       completionHandler(results: data)
     }
   }

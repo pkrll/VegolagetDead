@@ -10,7 +10,9 @@ import UIKit
  *  This class is a sub class of the View Controller class and provides extra functionality for using a table view.
  *  - Note: This class conforms to the Data Source Delegate.
  */
-class TableViewController: ViewController, DataSourceDelegate, UITableViewDelegate {
+class TableViewController: ViewController, ModelDelegate, DataSourceDelegate, UITableViewDelegate {
+  
+  internal var model: Model!
   /**
    *  The data source of the table view.
    */
@@ -34,6 +36,13 @@ class TableViewController: ViewController, DataSourceDelegate, UITableViewDelega
     self.dataSource.delegate = self
   }
   /**
+   *  Load the model in this method.
+   */
+  func loadModel() {
+    self.model = Model()
+    self.model.delegate = self
+  }
+  /**
    *  Invoked when the data source has finished loading the data received from the controller.
    *  - Note: Will reload the table view if there is one set. Override this method if there are other operations needed to be run.
    */
@@ -44,10 +53,18 @@ class TableViewController: ViewController, DataSourceDelegate, UITableViewDelega
     }
   }
   
-  override func model(_: Model, didFinishLoadingData data: [Item]) {
+  // MARK: - Model Delegate Methods
+  
+  func model(_: Model, didFinishLoadingData data: [Item]) {
     self.dataSource.loadData(data)
-    super.model(self.model, didFinishLoadingData: data)
+    self.hideLoadingView()
   }
+  
+  func model(_: Model, didFinishLoadingWithError errorDescription: String) {
+    self.hideLoadingView()
+    self.showAlert(withMessage: errorDescription)
+  }
+
   /**
    *  Invoked when the table view was pulled to refresh its content.
    *  - Note: You must add *refreshControl* as a sub view to the table view to use it.
