@@ -12,6 +12,7 @@ class CategoryModel: Model {
   
   override init() {
     super.init()
+    self.coreDataSortKeys = ["id"]
     self.coreDataEntity = .Category
     self.endPoint = APIEndPoint.Categories.Root.string
   }

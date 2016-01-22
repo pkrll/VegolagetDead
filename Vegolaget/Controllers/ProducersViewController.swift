@@ -9,12 +9,6 @@ import UIKit
 
 class ProducersViewController: SearchViewController {
   
-  private let coreDataPredicates: [CategoryType: NSPredicate] = [
-    .Wine: NSPredicate(format: "doesWine = %i", 1),
-    .Beer: NSPredicate(format: "doesBeer = %i", 1),
-    .Liquor: NSPredicate(format: "doesLiquor = %i", 1)
-  ]
-  
   @IBOutlet var tableView: UITableView!
   
   internal var category: Category?
@@ -56,7 +50,13 @@ class ProducersViewController: SearchViewController {
     self.model = ProducersModel()
     
     if let tag = CategoryType(rawValue: self.category!.tag.capitalizedString) {
-      self.model.coreDataPredicate = self.coreDataPredicates[tag]
+      let coreDataPredicates: [CategoryType: NSPredicate] = [
+        .Wine: NSPredicate(format: "doesWine = %i", 1),
+        .Beer: NSPredicate(format: "doesBeer = %i", 1),
+        .Liquor: NSPredicate(format: "doesLiquor = %i", 1)
+      ]
+      
+      self.model.coreDataPredicate = coreDataPredicates[tag]
       self.model.delegate = self
       self.model.loadData()
     }

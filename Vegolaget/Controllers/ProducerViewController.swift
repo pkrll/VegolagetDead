@@ -40,7 +40,6 @@ class ProducerViewController: TableViewController {
   override func loadModel() {
     if let id = self.producer?.id {
       self.model = ProducerModel(producerID: id)
-      self.model.coreDataPredicate = NSPredicate(format: "companyID = %i", id)
       self.model.delegate = self
       self.model.loadData()
     }

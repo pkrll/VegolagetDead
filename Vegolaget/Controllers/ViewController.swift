@@ -14,10 +14,9 @@ import UIKit
  */
 class ViewController: UIViewController {
     
-  internal lazy var loadingView: LoadingView = {
-    [unowned self] in
+  internal lazy var loadingView: LoadingView = { [unowned self] in
     return LoadingView(frame: self.view.frame)
-    }()
+  }()
   
   internal var viewTitle: String {
     return Constants.Application.name
@@ -29,7 +28,6 @@ class ViewController: UIViewController {
     self.navigationItem.title = self.viewTitle
     self.navigationItem.backBarButtonItem = UIBarButtonItem(title: Constants.UserInterface.backButtonTitle, style: .Plain, target: nil, action: nil)
   }
-
   
   // MARK: - Loading View Methods
   

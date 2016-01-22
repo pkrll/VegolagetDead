@@ -1,32 +1,27 @@
 //
-//  StoresModel.swift
+//  StoreModel.swift
 //  Vegolaget
 //
-//  Created by Ardalan Samimi on 15/01/16.
+//  Created by Ardalan Samimi on 22/01/16.
 //  Copyright © 2016 Saturn Five. All rights reserved.
 //
 import Foundation
 import SwiftyJSON
 
-class StoresModel: Model {
+class StoreModel: Model {
   
-  let locations: [Location]
+  let storeID: Int
   
-  private var cities: [Int] {
-    return self.locations.map { $0.storeID }
-  }
-  
-  init(locations: [Location]) {
-    self.locations = locations
+  init(storeID: Int) {
+    self.storeID = storeID
     super.init()
-    
-    self.coreDataEntity = .Store
-    self.coreDataPredicate = NSPredicate(format: "id IN %@", self.cities)
-    self.endPoint = APIEndPoint.Store.City.string
+    self.coreDataEntity = CoreDataEntities.Store
+    self.coreDataPredicate = NSPredicate(format: "id = %i", storeID)
+    self.endPoint = APIEndPoint.Store.withId(storeID)
   }
-    
+  
   override func didLoadFromCoreData(data: [AnyObject]) -> [Item] {
-    var items: [Store] = []
+    var items = [Store]()
     
     if let stores = data as? [StoreManagedObject] {
       for store in stores {
@@ -40,11 +35,14 @@ class StoresModel: Model {
           "county": store.county,
           "phone": store.phone,
           "openHours": store.openHours
-          ])
+        ])
+        
         let item = self.createItem(json) as! Store
         items.append(item)
       }
     }
+    
+    print(items)
     
     return items
   }

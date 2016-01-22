@@ -53,20 +53,32 @@ class ProductViewController: TableViewController {
   
   override func loadModel() {
     self.model = ProductModel(locationID: self.product!.locationID)
-    self.model.coreDataPredicate = NSPredicate(format: "locationID = %i", self.product!.locationID)
     self.model.delegate = self
     self.model.loadData()
   }
   
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    if let sender = (self.dataSource as! ProductDataSource).itemsAtIndexPath(indexPath) as? [Location] {
-      self.performSegueWithIdentifier(Constants.Segue.ShowStore.rawValue, sender: sender)
+    if let locations = (self.dataSource as! ProductDataSource).itemsAtIndexPath(indexPath) as? [Location] {
+      let sender: AnyObject?
+      let segue: String
+      
+      if locations.count == 1 {
+        segue = Constants.Segue.ShowStore.rawValue
+        sender = locations.first
+      } else {
+        segue = Constants.Segue.ShowStores.rawValue
+        sender = locations
+      }
+      
+      self.performSegueWithIdentifier(segue, sender: sender)
     }
   }
   
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    if let viewController = segue.destinationViewController as? StoresViewController, let sender = sender as? [Location] {
+    if let sender = sender as? [Location], let viewController = segue.destinationViewController as? StoresViewController {
       viewController.locations = sender
+    } else if let sender = sender as? Location, let viewController = segue.destinationViewController as? StoreViewController {
+      viewController.storeID = sender.storeID
     }
   }
   

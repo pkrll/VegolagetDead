@@ -16,6 +16,7 @@ class ProductModel: Model {
     self.locationID = locationID
     super.init()
     self.coreDataEntity = .Location
+    self.coreDataPredicate = NSPredicate(format: "locationID = %i", self.locationID)
     self.endPoint = APIEndPoint.Product.withId(locationID)
   }
   

@@ -21,7 +21,7 @@ class ProducerDataSource: DataSource {
   ]
   
   override func loadData(data: [Item]) {
-    let data = data.sort( { $0.0.name < $0.1.name } )
+//    let data = data.sort( { $0.0.name < $0.1.name } )
     let listing = data.filter { return $0 is ProductInStock == false }
     let inStock = data.filter { return $0 is ProductInStock == true }
     

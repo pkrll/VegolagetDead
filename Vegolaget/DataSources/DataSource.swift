@@ -22,7 +22,7 @@ class DataSource: NSObject, UITableViewDataSource {
    *  Loads and sorts the items.
    */
   func loadData(data: [Item]) {
-    self.items = data.sort ({ $0.0.id < $0.1.id })
+    self.items = data
     self.delegate?.didFinishLoadDataSource(self)
   }
   /**

@@ -34,7 +34,7 @@ class Model: NSObject, APIManagerDelegate {
   override init() {
     super.init()
     self.manager.delegate = self
-    self.coreDataSortKeys = ["name", "id"]
+    self.coreDataSortKeys = ["name"]
   }
   /**
    *  Saves to core data, If an entity is set in the property coreDataEntity.

@@ -33,15 +33,24 @@ class StoresViewController: TableViewController {
   }
   
   override func loadModel() {
-    if let locations = self.locations where locations.count > 0 {
-      let cities = locations.map({ (item: Location) -> Int in
-        return item.storeID
-      })
+    if let locations = self.locations {
       self.model = StoresModel(locations: locations)
       self.model.delegate = self
-      self.model.coreDataPredicate = NSPredicate(format: "id IN %@", cities)
       self.model.loadData()
-      self.locations = nil
+    }
+    
+    self.locations = nil
+  }
+  
+  func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    if let location = self.dataSource.itemAtIndexPath(indexPath) as? Store {
+      self.performSegueWithIdentifier(Constants.Segue.ShowStore.rawValue, sender: location)
+    }
+  }
+  
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    if let viewController = segue.destinationViewController as? StoreViewController, let sender = sender as? Store {
+      viewController.storeID = sender.id
     }
   }
   

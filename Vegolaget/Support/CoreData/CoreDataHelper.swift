@@ -40,17 +40,14 @@ class CoreDataHelper {
     print("Saving or updating \(items.count) objects.")
     context.performBlock { () -> Void in
       for item in items {
-        var saves = false
         // Attempts to retrieve the item
         var entityItem = self.load(fromEntity: toEntity, inManagedObjectContext: context, itemWithID: (item as! Item).id) as? NSManagedObject
         // Nil means it does not exist, so insert a new one
         if entityItem == nil {
-          saves = true
           entityItem = NSEntityDescription.insertNewObjectForEntityForName(toEntity, inManagedObjectContext: context)
         }
         // Retrieves the attributes (properties) of the current item being looped over. The attributes will be compared to the NS Managed Object item's attributes.
         let attributes = item.attributes()
-        print("Insert a new object? \(saves) : \(object_getClass(item))")
         for (key, value) in attributes {
           // Ignore attributes not present in the entity. Though, the Core Data Helper Item objects must have a value for all of the entities non-optional attributes.
           if entityItem!.respondsToSelector(Selector(key)) {
@@ -66,7 +63,6 @@ class CoreDataHelper {
           } else {
             print("Saved \(items)")
           }
-
         } else {
           print(error)
         }
@@ -99,10 +95,10 @@ class CoreDataHelper {
       }
       
       if let sortByKey = sortByKeys {
-        var sortDescriptors = [NSSortDescriptor]?()
+        var sortDescriptors: [NSSortDescriptor]? = []
         
         for key in sortByKey {
-          let descriptor = NSSortDescriptor(key: key, ascending: false)
+          let descriptor = NSSortDescriptor(key: key, ascending: true)
           sortDescriptors?.append(descriptor)
         }
         

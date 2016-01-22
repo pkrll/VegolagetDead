@@ -200,39 +200,6 @@
             </objects>
             <point key="canvasLocation" x="1717.5" y="334.5"/>
         </scene>
-        <!--Stores-->
-        <scene sceneID="NPO-DF-2WK">
-            <objects>
-                <viewController title="Stores" automaticallyAdjustsScrollViewInsets="NO" id="U4R-h4-VZz" customClass="StoresViewController" customModule="Vegolaget" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="euM-Kx-sYr"/>
-                        <viewControllerLayoutGuide type="bottom" id="Iko-7i-TGb"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="tc6-Gw-XbN">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cYR-5T-F2E">
-                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="cYR-5T-F2E" secondAttribute="trailing" id="CHJ-UY-WwN"/>
-                            <constraint firstItem="cYR-5T-F2E" firstAttribute="leading" secondItem="tc6-Gw-XbN" secondAttribute="leading" id="F7p-tN-h9A"/>
-                            <constraint firstItem="cYR-5T-F2E" firstAttribute="top" secondItem="euM-Kx-sYr" secondAttribute="bottom" id="Gxy-pX-Wf9"/>
-                            <constraint firstItem="cYR-5T-F2E" firstAttribute="bottom" secondItem="Iko-7i-TGb" secondAttribute="top" id="I0j-jn-wKS"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="tableView" destination="cYR-5T-F2E" id="BVi-5J-QTj"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0Vw-KF-ERe" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2575.5" y="-181.5"/>
-        </scene>
         <!--Product View Controller-->
         <scene sceneID="uDh-aR-TNC">
             <objects>
@@ -343,7 +310,8 @@
                         <outlet property="labelPrice" destination="rz4-38-JXA" id="Az1-0C-Yvu"/>
                         <outlet property="labelYear" destination="lRh-Yi-dxB" id="NBQ-RQ-ppl"/>
                         <outlet property="tableView" destination="kwn-Mg-FbP" id="mP8-jL-LU8"/>
-                        <segue destination="U4R-h4-VZz" kind="show" identifier="ShowStore" id="YNI-M3-bOM"/>
+                        <segue destination="BbZ-ZG-Pll" kind="show" identifier="ShowStore" id="g8a-5I-mE4"/>
+                        <segue destination="6ks-h8-C46" kind="show" identifier="ShowStores" id="j02-zj-pGV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hPh-cp-LFX" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -369,5 +337,61 @@
             </objects>
             <point key="canvasLocation" x="468.5" y="-376.5"/>
         </scene>
+        <!--Stores-->
+        <scene sceneID="sks-Fh-Pgk">
+            <objects>
+                <viewController title="Stores" automaticallyAdjustsScrollViewInsets="NO" id="6ks-h8-C46" customClass="StoresViewController" customModule="Vegolaget" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="O3c-vC-mlU"/>
+                        <viewControllerLayoutGuide type="bottom" id="ZOr-xF-TX1"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="o52-iO-9hI">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ldr-SL-kGq">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Ldr-SL-kGq" secondAttribute="trailing" id="6xs-j5-xry"/>
+                            <constraint firstItem="Ldr-SL-kGq" firstAttribute="leading" secondItem="o52-iO-9hI" secondAttribute="leading" id="CH4-r4-Kg9"/>
+                            <constraint firstItem="Ldr-SL-kGq" firstAttribute="bottom" secondItem="ZOr-xF-TX1" secondAttribute="top" constant="49" id="cvI-zj-XSi"/>
+                            <constraint firstItem="Ldr-SL-kGq" firstAttribute="top" secondItem="O3c-vC-mlU" secondAttribute="bottom" id="fZW-z0-IAQ"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="tableView" destination="Ldr-SL-kGq" id="6NN-gQ-Itv"/>
+                        <segue destination="BbZ-ZG-Pll" kind="show" identifier="ShowStore" id="JJv-a2-H8K"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BK2-e9-MRf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2560.5" y="327.5"/>
+        </scene>
+        <!--Store-->
+        <scene sceneID="Nqf-H9-jo8">
+            <objects>
+                <viewController title="Store" id="BbZ-ZG-Pll" customClass="StoreViewController" customModule="Vegolaget" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="S8K-CI-rhc"/>
+                        <viewControllerLayoutGuide type="bottom" id="uIq-ae-ifH"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="JoK-a8-t9d">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Vm6-yN-Md9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2569.5" y="-409.5"/>
+        </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="g8a-5I-mE4"/>
+    </inferredMetricsTieBreakers>
 </document>
