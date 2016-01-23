@@ -20,6 +20,7 @@ class StoreViewController: TableViewController {
   
   override func loadDataSource() {
     self.dataSource = StoreDataSource()
+    self.dataSource.delegate = self
   }
   
   override func loadModel() {
