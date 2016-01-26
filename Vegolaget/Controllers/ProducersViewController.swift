@@ -18,8 +18,25 @@ class ProducersViewController: SearchViewController {
   }
   
   override internal var viewTitle: String {
-    return "Producenter"
+    let title: String
+    
+    switch self.tag {
+      case .Wine?:
+        title = "Vinproducenter"
+      case .Beer?:
+        title = "Ölproducenter"
+      case .Liquor?:
+        title = "Spritproducenter"
+      default:
+        title = "Producenter"
+    }
+    
+    return title
   }
+  
+  private lazy var tag: CategoryType? = { [unowned self] in
+    return CategoryType(rawValue: self.category!.tag.capitalizedString)
+  }()
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -41,7 +58,7 @@ class ProducersViewController: SearchViewController {
   }
   
   override func loadDataSource() {
-    self.dataSource = ProducersDataSource()
+    self.dataSource = ProducersDataSource(type: self.tag)
     self.dataSource.delegate = self
     self.tableView.dataSource = self.dataSource
   }
@@ -49,7 +66,7 @@ class ProducersViewController: SearchViewController {
   override func loadModel() {
     self.model = ProducersModel()
     
-    if let tag = CategoryType(rawValue: self.category!.tag.capitalizedString) {
+    if let tag = self.tag {
       let coreDataPredicates: [CategoryType: NSPredicate] = [
         .Wine: NSPredicate(format: "doesWine = %i", 1),
         .Beer: NSPredicate(format: "doesBeer = %i", 1),

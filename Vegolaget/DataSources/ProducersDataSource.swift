@@ -8,6 +8,8 @@
 import UIKit
 
 class ProducersDataSource: SearchDataSource {
+  
+  private let type: CategoryType?
   /**
    *  Current page.
    */
@@ -47,6 +49,11 @@ class ProducersDataSource: SearchDataSource {
     }
     
     return self.items.count
+  }
+  
+  init(type: CategoryType?) {
+    self.type = type
+    super.init()
   }
   
   override func filterBySearchString(string: String) {
@@ -114,8 +121,9 @@ class ProducersDataSource: SearchDataSource {
     let item = self.visibleItems[indexPath.row] as! Producer
     
     if let imageView = cell.viewWithTag(100) as? UIImageView {
-      // TODO: CHANGE THIS
-      imageView.image = UIImage(named: "wine")
+      // Displays the right icon depending on the type of producer
+      let imageName = self.type?.rawValue.lowercaseString ?? "wine"
+      imageView.image = UIImage(named: imageName)
     }
     
     if let textLabel = cell.viewWithTag(101) as? UILabel {
