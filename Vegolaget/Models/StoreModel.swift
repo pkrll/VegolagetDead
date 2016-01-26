@@ -43,7 +43,7 @@ class StoreModel: Model {
     }
     
     print(items)
-    
+
     return items
   }
   

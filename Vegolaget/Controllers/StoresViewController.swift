@@ -50,7 +50,7 @@ class StoresViewController: TableViewController {
   
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     if let viewController = segue.destinationViewController as? StoreViewController, let sender = sender as? Store {
-      viewController.storeID = sender.id
+      viewController.store = sender
     }
   }
   
