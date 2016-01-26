@@ -28,7 +28,6 @@ class SearchViewController: TableViewController, SearchDataSourceDelegate, UISea
    *  - Note: The search bar will customize itself when this property is first called.
    */
   internal lazy var searchBar: UISearchBar = { [unowned self] in
-    self.searchController.searchBar.delegate = self
     return self.searchController.searchBar
   }()
   /**
@@ -80,6 +79,7 @@ class SearchViewController: TableViewController, SearchDataSourceDelegate, UISea
         searchBarStyle = .Black
     }
     
+    self.searchController.searchBar.delegate = self
     self.searchController.searchBar.barStyle = searchBarStyle
     self.searchController.searchBar.tintColor = searchBarTintColor
     self.searchController.searchBar.translucent = translucentSearchBar

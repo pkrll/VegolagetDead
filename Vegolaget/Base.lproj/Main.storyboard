@@ -350,7 +350,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ldr-SL-kGq">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                         </subviews>
@@ -358,7 +358,7 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Ldr-SL-kGq" secondAttribute="trailing" id="6xs-j5-xry"/>
                             <constraint firstItem="Ldr-SL-kGq" firstAttribute="leading" secondItem="o52-iO-9hI" secondAttribute="leading" id="CH4-r4-Kg9"/>
-                            <constraint firstItem="Ldr-SL-kGq" firstAttribute="bottom" secondItem="ZOr-xF-TX1" secondAttribute="top" constant="49" id="cvI-zj-XSi"/>
+                            <constraint firstItem="Ldr-SL-kGq" firstAttribute="bottom" secondItem="ZOr-xF-TX1" secondAttribute="top" id="cvI-zj-XSi"/>
                             <constraint firstItem="Ldr-SL-kGq" firstAttribute="top" secondItem="O3c-vC-mlU" secondAttribute="bottom" id="fZW-z0-IAQ"/>
                         </constraints>
                     </view>
@@ -487,6 +487,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="g8a-5I-mE4"/>
+        <segue reference="JJv-a2-H8K"/>
     </inferredMetricsTieBreakers>
 </document>
