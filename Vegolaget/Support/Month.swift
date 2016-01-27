@@ -22,34 +22,34 @@ enum Month: Int {
   case November
   case December
   
-  var localized: String {
+  var description: String {
     var month: String!
     
     switch (self) {
-    case .January:
-      month = "januari"
-    case .February:
-      month = "februari"
-    case .March:
-      month = "mars"
-    case .April:
-      month = "april"
-    case .May:
-      month = "maj"
-    case .June:
-      month = "juni"
-    case .July:
-      month = "juli"
-    case .August:
-      month = "augusti"
-    case .September:
-      month = "september"
-    case .October:
-      month = "oktober"
-    case .November:
-      month = "november"
-    case .December:
-      month = "december"
+      case .January:
+        month = "January"
+      case .February:
+        month = "February"
+      case .March:
+        month = "March"
+      case .April:
+        month = "April"
+      case .May:
+        month = "May"
+      case .June:
+        month = "June"
+      case .July:
+        month = "July"
+      case .August:
+        month = "August"
+      case .September:
+        month = "September"
+      case .October:
+        month = "October"
+      case .November:
+        month = "November"
+      case .December:
+        month = "December"
     }
     
     return month

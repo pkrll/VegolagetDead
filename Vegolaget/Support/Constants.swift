@@ -38,6 +38,7 @@ public enum Constants {
     case LoadingCell
     case StoreCell
     case StoreLocationCell
+    case OpenHourCell
     
   }
   

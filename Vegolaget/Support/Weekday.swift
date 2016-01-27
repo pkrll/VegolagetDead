@@ -17,24 +17,24 @@ enum WeekDay: Int {
   case Friday
   case Saturday
   
-  var localized: String {
+  var description: String {
     var weekDay: String!
     
     switch (self) {
-    case .Sunday:
-      weekDay = "Söndag"
-    case .Monday:
-      weekDay = "Måndag"
-    case .Tuesday:
-      weekDay = "Tisdag"
-    case .Wednesday:
-      weekDay = "Onsdag"
-    case .Thursday:
-      weekDay = "Torsdag"
-    case .Friday:
-      weekDay = "Fredag"
-    case .Saturday:
-      weekDay = "Lördag"
+      case .Sunday:
+        weekDay = "Sunday"
+      case .Monday:
+        weekDay = "Monday"
+      case .Tuesday:
+        weekDay = "Tuesday"
+      case .Wednesday:
+        weekDay = "Wednesday"
+      case .Thursday:
+        weekDay = "Thursday"
+      case .Friday:
+        weekDay = "Friday"
+      case .Saturday:
+        weekDay = "Saturday"
     }
     
     return weekDay

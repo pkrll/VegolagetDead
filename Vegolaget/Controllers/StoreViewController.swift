@@ -17,19 +17,28 @@ class StoreViewController: TableViewController {
   @IBOutlet var mapView: MKMapView!
   @IBOutlet var addressLabel: UILabel!
   @IBOutlet var postalLabel: UILabel!
-  @IBOutlet var openHoursLabel: UILabel!
-  
+  @IBOutlet var tableView: UITableView!
+  @IBOutlet weak var tableViewHeightConstraint: NSLayoutConstraint!
+
   @IBAction func phoneButtonTapped(sender: AnyObject) {
   }
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+    self.tableView.delegate = self
+    self.registerNib(Constants.Nib.OpenHourCell.rawValue)
+    self.loadDataSource()
     if self.store != nil {
       self.configureViews()
     } else {
       self.loadModel()
     }
+  }
+  
+  override func loadDataSource() {
+    self.dataSource = StoreDataSource()
+    self.dataSource.delegate = self
+    self.tableView.dataSource = self.dataSource
   }
   
   override func loadModel() {
@@ -43,19 +52,26 @@ class StoreViewController: TableViewController {
   }
   
   override func model(_: Model, didFinishLoadingData data: [Item]) {
-    self.store = data.first as? Store
+    if let store = data.first as? Store {
+      self.store = store
+    }
+    
     self.configureViews()
   }
   
+  override func didFinishLoadDataSource(_: DataSource) {
+    self.tableView.reloadData()
+    // Dynamically sets the height of the table view.
+    self.tableViewHeightConstraint.constant = CGFloat(self.tableView.numberOfRowsInSection(0)) * 80
+    self.view.layoutIfNeeded()
+  }
+  
   func configureViews() {
-    if let store = self.store {
+    if let store = self.store, let dataSource = self.dataSource as? StoreDataSource {
+      dataSource.loadData(store.dateTime)
       self.loadCoordinates()
-      
       self.addressLabel.text = store.address
       self.postalLabel.text = "\(store.postalCode) \(store.city)"
-      self.openHoursLabel.text = store.openHours
-      self.openHoursLabel.numberOfLines = 0
-      self.openHoursLabel.sizeToFit()
     }
     
     self.hideLoadingView()

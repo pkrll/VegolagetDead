@@ -9,14 +9,13 @@ import Foundation
 
 struct DateTime {
   
-  let dateFormat = "yyyy-MM-dd"
-  let dateLocale = "se"
   let date: String
   let time: String
-  
   let isToday: Bool
   let hasPassed: Bool
   
+  private let dateFormat = "yyyy-MM-dd"
+  private let dateLocale = "se"
   private let dateFormatter: NSDateFormatter
   
   init(date: String, time: String) {
@@ -43,13 +42,23 @@ struct DateTime {
     let date = self.dateFormatter.dateFromString(self.date) as NSDate!
     let components = calendar.components(.Weekday, fromDate: date)
     
-    return WeekDay(rawValue: components.weekday)?.localized ?? ""
+    return WeekDay(rawValue: components.weekday)?.description ?? ""
   }
   
-  func shortFormDate() -> String {
+  func month() -> String {
     let components = self.date.componentsSeparatedByString("-")
-    let month = Month(rawValue: Int(components[1])!)?.localized ?? ""
-    return components[2] + " " + month
+    let month = Month(rawValue: Int(components[1])!)?.description ?? ""
+    return month
+  }
+  
+  func day() -> String {
+    let components = self.date.componentsSeparatedByString("-")
+    if components[2].characters.first == "0" {
+      let range = Range(start: components[2].startIndex.advancedBy(1), end: components[2].endIndex)
+      return components[2].substringWithRange(range)
+    }
+    
+    return components[2]
   }
   
 }

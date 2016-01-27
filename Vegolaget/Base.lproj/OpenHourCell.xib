@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="OpenHourCell" rowHeight="60" id="NQB-ZC-3Vf">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NQB-ZC-3Vf" id="EPi-Vb-3Z7">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Söndag, 31 november" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Iv-Yd-opi">
+                        <rect key="frame" x="16" y="8" width="200" height="44"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10:00–19:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="owN-WS-SZr">
+                        <rect key="frame" x="224" y="8" width="143" height="44"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="143" id="wZr-7Z-trO"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="owN-WS-SZr" firstAttribute="firstBaseline" secondItem="5Iv-Yd-opi" secondAttribute="firstBaseline" id="Sic-fg-26N"/>
+                    <constraint firstItem="owN-WS-SZr" firstAttribute="trailing" secondItem="EPi-Vb-3Z7" secondAttribute="trailingMargin" id="Xx6-kp-jMF"/>
+                    <constraint firstItem="5Iv-Yd-opi" firstAttribute="leading" secondItem="EPi-Vb-3Z7" secondAttribute="leadingMargin" constant="8" id="chf-XO-CqY"/>
+                    <constraint firstItem="owN-WS-SZr" firstAttribute="leading" secondItem="5Iv-Yd-opi" secondAttribute="trailing" constant="8" symbolic="YES" id="dRo-5J-rWl"/>
+                    <constraint firstItem="owN-WS-SZr" firstAttribute="baseline" secondItem="5Iv-Yd-opi" secondAttribute="baseline" id="naC-9M-zQm"/>
+                    <constraint firstItem="5Iv-Yd-opi" firstAttribute="centerY" secondItem="EPi-Vb-3Z7" secondAttribute="centerY" id="s8v-YD-9XA"/>
+                    <constraint firstItem="5Iv-Yd-opi" firstAttribute="top" secondItem="EPi-Vb-3Z7" secondAttribute="topMargin" id="tpD-yu-3xo"/>
+                </constraints>
+            </tableViewCellContentView>
+            <point key="canvasLocation" x="235.5" y="202"/>
+        </tableViewCell>
+    </objects>
+</document>

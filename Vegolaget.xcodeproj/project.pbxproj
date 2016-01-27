@@ -49,6 +49,8 @@
 		6A8C7BED1C4E829800B30903 /* SearchBarStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8C7BEC1C4E829800B30903 /* SearchBarStyle.swift */; };
 		6A96FF891C484710007177F1 /* StoreLocationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A96FF871C484710007177F1 /* StoreLocationCell.xib */; };
 		6A96FF8B1C4847EA007177F1 /* StoresViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A96FF8A1C4847EA007177F1 /* StoresViewController.swift */; };
+		6AA8532A1C58D960003DA02D /* StoreDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA853291C58D960003DA02D /* StoreDataSource.swift */; };
+		6AA8532D1C58E600003DA02D /* OpenHourCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AA8532B1C58E600003DA02D /* OpenHourCell.xib */; };
 		6AD4D83F1C57A11E007CFDAC /* MKMapView+findLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD4D83E1C57A11E007CFDAC /* MKMapView+findLocation.swift */; };
 		6ADCCFE31C47AA9200AAF1AA /* ProducerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ADCCFE21C47AA9200AAF1AA /* ProducerViewController.swift */; };
 		6ADCCFE51C47ABEB00AAF1AA /* ProducerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ADCCFE41C47ABEB00AAF1AA /* ProducerModel.swift */; };
@@ -137,6 +139,8 @@
 		6A8C7BEC1C4E829800B30903 /* SearchBarStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchBarStyle.swift; path = Support/SearchBarStyle.swift; sourceTree = "<group>"; };
 		6A96FF881C484710007177F1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/StoreLocationCell.xib; sourceTree = "<group>"; };
 		6A96FF8A1C4847EA007177F1 /* StoresViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StoresViewController.swift; path = Controllers/StoresViewController.swift; sourceTree = "<group>"; };
+		6AA853291C58D960003DA02D /* StoreDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StoreDataSource.swift; path = DataSources/StoreDataSource.swift; sourceTree = "<group>"; };
+		6AA8532C1C58E600003DA02D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/OpenHourCell.xib; sourceTree = "<group>"; };
 		6AD4D83E1C57A11E007CFDAC /* MKMapView+findLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "MKMapView+findLocation.swift"; path = "Support/Extensions/MKMapView+findLocation.swift"; sourceTree = "<group>"; };
 		6ADCCFE21C47AA9200AAF1AA /* ProducerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProducerViewController.swift; path = Controllers/ProducerViewController.swift; sourceTree = "<group>"; };
 		6ADCCFE41C47ABEB00AAF1AA /* ProducerModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProducerModel.swift; path = Models/ProducerModel.swift; sourceTree = "<group>"; };
@@ -244,6 +248,7 @@
 				6ADCCFF01C47B09C00AAF1AA /* ProductCell.xib */,
 				6A96FF871C484710007177F1 /* StoreLocationCell.xib */,
 				6ADCCFFB1C47E27C00AAF1AA /* StoreCell.xib */,
+				6AA8532B1C58E600003DA02D /* OpenHourCell.xib */,
 				6A8391811C469B7400D8E96A /* LoadingCell.xib */,
 				6A8296851C44033E00012945 /* LaunchScreen.storyboard */,
 			);
@@ -302,6 +307,7 @@
 				6ADCCFF31C47B32700AAF1AA /* ProducerDataSource.swift */,
 				6ADCD00A1C47E7F300AAF1AA /* ProductDataSource.swift */,
 				6A12A8A41C48EFB500B5B4E4 /* StoresDataSource.swift */,
+				6AA853291C58D960003DA02D /* StoreDataSource.swift */,
 			);
 			name = DataSources;
 			sourceTree = "<group>";
@@ -484,6 +490,7 @@
 				6A8296841C44033E00012945 /* Assets.xcassets in Resources */,
 				6ADCCFF21C47B09C00AAF1AA /* ProductCell.xib in Resources */,
 				6A8391831C469B7400D8E96A /* LoadingCell.xib in Resources */,
+				6AA8532D1C58E600003DA02D /* OpenHourCell.xib in Resources */,
 				6A8296821C44033E00012945 /* Main.storyboard in Resources */,
 				6ADCCFF81C47CA7900AAF1AA /* Localizable.strings in Resources */,
 				6A96FF891C484710007177F1 /* StoreLocationCell.xib in Resources */,
@@ -602,6 +609,7 @@
 				6A3AED751C4536CF001364E5 /* Vegolaget.xcdatamodeld in Sources */,
 				6AF5E21A1C44E65B00B9EF59 /* APIResponse.swift in Sources */,
 				6AF5E22A1C44F26800B9EF59 /* TableViewController.swift in Sources */,
+				6AA8532A1C58D960003DA02D /* StoreDataSource.swift in Sources */,
 				6AF5E2331C44FD3C00B9EF59 /* Item.swift in Sources */,
 				6A3AED691C452C77001364E5 /* Category.swift in Sources */,
 				6A8391801C46959600D8E96A /* ProducersDataSource.swift in Sources */,
@@ -683,6 +691,14 @@
 				6A96FF881C484710007177F1 /* Base */,
 			);
 			name = StoreLocationCell.xib;
+			sourceTree = "<group>";
+		};
+		6AA8532B1C58E600003DA02D /* OpenHourCell.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6AA8532C1C58E600003DA02D /* Base */,
+			);
+			name = OpenHourCell.xib;
 			sourceTree = "<group>";
 		};
 		6ADCCFF01C47B09C00AAF1AA /* ProductCell.xib */ = {

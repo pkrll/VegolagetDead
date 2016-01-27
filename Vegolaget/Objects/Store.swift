@@ -34,8 +34,12 @@ class Store: Item {
         let dateComponents = date.componentsSeparatedByString(";")
         if dateComponents.count > 0 {
           let date = dateComponents[0]
-          let hour = dateComponents[1]
-          self.dateTime.append(DateTime(date: date, time: hour))
+          let hour = dateComponents[1] + "-" + dateComponents[2]
+          let dateTime = DateTime(date: date, time: hour)
+          if dateTime.hasPassed == false {
+            self.dateTime.append(dateTime)
+          }
+
         }
       }
       
