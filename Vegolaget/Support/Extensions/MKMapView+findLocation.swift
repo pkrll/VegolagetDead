@@ -8,24 +8,29 @@
 import MapKit
 
 extension MKMapView {
+
+  typealias CLLocationDegreesTuple = (longitude: Double, latitude: Double)
+  typealias MapViewCompletionHandler = (mapView: MKMapView) -> Void
   
-  func findLocation(searchQuery: String, withSpan: (longitude: Double, latitude: Double)) {
-    let searchRequest = MKLocalSearchRequest()
-    searchRequest.naturalLanguageQuery = searchQuery
-    let localSearch = MKLocalSearch(request: searchRequest)
+  func findLocation(forAddress: String, withSpan: CLLocationDegreesTuple, completion: MapViewCompletionHandler) {
+    let request = MKLocalSearchRequest()
+    request.naturalLanguageQuery = forAddress
+    let search = MKLocalSearch(request: request)
     
-    localSearch.startWithCompletionHandler { (response: MKLocalSearchResponse?, error: NSError?) -> Void in
-      if let response = response {
-        let location = CLLocationCoordinate2D(latitude: response.boundingRegion.center.latitude, longitude: response.boundingRegion.center.longitude)
-        let span = MKCoordinateSpanMake(withSpan.latitude, withSpan.longitude)
-        let annotation = MKPointAnnotation()
-        let coordinate = MKCoordinateRegion(center: location, span: span)
-        annotation.coordinate = location
-        self.setRegion(coordinate, animated: false)
-        self.addAnnotation(annotation)
-        self.showsUserLocation = false
+    search.startWithCompletionHandler { (response: MKLocalSearchResponse?, error: NSError?) -> Void in
+      guard let region = response?.boundingRegion else {
+        return
       }
+      
+      let location = CLLocationCoordinate2D(latitude: region.center.latitude, longitude: region.center.longitude)
+      let span = MKCoordinateSpanMake(withSpan.latitude, withSpan.longitude)
+      let coordinate = MKCoordinateRegion(center: location, span: span)
+      self.setRegion(coordinate, animated: false)
+      self.showsUserLocation = false
+      
+      completion(mapView: self)
     }
+    
   }
   
 }

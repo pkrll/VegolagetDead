@@ -62,10 +62,14 @@ class StoreViewController: TableViewController {
   override func didFinishLoadDataSource(_: DataSource) {
     self.tableView.reloadData()
     // Dynamically sets the height of the table view.
-    self.tableViewHeightConstraint.constant = CGFloat(self.tableView.numberOfRowsInSection(0)) * 80
+    self.tableViewHeightConstraint.constant = CGFloat(self.tableView.numberOfRowsInSection(0)) * self.tableView.rowHeight
     self.view.layoutIfNeeded()
   }
   
+}
+
+private extension StoreViewController {
+
   func configureViews() {
     if let store = self.store, let dataSource = self.dataSource as? StoreDataSource {
       dataSource.loadData(store.dateTime)
@@ -77,16 +81,15 @@ class StoreViewController: TableViewController {
     self.hideLoadingView()
   }
   
-  
   func loadCoordinates() {
     let searchQuery = "\(self.store!.address), \(self.store!.postalCode) \(self.store!.city)"
-    self.mapView.findLocation(searchQuery, withSpan: (longitude: 0.005, latitude: 0.005))
-//
-//    annotation.coordinate = self.mapView.region.center
-//    annotation.title = self.store?.address
-//    annotation.subtitle = self.store?.name
-//    self.mapView.addAnnotation(annotation)
-
+    self.mapView.findLocation(searchQuery, withSpan: (longitude: 0.005, latitude: 0.005)) { (mapView: MKMapView) -> Void in
+      let annotation = MKPointAnnotation()
+      annotation.coordinate = mapView.region.center
+      annotation.title = self.store?.address
+      annotation.subtitle = self.store?.name
+      mapView.addAnnotation(annotation)
+    }
   }
   
 }
