@@ -11,21 +11,19 @@ import SwiftyJSON
 class Producer: Item {
   
   let country: String
-  let status: String
-  let notes: String
+  let vegan: Int
   let tag: String
   let doesWine: Bool
   let doesBeer: Bool
   let doesLiquor: Bool
   
   lazy var isVegan: Bool = {
-    return (self.status == "Vegan Friendly")
+    return (self.vegan == 1)
   }()
   
   override init(data: JSON) {
     self.country = data["country"].stringValue
-    self.status = data["status"].stringValue
-    self.notes = data["notes"].stringValue
+    self.vegan = data["vegan"].intValue
     self.tag = data["tag"].stringValue
     self.doesWine = data["doesWine"].boolValue
     self.doesBeer = data["doesBeer"].boolValue

@@ -38,7 +38,6 @@ class StoresModel: Model {
           "postalCode": store.postalCode,
           "city": store.city,
           "county": store.county,
-          "phone": store.phone,
           "openHours": store.openHours
           ])
         let item = self.createItem(json) as! Store

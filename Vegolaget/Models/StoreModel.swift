@@ -33,7 +33,6 @@ class StoreModel: Model {
           "postalCode": store.postalCode,
           "city": store.city,
           "county": store.county,
-          "phone": store.phone,
           "openHours": store.openHours
         ])
         

@@ -14,7 +14,6 @@ class Store: Item {
   let postalCode: String
   let city: String
   let county: String
-  let phone: String
   let openHours: String
   var dateTime: [DateTime]
 
@@ -24,7 +23,6 @@ class Store: Item {
     self.postalCode = data["postalCode"].stringValue
     self.city = data["city"].stringValue.capitalizedString
     self.county = data["county"].stringValue.capitalizedString
-    self.phone = data["phone"].stringValue
     self.openHours = data["openHours"].stringValue
     self.dateTime = []
     // Parse open hours

@@ -80,7 +80,7 @@ class ProducerModel: Model {
             "companyID": product.companyID,
             "name": product.name,
             "type": product.type,
-            "status": product.status
+            "vegan": product.vegan
           ]
         )
         

@@ -131,7 +131,8 @@ class ProducersDataSource: SearchDataSource {
     }
     
     if let detailLabel = cell.viewWithTag(102) as? UILabel {
-      detailLabel.text = item.status.localized
+      let veganStatus = VeganStatusType(rawValue: item.vegan)?.description.localized ?? "UNKNOWN".localized
+      detailLabel.text = veganStatus
     }
     
     return cell

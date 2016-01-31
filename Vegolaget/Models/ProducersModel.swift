@@ -26,9 +26,8 @@ class ProducersModel: Model {
             "id": producer.id,
             "name": producer.name,
             "country": producer.country,
-            "notes": producer.notes,
             "tag": producer.tag,
-            "status": producer.status,
+            "vegan": producer.vegan,
             "doesBeer": producer.doesBeer,
             "doesWine": producer.doesWine,
             "doesLiquor": producer.doesLiquor

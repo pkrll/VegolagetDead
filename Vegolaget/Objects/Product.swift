@@ -11,12 +11,12 @@ import SwiftyJSON
 class Product: Item {
   
   let companyID: Int
-  let status: String
+  let vegan: Int
   let type: String
   
   override init(data: JSON) {
     self.companyID = data["companyID"].intValue
-    self.status = data["status"].stringValue
+    self.vegan = data["vegan"].intValue
     self.type = data["type"].stringValue
     
     super.init(data: data)

@@ -9,7 +9,7 @@ import Foundation
 
 public enum APIEndPoint {
   
-  private static var address = ""
+  private static var address = "http://api.veganvinguiden.se/"
   private static var version = "1.0"
   private static var BaseURL: String {
     return self.address + self.version
@@ -88,12 +88,18 @@ public enum APIEndPoint {
     
     case City = "/stores/city/"
     
+    case Stock = "/stores/stock/"
+
     var string: String {
       return APIEndPoint.BaseURL + self.rawValue
     }
     
     static func withId(id: Int) -> String {
       return self.Root.string + id.description
+    }
+    
+    static func stock(forStoreWithID id: Int) -> String {
+      return self.Stock.string + id.description
     }
   }
   

@@ -24,9 +24,8 @@ class CategoryManagedObject: ItemManagedObject {
 @objc(ProducerManagedObject)
 class ProducerManagedObject: ItemManagedObject {
   @NSManaged var country: String
-  @NSManaged var notes: String
   @NSManaged var tag: String
-  @NSManaged var status: String
+  @NSManaged var vegan: Int
   @NSManaged var doesWine: Bool
   @NSManaged var doesBeer: Bool
   @NSManaged var doesLiquor: Bool
@@ -36,7 +35,7 @@ class ProducerManagedObject: ItemManagedObject {
 class ProductManagedObject: ItemManagedObject {
   @NSManaged var companyID: NSNumber
   @NSManaged var type: String
-  @NSManaged var status: String
+  @NSManaged var vegan: Int
 }
 
 @objc(ProductInStockManagedObject)
@@ -63,7 +62,6 @@ class LocationManagedObject: ItemManagedObject {
 @objc(StoreManagedObject)
 class StoreManagedObject: ItemManagedObject {
   @NSManaged var postalCode: String
-  @NSManaged var phone: String
   @NSManaged var openHours: String
   @NSManaged var county: String
   @NSManaged var city: String

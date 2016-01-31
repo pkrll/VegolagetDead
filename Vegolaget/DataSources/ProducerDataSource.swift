@@ -69,7 +69,8 @@ class ProducerDataSource: DataSource {
       
       detailText += item.type
     } else {
-      detailText = item.type.localized + "\n" + item.status.localized
+      let veganStatus = VeganStatusType(rawValue: item.vegan)?.description.localized ?? "UNKNOWN".localized
+      detailText = item.type.localized + "\n" + veganStatus
     }
     
     if let detailTextLabel = cell.viewWithTag(102) as? UILabel {
