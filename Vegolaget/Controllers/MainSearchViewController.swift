@@ -20,8 +20,7 @@ class MainSearchViewController: SearchViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.configureSearchBar(withStyle: .BlackTranslucentBar)
-    self.searchBar.barStyle = .Black
+    self.configureSearchBar()
     self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView:self.searchBar)
     self.resizeSearchBar()
     self.hideLoadingView()

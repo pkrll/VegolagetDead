@@ -17,6 +17,15 @@ class ViewController: UIViewController {
   internal lazy var loadingView: LoadingView = { [unowned self] in
     return LoadingView(frame: self.view.frame)
   }()
+
+  internal lazy var backBarButtonItem: UIBarButtonItem = {
+    let text = Constants.UserInterface.backButtonTitle.localized
+    let font = Font.Roboto.withStyle(.Light, size: 16.0)!
+    let item = UIBarButtonItem(title: text, style: .Plain, target: nil, action: nil)
+    item.setTitleTextAttributes([NSFontAttributeName: font], forState: UIControlState.Normal)
+    
+    return item
+  }()
   
   internal var viewTitle: String {
     return Constants.Application.name
@@ -26,7 +35,7 @@ class ViewController: UIViewController {
     super.viewDidLoad()
     self.showLoadingView()
     self.navigationItem.title = self.viewTitle
-    self.navigationItem.backBarButtonItem = UIBarButtonItem(title: Constants.UserInterface.backButtonTitle, style: .Plain, target: nil, action: nil)
+    self.navigationItem.backBarButtonItem = self.backBarButtonItem
   }
   
   // MARK: - Loading View Methods

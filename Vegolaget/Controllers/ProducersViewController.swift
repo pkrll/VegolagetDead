@@ -45,7 +45,7 @@ class ProducersViewController: SearchViewController {
     self.registerNib(Constants.Nib.LoadingCell.rawValue)
 
     self.configureSearchBar()
-    self.searchBar.placeholder = "Sök efter producent"
+    self.setSearchBarPlaceholder("Sök efter producent")
     self.searchBar.scopeButtonTitles = Constants.UserInterface.scopeButtonTitles
     self.searchBar.delegate = self
     self.tableView.delegate = self
@@ -82,13 +82,15 @@ class ProducersViewController: SearchViewController {
   }
   
   override func model(model: Model, didFinishLoadingData data: [Item]) {
-    self.searchBar.placeholder = String(format: self.searchBarPlaceholder, data.count)
+    let placeholder = String(format: self.searchBarPlaceholder, data.count)
+    self.setSearchBarPlaceholder(placeholder)
     super.model(self.model, didFinishLoadingData: data)
   }
   
   override func didFinishFilterDataSource(_: SearchDataSource) {
     let dataSource = self.dataSource as! ProducersDataSource
-    self.searchBar.placeholder = String(format: self.searchBarPlaceholder, dataSource.numberOfSearchableItems)
+    let placeholder = String(format: self.searchBarPlaceholder, dataSource.numberOfSearchableItems)
+    self.setSearchBarPlaceholder(placeholder)
     super.didFinishFilterDataSource(dataSource)
   }
   

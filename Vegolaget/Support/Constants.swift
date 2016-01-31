@@ -23,12 +23,12 @@ public enum Constants {
      */
     static let greenColor = UIColor(red: 0.2, green: 0.6, blue: 0.2, alpha: 1.0)
     
-    static let backButtonTitle = "Bakåt"
+    static let backButtonTitle = "Back"
     
     static let scopeButtonTitles = ["Alla", "Endast veganska"]
     
   }
-  
+    
   enum Nib: String {
     
     case BaseCell

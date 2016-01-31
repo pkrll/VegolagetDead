@@ -9,7 +9,7 @@ import Foundation
 
 public enum APIEndPoint {
   
-  private static var address = "http://api.veganvinguiden.se/"
+  private static var address = ""
   private static var version = "1.0"
   private static var BaseURL: String {
     return self.address + self.version

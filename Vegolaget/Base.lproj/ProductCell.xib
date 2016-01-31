@@ -12,11 +12,11 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="r43-Kb-YVX" id="d1D-EO-8eB">
-                <rect key="frame" x="0.0" y="0.0" width="342" height="79.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="342" height="79"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wine" translatesAutoresizingMaskIntoConstraints="NO" id="tbU-6e-p4l">
-                        <rect key="frame" x="18" y="7.5" width="73" height="64"/>
+                        <rect key="frame" x="18" y="8" width="73" height="64"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="73" id="Oq6-LO-WwL"/>
                         </constraints>

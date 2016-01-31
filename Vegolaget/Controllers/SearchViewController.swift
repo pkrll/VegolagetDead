@@ -59,40 +59,33 @@ class SearchViewController: TableViewController, SearchDataSourceDelegate, UISea
    *  Configure the search bar with a predefined style.
    *  - Parameter withStyle: The style of the search bar.
    */
-  func configureSearchBar(withStyle style: SearchBarStyle = .NormalBar) {
-    var searchBarTintColor: UIColor?
-    var textFieldTextColor: UIColor?
-    var textFieldTintColor: UIColor?
-    var placeholderAttribute: NSAttributedString?
-    var translucentSearchBar: Bool = false
-    var searchBarStyle: UIBarStyle = UIBarStyle.Default
-    
-    switch style {
-      case .NormalBar:
-        searchBarTintColor = UIColor.whiteColor()
-        textFieldTintColor = UIColor.blueColor()
-      case .BlackTranslucentBar:
-        textFieldTextColor = UIColor.whiteColor()
-        textFieldTintColor = UIColor.whiteColor()
-        placeholderAttribute = NSAttributedString(string: self.searchBarPlaceholder, attributes:[NSForegroundColorAttributeName: UIColor.whiteColor()])
-        translucentSearchBar = true
-        searchBarStyle = .Black
-    }
+  func configureSearchBar() {
+    let font = Font.Roboto.withStyle(.Light, size: 16.0)!
     
     self.searchController.searchBar.delegate = self
-    self.searchController.searchBar.barStyle = searchBarStyle
-    self.searchController.searchBar.tintColor = searchBarTintColor
-    self.searchController.searchBar.translucent = translucentSearchBar
-    self.searchController.searchBar.barTintColor = Constants.UserInterface.greenColor
+    self.searchController.searchBar.barStyle = .Default
+    self.searchController.searchBar.tintColor = Constants.UserInterface.greenColor
+    self.searchController.searchBar.barTintColor = UIColor.whiteColor()
     self.searchController.searchBar.showsScopeBar = false
+
     // The tint color of the search bar will also change the search fields color. This should fix that.
     if let textField = self.searchController.searchBar.valueForKey("_searchField") as? UITextField {
-      textField.textColor = textFieldTextColor
-      textField.tintColor = textFieldTintColor
-      textField.attributedPlaceholder = placeholderAttribute
+      textField.textColor = UIColor.blackColor()
+      textField.tintColor = UIColor.blackColor()
+      textField.backgroundColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 0.2)
+      textField.attributedPlaceholder = NSAttributedString(string: self.searchBarPlaceholder, attributes:[NSForegroundColorAttributeName: UIColor.blackColor(), NSFontAttributeName: font])
     }
-    
+
+
+    self.searchController.searchBar.setScopeBarButtonTitleTextAttributes([NSFontAttributeName: font], forState: .Normal)
     self.searchController.searchBar.setImage(UIImage(named: "search"), forSearchBarIcon: .Search, state: .Normal)
+  }
+  
+  func setSearchBarPlaceholder(string: String) {
+    if let textField = self.searchController.searchBar.valueForKey("_searchField") as? UITextField {
+      let font = Font.Roboto.withStyle(.Light, size: 16.0)!
+      textField.attributedPlaceholder = NSAttributedString(string: string, attributes:[NSForegroundColorAttributeName: UIColor.blackColor(), NSFontAttributeName: font])
+    }
   }
   /**
    *  Hides the search bar, if a table view is set.
