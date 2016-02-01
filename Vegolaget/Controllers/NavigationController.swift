@@ -15,7 +15,7 @@ class NavigationController: UINavigationController {
     self.navigationBar.tintColor = Constants.UserInterface.greenColor
     self.navigationBar.titleTextAttributes = [
       NSForegroundColorAttributeName: Constants.UserInterface.greenColor,
-      NSFontAttributeName: Font.Roboto.withStyle(.Regular, size: 16.0)!
+      NSFontAttributeName: Font.Roboto.withStyle(.Regular, size: 18.0)!
     ]
     self.navigationBar.backIndicatorImage = UIImage(named: "arrow")
     self.navigationBar.backIndicatorTransitionMaskImage = UIImage(named: "arrow")

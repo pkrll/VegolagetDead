@@ -20,7 +20,7 @@ class ViewController: UIViewController {
 
   internal lazy var backBarButtonItem: UIBarButtonItem = {
     let text = Constants.UserInterface.backButtonTitle.localized
-    let font = Font.Roboto.withStyle(.Light, size: 16.0)!
+    let font = Font.Roboto.withStyle(.Light, size: 17.0)!
     let item = UIBarButtonItem(title: text, style: .Plain, target: nil, action: nil)
     item.setTitleTextAttributes([NSFontAttributeName: font], forState: UIControlState.Normal)
     

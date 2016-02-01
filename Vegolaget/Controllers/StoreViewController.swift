@@ -19,9 +19,6 @@ class StoreViewController: TableViewController {
   @IBOutlet var postalLabel: UILabel!
   @IBOutlet var tableView: UITableView!
   @IBOutlet weak var tableViewHeightConstraint: NSLayoutConstraint!
-
-  @IBAction func phoneButtonTapped(sender: AnyObject) {
-  }
   
   override func viewDidLoad() {
     super.viewDidLoad()

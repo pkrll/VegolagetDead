@@ -16,6 +16,7 @@ class CategoryViewController: TableViewController {
     
     self.registerNib(Constants.Nib.CategoryCell.rawValue)
     self.tableView.delegate = self
+    self.tableView.addSubview(self.refreshControl)
     self.loadDataSource()
     self.loadModel()
   }
@@ -31,9 +32,14 @@ class CategoryViewController: TableViewController {
     self.model.delegate = self
     self.model.loadData()
   }
+  
+  override func didRequestRefresh(sender: AnyObject) {
+    self.model.refreshData()
+  }
     
   override func didFinishLoadDataSource(_: DataSource) {
     self.tableView.reloadData()
+    self.refreshControl.endRefreshing()
   }
   
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

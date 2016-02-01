@@ -51,8 +51,8 @@ class ProducersViewController: SearchViewController {
     self.tableView.delegate = self
     self.tableView.tableHeaderView = self.searchBar
     self.tableView.tableHeaderView?.sizeToFit()
+    self.tableView.addSubview(self.refreshControl)
     self.searchController.searchResultsUpdater = self
-
     self.loadDataSource()
     self.loadModel()
   }
@@ -81,9 +81,14 @@ class ProducersViewController: SearchViewController {
     self.category = nil
   }
   
+  override func didRequestRefresh(sender: AnyObject) {
+    self.model.refreshData()
+  }
+  
   override func model(model: Model, didFinishLoadingData data: [Item]) {
     let placeholder = String(format: self.searchBarPlaceholder, data.count)
     self.setSearchBarPlaceholder(placeholder)
+    self.refreshControl.endRefreshing()
     super.model(self.model, didFinishLoadingData: data)
   }
   
