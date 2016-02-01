@@ -10,16 +10,14 @@ import UIKit
 
 class LookupViewController: SearchViewController {
   
+  private var searchScope = ["producer", "product", "store"]
+  
   override internal var viewTitle: String {
     return ""
   }
   
   override internal var searchBarPlaceholder: String {
     return "Sök"
-  }
-  
-  override internal var searchResultsController: UIViewController? {
-    return nil//UITableViewController()
   }
   
   @IBOutlet var segmentedControl: UISegmentedControl!
@@ -46,11 +44,13 @@ class LookupViewController: SearchViewController {
   }
   
   override func updateSearchResultsForSearchController(searchController: UISearchController) {
+    // Override to not cause it to call the API Manager each and everytime a change is made. The call is instead made through Search Bar Delegate Method searchBarTextDidEndEditing(_:), which is invoked when the user has pressed enter.
   }
   
   func searchBarTextDidEndEditing(searchBar: UISearchBar) {
-    let string = searchController.searchBar.text!
-    (self.model as! LookupModel).performSearch(string)
+    let query = searchController.searchBar.text ?? ""
+    let scope = self.searchScope[self.segmentedControl.selectedSegmentIndex]
+    (self.model as! LookupModel).performSearch(query, withSearchScope: scope)
   }
   
 }
