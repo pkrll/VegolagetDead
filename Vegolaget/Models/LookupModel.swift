@@ -21,8 +21,8 @@ class LookupModel: Model {
     self.manager.delegate = self
   }
 
-  func GetCoreDataPredicate() -> NSPredicate {
-    return NSPredicate(format: "id in %@", self.searchResults)
+  func getCoreDataPredicate() -> NSPredicate {
+    return NSPredicate(format: "id IN %@", self.searchResults)
   }
   
   func performSearch(searchString: String, withSearchScope scope: String) {
@@ -31,7 +31,7 @@ class LookupModel: Model {
       self.delegate?.model(self, didFinishLoadingData: [])
       return
     }
-    self.coreDataEntity = CoreDataEntities(rawValue: scope)
+    self.coreDataEntity = CoreDataEntities(rawValue: scope.capitalizedString)
     self.searchScope = scope
     
     let requestURL = APIEndPoint.Search.Root.string + scope
@@ -50,33 +50,104 @@ class LookupModel: Model {
     guard let entity = self.coreDataEntity?.rawValue else {
       return
     }
-    
+
     // Attempts to load the items from core data by using their the retrieved ids from the search results. Zero results will ask the server.
-    self.coreDataHelper.load(fromEntity: entity, withPredicate: self.GetCoreDataPredicate(), sortByKeys: self.coreDataSortKeys) { (success, data: [AnyObject]?, error) -> Void in
+    self.coreDataHelper.load(fromEntity: entity, withPredicate: self.getCoreDataPredicate(), sortByKeys: self.coreDataSortKeys) { (success, data: [AnyObject]?, error) -> Void in
       if let data = data where data.count > 0 {
-        self.elements = self.didLoadFromCoreData(data)
+        self.searchResults.removeAll(keepCapacity: false)
+        self.elements.appendContentsOf(self.didLoadFromCoreData(data))
         // Checks if any of the retrieved ids are missing from the group fetched from core data.
         self.searchResults = self.searchResults.filter({ (id: Int) -> Bool in
-          return self.elements.contains { $0.id != $0 }
+          if self.elements.contains({ $0.id == id }) {
+            return false
+          }
+          
+          return true
         })
-        
+
         if self.searchResults.count > 0 {
           self.refreshData()
         } else {
           self.willPassDataToDelegate(self.elements)
         }
       } else {
-        self.refreshData()
+//        self.refreshData()
       }
     }
   }
   
   override func refreshData() {
-    // CALLS API WITH POST AS METHOD AND PARAMETERS SET TO ARRAY OF IDS
+    let endPoint: String
+
+    switch self.searchScope {
+    case "producer":
+      endPoint = APIEndPoint.Producer.Root.string
+    case "product":
+      endPoint = APIEndPoint.Product.Root.string
+    case "store":
+      endPoint = APIEndPoint.Store.Root.string
+    default:
+      endPoint = ""
+    }
+
+    self.manager.setRequestURL(endPoint)
+    self.manager.setHttpMethod("POST")
+    self.manager.setParameters([
+      "ids": JSON(self.searchResults).stringValue
+      ])
+    self.manager.executeRequest(self.managerDidCompleteRequest, failure: self.managerFailedRequest)
   }
   
   override func didLoadFromCoreData(data: [AnyObject]) -> [Item] {
-    return []
+    var items: [Item] = []
+    // Depending on the Managed Object type, a different object should be created here.
+    for coreDataObject in data {
+      var item: Item?
+      
+      if let producer = coreDataObject as? ProducerManagedObject {
+        let json = JSON([
+            "id": producer.id,
+            "name": producer.name,
+            "country": producer.country,
+            "tag": producer.tag,
+            "vegan": producer.vegan,
+            "doesBeer": producer.doesBeer,
+            "doesWine": producer.doesWine,
+            "doesLiquor": producer.doesLiquor
+          ])
+          item = Producer(data: json)
+      } else if let product = coreDataObject as? ProductManagedObject {
+        let json = JSON(
+          [
+            "id": product.id,
+            "companyID": product.companyID,
+            "name": product.name,
+            "type": product.type,
+            "vegan": product.vegan
+          ]
+        )
+        
+        item = Product(data: json)
+      } else if let store = coreDataObject as? StoreManagedObject {
+        let json = JSON([
+          "id": store.id,
+          "name": store.name,
+          "address": store.address,
+          "postalCode": store.postalCode,
+          "city": store.city,
+          "county": store.county,
+          "openHours": store.openHours
+          ])
+        item = Store(data: json)
+      }
+      
+      if let item = item {
+        items.append(item)
+      }
+
+    }
+    
+    return items
   }
   
   override func managerDidCompleteRequest(response: APIResponse) {
@@ -90,8 +161,12 @@ class LookupModel: Model {
         self.searchResults.append(id)
       }
     }
-    
-    self.loadData()
+
+    if self.searchResults.isEmpty {
+      self.willPassDataToDelegate(self.elements)
+    } else {
+      self.loadData()
+    }
   }
   
   override func createItem(json: JSON) -> Item {
@@ -109,6 +184,11 @@ class LookupModel: Model {
     }
     
     return item
+  }
+  
+  override func willPassDataToDelegate(data: [Item]) {
+    self.elements.removeAll(keepCapacity: false)
+    super.willPassDataToDelegate(data)
   }
   
 }

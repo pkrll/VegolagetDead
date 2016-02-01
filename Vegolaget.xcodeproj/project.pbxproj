@@ -71,6 +71,7 @@
 		6ADCD00B1C47E7F300AAF1AA /* ProductDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ADCD00A1C47E7F300AAF1AA /* ProductDataSource.swift */; };
 		6AEC57FD1C52DEA2005EBA14 /* StoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEC57FC1C52DEA2005EBA14 /* StoreViewController.swift */; };
 		6AEC57FF1C52E7B4005EBA14 /* StoreModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEC57FE1C52E7B4005EBA14 /* StoreModel.swift */; };
+		6AF4A7DF1C60082700E931FB /* LookupDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF4A7DE1C60082700E931FB /* LookupDataSource.swift */; };
 		6AF5E21A1C44E65B00B9EF59 /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF5E2191C44E65B00B9EF59 /* APIResponse.swift */; };
 		6AF5E21C1C44E70700B9EF59 /* StatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF5E21B1C44E70700B9EF59 /* StatusCode.swift */; };
 		6AF5E21E1C44E77500B9EF59 /* NSURLResponse+statusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF5E21D1C44E77500B9EF59 /* NSURLResponse+statusCode.swift */; };
@@ -160,6 +161,7 @@
 		6ADCD00A1C47E7F300AAF1AA /* ProductDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProductDataSource.swift; path = DataSources/ProductDataSource.swift; sourceTree = "<group>"; };
 		6AEC57FC1C52DEA2005EBA14 /* StoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StoreViewController.swift; path = Controllers/StoreViewController.swift; sourceTree = "<group>"; };
 		6AEC57FE1C52E7B4005EBA14 /* StoreModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StoreModel.swift; path = Models/StoreModel.swift; sourceTree = "<group>"; };
+		6AF4A7DE1C60082700E931FB /* LookupDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LookupDataSource.swift; path = DataSources/LookupDataSource.swift; sourceTree = "<group>"; };
 		6AF5E2191C44E65B00B9EF59 /* APIResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIResponse.swift; path = Support/Networking/APIResponse.swift; sourceTree = "<group>"; };
 		6AF5E21B1C44E70700B9EF59 /* StatusCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StatusCode.swift; path = Support/Networking/StatusCode.swift; sourceTree = "<group>"; };
 		6AF5E21D1C44E77500B9EF59 /* NSURLResponse+statusCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSURLResponse+statusCode.swift"; path = "Support/Extensions/NSURLResponse+statusCode.swift"; sourceTree = "<group>"; };
@@ -306,6 +308,7 @@
 				6ADCD00A1C47E7F300AAF1AA /* ProductDataSource.swift */,
 				6A12A8A41C48EFB500B5B4E4 /* StoresDataSource.swift */,
 				6AA853291C58D960003DA02D /* StoreDataSource.swift */,
+				6AF4A7DE1C60082700E931FB /* LookupDataSource.swift */,
 			);
 			name = DataSources;
 			sourceTree = "<group>";
@@ -607,6 +610,7 @@
 				6A84F0D91C4D1CBB005B33C5 /* CoreDataHelperItem.swift in Sources */,
 				6AF5E21A1C44E65B00B9EF59 /* APIResponse.swift in Sources */,
 				6AA528841C5F7CB400D7D747 /* LookupModel.swift in Sources */,
+				6AF4A7DF1C60082700E931FB /* LookupDataSource.swift in Sources */,
 				6AF5E22A1C44F26800B9EF59 /* TableViewController.swift in Sources */,
 				6AA8532A1C58D960003DA02D /* StoreDataSource.swift in Sources */,
 				6AF5E2331C44FD3C00B9EF59 /* Item.swift in Sources */,

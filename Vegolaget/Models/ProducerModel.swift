@@ -15,7 +15,7 @@ class ProducerModel: Model {
   init(producerID: Int) {
     super.init()
     self.coreDataPredicate = NSPredicate(format: "companyID = %i", producerID)
-    self.endPoint = APIEndPoint.Producers.withId(producerID)
+    self.endPoint = APIEndPoint.Producer.withId(producerID)
   }
   
   override func loadData() {

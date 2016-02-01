@@ -13,7 +13,7 @@ class ProducersModel: Model {
   override init() {
     super.init()
     self.coreDataEntity = .Producer
-    self.endPoint = APIEndPoint.Producers.Root.string
+    self.endPoint = APIEndPoint.Producer.Root.string
   }
   
   override func didLoadFromCoreData(data: [AnyObject]) -> [Item] {

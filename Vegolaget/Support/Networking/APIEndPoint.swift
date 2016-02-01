@@ -18,9 +18,9 @@ public enum APIEndPoint {
   static internal var productTypeInStock = "inStock"
   static internal var productTypeListing = "listing"
   
-  enum Categories: String {
+  enum Category: String {
     
-    case Root = "/categories/"
+    case Root = "/category/"
     
     var string: String {
       return APIEndPoint.BaseURL + self.rawValue
@@ -30,23 +30,23 @@ public enum APIEndPoint {
   /**
    *  Returns details on the producers.
    */
-  enum Producers: String {
+  enum Producer: String {
     /**
      *  Returns all producers stored.
      */
-    case Root = "/producers/"
+    case Root = "/producer/"
     /**
      *  Returns all wine producers stored.
      */
-    case Wine = "/producers/wine/"
+    case Wine = "/producer/wine/"
     /**
      *  Returns all beer producers stored.
      */
-    case Beer = "/producers/beer/"
+    case Beer = "/producer/beer/"
     /**
      *  Returns all liquor producers stored.
      */
-    case liquor = "/producers/liquor/"
+    case liquor = "/producer/liquor/"
     
     var string: String {
       return APIEndPoint.BaseURL + self.rawValue
@@ -66,7 +66,7 @@ public enum APIEndPoint {
    */
   enum Product: String {
     
-    case Root = "/products/"
+    case Root = "/product/"
     
     var string: String {
       return APIEndPoint.BaseURL + self.rawValue
@@ -84,11 +84,11 @@ public enum APIEndPoint {
   
   enum Store: String {
     
-    case Root = "/stores/"
+    case Root = "/store/"
     
-    case City = "/stores/city/"
+    case City = "/store/city/"
     
-    case Stock = "/stores/stock/"
+    case Stock = "/store/stock/"
 
     var string: String {
       return APIEndPoint.BaseURL + self.rawValue

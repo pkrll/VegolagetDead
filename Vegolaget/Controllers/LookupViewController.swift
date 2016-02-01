@@ -20,22 +20,44 @@ class LookupViewController: SearchViewController {
     return "Sök"
   }
   
+  @IBOutlet weak var tableView: UITableView!
   @IBOutlet var segmentedControl: UISegmentedControl!
   
   override func viewDidLoad() {
     super.viewDidLoad()
+
+    self.registerNib(Constants.Nib.ProducerCell.rawValue)
+    self.registerNib(Constants.Nib.ProductCell.rawValue)
+    self.registerNib(Constants.Nib.StoreCell.rawValue)
+    self.tableView.delegate = self
+    self.tableView.hidden = true
+    
     self.configureSearchBar()
     self.navigationItem.titleView = self.searchBar
     self.searchController.searchResultsUpdater = self
     self.segmentedControl.tintColor = Constants.UserInterface.greenColor
+    
     self.resizeSearchBar()
     self.hideLoadingView()
+    self.loadDataSource()
     self.loadModel()
+  }
+  
+  override func loadDataSource() {
+    self.dataSource = LookupDataSource()
+    self.dataSource.delegate = self
+    self.tableView.dataSource = self.dataSource
   }
   
   override func loadModel() {
     self.model = LookupModel()
     self.model.delegate = self
+  }
+  
+  override func model(_: Model, didFinishLoadingData data: [Item]) {
+    self.dataSource.loadData(data)
+    self.tableView.hidden = data.isEmpty
+    self.hideLoadingView()
   }
   
   func didPresentSearchController(searchController: UISearchController) {
@@ -48,6 +70,7 @@ class LookupViewController: SearchViewController {
   }
   
   func searchBarTextDidEndEditing(searchBar: UISearchBar) {
+    self.showLoadingView()
     let query = searchController.searchBar.text ?? ""
     let scope = self.searchScope[self.segmentedControl.selectedSegmentIndex]
     (self.model as! LookupModel).performSearch(query, withSearchScope: scope)

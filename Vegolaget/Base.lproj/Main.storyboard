@@ -41,10 +41,10 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sök efter en produkt, producent eller butik genom att använda sökfältet ovan." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k0i-NJ-ezn">
                                 <rect key="frame" x="20" y="164" width="335" height="176"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="W0u-nE-9XX">
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="W0u-nE-9XX">
                                 <rect key="frame" x="6" y="71" width="362" height="29"/>
                                 <segments>
                                     <segment title="Producent"/>
@@ -52,18 +52,30 @@
                                     <segment title="Butik"/>
                                 </segments>
                             </segmentedControl>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eyg-pa-QTx">
+                                <rect key="frame" x="0.0" y="107" width="375" height="511"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="eyg-pa-QTx" firstAttribute="bottom" secondItem="ERx-0B-l7M" secondAttribute="top" id="Eky-rd-Toj"/>
+                            <constraint firstItem="W0u-nE-9XX" firstAttribute="centerX" secondItem="k0i-NJ-ezn" secondAttribute="centerX" id="OA8-fh-xs1"/>
+                            <constraint firstItem="W0u-nE-9XX" firstAttribute="top" secondItem="UHk-Gb-BYS" secondAttribute="bottom" constant="7" id="TBg-js-tYw"/>
                             <constraint firstItem="k0i-NJ-ezn" firstAttribute="top" secondItem="UHk-Gb-BYS" secondAttribute="bottom" constant="100" id="YTg-2D-0iW"/>
+                            <constraint firstItem="eyg-pa-QTx" firstAttribute="leading" secondItem="zea-Ax-arg" secondAttribute="leading" id="nSX-hc-smc"/>
                             <constraint firstItem="k0i-NJ-ezn" firstAttribute="centerX" secondItem="zea-Ax-arg" secondAttribute="centerX" id="pRR-j3-aRt"/>
+                            <constraint firstItem="eyg-pa-QTx" firstAttribute="top" secondItem="W0u-nE-9XX" secondAttribute="bottom" constant="8" symbolic="YES" id="q8D-Su-mjZ"/>
+                            <constraint firstItem="eyg-pa-QTx" firstAttribute="centerX" secondItem="k0i-NJ-ezn" secondAttribute="centerX" id="qOR-17-rmn"/>
                             <constraint firstItem="ERx-0B-l7M" firstAttribute="top" secondItem="k0i-NJ-ezn" secondAttribute="bottom" constant="278" id="wQj-uu-1AH"/>
                             <constraint firstItem="k0i-NJ-ezn" firstAttribute="leading" secondItem="zea-Ax-arg" secondAttribute="leadingMargin" constant="4" id="xHS-cw-Im9"/>
+                            <constraint firstItem="W0u-nE-9XX" firstAttribute="leading" secondItem="zea-Ax-arg" secondAttribute="leadingMargin" constant="-10" id="xRu-hs-gdg"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="CEk-wY-a2q"/>
                     <connections>
                         <outlet property="segmentedControl" destination="W0u-nE-9XX" id="yZS-mx-RIQ"/>
+                        <outlet property="tableView" destination="eyg-pa-QTx" id="mUN-tn-l4h"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="45J-xA-CrX" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -93,7 +93,7 @@ class CoreDataHelper {
       if let predicate = withPredicate {
         request.predicate = predicate
       }
-      
+
       if let sortByKey = sortByKeys {
         var sortDescriptors: [NSSortDescriptor]? = []
         
