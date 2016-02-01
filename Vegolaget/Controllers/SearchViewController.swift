@@ -14,11 +14,14 @@ class SearchViewController: TableViewController, SearchDataSourceDelegate, UISea
   
   // MARK: - Properties
   
+  internal var searchResultsController: UIViewController? {
+    return nil
+  }
   /**
    *  Manages the display of search results. The search controller does not use its own results controller. The view controller extending the search controller must provide its own table view.
    */
   internal lazy var searchController: UISearchController = { [unowned self] in
-    let searchController = UISearchController(searchResultsController: nil)
+    let searchController = UISearchController(searchResultsController: self.searchResultsController)
     searchController.delegate = self
     
     return searchController

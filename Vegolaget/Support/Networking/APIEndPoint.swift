@@ -103,4 +103,18 @@ public enum APIEndPoint {
     }
   }
   
+  enum Search: String {
+    
+    case Root = "/search/"
+
+    var string: String {
+      return APIEndPoint.BaseURL + self.rawValue
+    }
+        
+    static func product(searchString: String) -> String {
+      return self.Root.string + searchString
+    }
+    
+  }
+  
 }

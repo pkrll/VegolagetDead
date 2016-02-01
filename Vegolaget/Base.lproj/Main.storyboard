@@ -29,7 +29,7 @@
         <!--Search-->
         <scene sceneID="Hqa-7q-yOk">
             <objects>
-                <viewController title="Search" id="jb7-bl-RtY" customClass="MainSearchViewController" customModule="Vegolaget" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Search" id="jb7-bl-RtY" customClass="LookupViewController" customModule="Vegolaget" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="UHk-Gb-BYS"/>
                         <viewControllerLayoutGuide type="bottom" id="ERx-0B-l7M"/>
@@ -37,9 +37,34 @@
                     <view key="view" contentMode="scaleToFill" id="zea-Ax-arg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sök efter en produkt, producent eller butik genom att använda sökfältet ovan." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k0i-NJ-ezn">
+                                <rect key="frame" x="20" y="164" width="335" height="176"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="W0u-nE-9XX">
+                                <rect key="frame" x="6" y="71" width="362" height="29"/>
+                                <segments>
+                                    <segment title="Producent"/>
+                                    <segment title="Produkt"/>
+                                    <segment title="Butik"/>
+                                </segments>
+                            </segmentedControl>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="k0i-NJ-ezn" firstAttribute="top" secondItem="UHk-Gb-BYS" secondAttribute="bottom" constant="100" id="YTg-2D-0iW"/>
+                            <constraint firstItem="k0i-NJ-ezn" firstAttribute="centerX" secondItem="zea-Ax-arg" secondAttribute="centerX" id="pRR-j3-aRt"/>
+                            <constraint firstItem="ERx-0B-l7M" firstAttribute="top" secondItem="k0i-NJ-ezn" secondAttribute="bottom" constant="278" id="wQj-uu-1AH"/>
+                            <constraint firstItem="k0i-NJ-ezn" firstAttribute="leading" secondItem="zea-Ax-arg" secondAttribute="leadingMargin" constant="4" id="xHS-cw-Im9"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="CEk-wY-a2q"/>
+                    <connections>
+                        <outlet property="segmentedControl" destination="W0u-nE-9XX" id="yZS-mx-RIQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="45J-xA-CrX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

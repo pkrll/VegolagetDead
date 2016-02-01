@@ -19,7 +19,7 @@
 		6A3AED721C4532E5001364E5 /* CategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A3AED701C4532E5001364E5 /* CategoryCell.xib */; };
 		6A4C5BFB1C4BCC3900A6C20D /* String+LocaleSensitive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4C5BFA1C4BCC3900A6C20D /* String+LocaleSensitive.swift */; };
 		6A4C5BFF1C4C06AA00A6C20D /* NSObject+isOfClassType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4C5BFE1C4C06AA00A6C20D /* NSObject+isOfClassType.swift */; };
-		6A53BB4D1C4E449E00A69860 /* MainSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A53BB4C1C4E449E00A69860 /* MainSearchViewController.swift */; };
+		6A53BB4D1C4E449E00A69860 /* LookupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A53BB4C1C4E449E00A69860 /* LookupViewController.swift */; };
 		6A74E4B01C5271DB001457F6 /* AppDelegate+shortcut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A74E4AF1C5271DB001457F6 /* AppDelegate+shortcut.swift */; };
 		6A78B8141C5E22B800D224E5 /* VeganStatusType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A78B8131C5E22B800D224E5 /* VeganStatusType.swift */; };
 		6A82967D1C44033E00012945 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A82967C1C44033E00012945 /* AppDelegate.swift */; };
@@ -49,6 +49,7 @@
 		6AA17F051C5E88DF006C1A3E /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6AA17F031C5E88C1006C1A3E /* Roboto-Light.ttf */; };
 		6AA17F071C5E8A7D006C1A3E /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA17F061C5E8A7D006C1A3E /* Font.swift */; };
 		6AA17F091C5E8B76006C1A3E /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6AA17F081C5E8B70006C1A3E /* Roboto-Regular.ttf */; };
+		6AA528841C5F7CB400D7D747 /* LookupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA528831C5F7CB400D7D747 /* LookupModel.swift */; };
 		6AA8532A1C58D960003DA02D /* StoreDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA853291C58D960003DA02D /* StoreDataSource.swift */; };
 		6AA8532D1C58E600003DA02D /* OpenHourCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AA8532B1C58E600003DA02D /* OpenHourCell.xib */; };
 		6AD4D83F1C57A11E007CFDAC /* MKMapView+findLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD4D83E1C57A11E007CFDAC /* MKMapView+findLocation.swift */; };
@@ -105,7 +106,7 @@
 		6A3AED711C4532E5001364E5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CategoryCell.xib; sourceTree = "<group>"; };
 		6A4C5BFA1C4BCC3900A6C20D /* String+LocaleSensitive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "String+LocaleSensitive.swift"; path = "Support/Extensions/String+LocaleSensitive.swift"; sourceTree = "<group>"; };
 		6A4C5BFE1C4C06AA00A6C20D /* NSObject+isOfClassType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSObject+isOfClassType.swift"; path = "Support/Extensions/NSObject+isOfClassType.swift"; sourceTree = "<group>"; };
-		6A53BB4C1C4E449E00A69860 /* MainSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainSearchViewController.swift; path = Controllers/MainSearchViewController.swift; sourceTree = "<group>"; };
+		6A53BB4C1C4E449E00A69860 /* LookupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LookupViewController.swift; path = Controllers/LookupViewController.swift; sourceTree = "<group>"; };
 		6A74E4AF1C5271DB001457F6 /* AppDelegate+shortcut.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "AppDelegate+shortcut.swift"; path = "Support/Extensions/AppDelegate+shortcut.swift"; sourceTree = "<group>"; };
 		6A78B8131C5E22B800D224E5 /* VeganStatusType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VeganStatusType.swift; path = Support/VeganStatusType.swift; sourceTree = "<group>"; };
 		6A8296791C44033E00012945 /* Vegolaget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vegolaget.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -137,6 +138,7 @@
 		6AA17F031C5E88C1006C1A3E /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Roboto-Light.ttf"; path = "Resources/Roboto-Light.ttf"; sourceTree = "<group>"; };
 		6AA17F061C5E8A7D006C1A3E /* Font.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Font.swift; path = Support/Font.swift; sourceTree = "<group>"; };
 		6AA17F081C5E8B70006C1A3E /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Roboto-Regular.ttf"; path = "Resources/Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		6AA528831C5F7CB400D7D747 /* LookupModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LookupModel.swift; path = Models/LookupModel.swift; sourceTree = "<group>"; };
 		6AA853291C58D960003DA02D /* StoreDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StoreDataSource.swift; path = DataSources/StoreDataSource.swift; sourceTree = "<group>"; };
 		6AA8532C1C58E600003DA02D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/OpenHourCell.xib; sourceTree = "<group>"; };
 		6AD4D83E1C57A11E007CFDAC /* MKMapView+findLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "MKMapView+findLocation.swift"; path = "Support/Extensions/MKMapView+findLocation.swift"; sourceTree = "<group>"; };
@@ -273,7 +275,7 @@
 				6ADCCFF91C47CFEF00AAF1AA /* ProductViewController.swift */,
 				6A96FF8A1C4847EA007177F1 /* StoresViewController.swift */,
 				6AEC57FC1C52DEA2005EBA14 /* StoreViewController.swift */,
-				6A53BB4C1C4E449E00A69860 /* MainSearchViewController.swift */,
+				6A53BB4C1C4E449E00A69860 /* LookupViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -288,6 +290,7 @@
 				6ADCCFFE1C47E33C00AAF1AA /* ProductModel.swift */,
 				6A12A8A21C48EB0400B5B4E4 /* StoresModel.swift */,
 				6AEC57FE1C52E7B4005EBA14 /* StoreModel.swift */,
+				6AA528831C5F7CB400D7D747 /* LookupModel.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -596,13 +599,14 @@
 				6ADCCFE71C47AE1200AAF1AA /* CoreDataEntities.swift in Sources */,
 				6ADCD0031C47E40600AAF1AA /* DateTime.swift in Sources */,
 				6ADCCFEF1C47AFE600AAF1AA /* ProductInStock.swift in Sources */,
-				6A53BB4D1C4E449E00A69860 /* MainSearchViewController.swift in Sources */,
+				6A53BB4D1C4E449E00A69860 /* LookupViewController.swift in Sources */,
 				6ADCD00B1C47E7F300AAF1AA /* ProductDataSource.swift in Sources */,
 				6ADCCFE51C47ABEB00AAF1AA /* ProducerModel.swift in Sources */,
 				6A8391711C46823300D8E96A /* String+containsString.swift in Sources */,
 				6AF5E23D1C451B4B00B9EF59 /* DataSourceDelegate.swift in Sources */,
 				6A84F0D91C4D1CBB005B33C5 /* CoreDataHelperItem.swift in Sources */,
 				6AF5E21A1C44E65B00B9EF59 /* APIResponse.swift in Sources */,
+				6AA528841C5F7CB400D7D747 /* LookupModel.swift in Sources */,
 				6AF5E22A1C44F26800B9EF59 /* TableViewController.swift in Sources */,
 				6AA8532A1C58D960003DA02D /* StoreDataSource.swift in Sources */,
 				6AF5E2331C44FD3C00B9EF59 /* Item.swift in Sources */,
