@@ -30,11 +30,7 @@ class StoreViewController: TableViewController {
     self.scrollView.addSubview(self.refreshControl)
     
     self.loadDataSource()
-    if self.store != nil {
-      self.configureViews()
-    } else {
-      self.loadModel()
-    }
+    self.loadModel()
   }
   
   override func loadDataSource() {
@@ -44,11 +40,14 @@ class StoreViewController: TableViewController {
   }
   
   override func loadModel() {
-    guard let storeID = self.storeID else {
+    if let store = self.store {
+      self.model = StoreModel(store: store)
+    } else if let storeID = self.storeID {
+      self.model = StoreModel(storeID: storeID)
+    } else {
       return
     }
     
-    self.model = StoreModel(storeID: storeID)
     self.model.delegate = self
     self.model.loadData()
   }

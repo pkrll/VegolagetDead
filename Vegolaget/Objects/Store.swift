@@ -18,7 +18,10 @@ class Store: Item {
   var dateTime: [DateTime]
 
   override init(var data: JSON) {
-    data["id"] = data["storeID"]
+    if data["id"].intValue == 0 {
+      data["id"] = data["storeID"]
+    }
+
     self.address = data["address"].stringValue.capitalizedString
     self.postalCode = data["postalCode"].stringValue
     self.city = data["city"].stringValue.capitalizedString

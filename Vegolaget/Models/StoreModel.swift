@@ -11,13 +11,33 @@ import SwiftyJSON
 class StoreModel: Model {
   
   let storeID: Int
+  let store: Store?
+  
+  init(store: Store) {
+    self.store = store
+    self.storeID = store.id
+    super.init()
+    self.coreDataEntity = CoreDataEntities.Store
+    self.coreDataPredicate = NSPredicate(format: "id = %i", self.storeID)
+    self.endPoint = APIEndPoint.Store.withId(self.storeID)
+  }
   
   init(storeID: Int) {
+    self.store = nil
     self.storeID = storeID
     super.init()
     self.coreDataEntity = CoreDataEntities.Store
     self.coreDataPredicate = NSPredicate(format: "id = %i", storeID)
     self.endPoint = APIEndPoint.Store.withId(storeID)
+  }
+  
+  override func loadData() {
+    guard let store = self.store else {
+      super.loadData()
+      return
+    }
+    
+    self.willPassDataToDelegate([store])
   }
   
   override func didLoadFromCoreData(data: [AnyObject]) -> [Item] {
@@ -40,8 +60,6 @@ class StoreModel: Model {
         items.append(item)
       }
     }
-    
-    print(items)
 
     return items
   }

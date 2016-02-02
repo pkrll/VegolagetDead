@@ -76,6 +76,9 @@
                     <connections>
                         <outlet property="segmentedControl" destination="W0u-nE-9XX" id="yZS-mx-RIQ"/>
                         <outlet property="tableView" destination="eyg-pa-QTx" id="mUN-tn-l4h"/>
+                        <segue destination="BbZ-ZG-Pll" kind="show" identifier="ShowStore" id="9sh-EQ-hUc"/>
+                        <segue destination="zjO-CF-hRw" kind="show" identifier="ShowProducer" id="xK1-sf-56g"/>
+                        <segue destination="Zf2-cr-tg8" kind="show" identifier="ShowProduct" id="7Wm-DF-jyN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="45J-xA-CrX" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -509,6 +512,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="JJv-a2-H8K"/>
+        <segue reference="7Wm-DF-jyN"/>
+        <segue reference="9sh-EQ-hUc"/>
+        <segue reference="xK1-sf-56g"/>
     </inferredMetricsTieBreakers>
 </document>

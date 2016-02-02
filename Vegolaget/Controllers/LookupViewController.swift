@@ -66,7 +66,7 @@ class LookupViewController: SearchViewController {
   }
   
   override func updateSearchResultsForSearchController(searchController: UISearchController) {
-    // Override to not cause it to call the API Manager each and everytime a change is made. The call is instead made through Search Bar Delegate Method searchBarTextDidEndEditing(_:), which is invoked when the user has pressed enter.
+    // Override to not cause it to call the API Manager each and everytime a change is made. The call is instead made through Search Bar Delegate Method searchBarCancelButtonClicked(_:), which is invoked when the user has pressed enter.
   }
   
   func searchBarSearchButtonClicked(searchBar: UISearchBar) {
@@ -82,6 +82,39 @@ class LookupViewController: SearchViewController {
     self.model(self.model, didFinishLoadingData: [])
   }
 
+  func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    let scope = self.searchScope[self.segmentedControl.selectedSegmentIndex]
+    var segue = String()
+    // Should rewrite this part somehow
+    switch scope {
+      case "producer":
+        segue = Constants.Segue.ShowProducer.rawValue
+      case "product":
+        segue = Constants.Segue.ShowProduct.rawValue
+      case "store":
+        segue = Constants.Segue.ShowStore.rawValue
+      default:
+        return
+    }
+    
+    let item = self.dataSource.itemAtIndexPath(indexPath)
+    self.performSegueWithIdentifier(segue, sender: item)
+  }
+  
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    guard let viewController = segue.destinationViewController as? ViewController, let sender = sender as? Item else {
+      return
+    }
+
+    if let viewController = viewController as? ProducerViewController, let sender = sender as? Producer {
+      viewController.producer = sender
+    } else if let viewController = viewController as? ProductViewController, let sender = sender as? Product {
+
+    } else if let viewController = viewController as? StoreViewController, let sender = sender as? Store {
+      viewController.store = sender
+    }
+  }
+  
 }
 
 private extension LookupViewController {
