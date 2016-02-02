@@ -69,13 +69,19 @@ class LookupViewController: SearchViewController {
     // Override to not cause it to call the API Manager each and everytime a change is made. The call is instead made through Search Bar Delegate Method searchBarTextDidEndEditing(_:), which is invoked when the user has pressed enter.
   }
   
-  func searchBarTextDidEndEditing(searchBar: UISearchBar) {
-    self.showLoadingView()
-    let query = searchController.searchBar.text ?? ""
-    let scope = self.searchScope[self.segmentedControl.selectedSegmentIndex]
-    (self.model as! LookupModel).performSearch(query, withSearchScope: scope)
+  func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+    if let model = self.model as? LookupModel {
+      self.showLoadingView()
+      model.searchQuery = searchController.searchBar.text ?? ""
+      model.searchScope = self.searchScope[self.segmentedControl.selectedSegmentIndex]
+      model.loadData()
+    }
   }
   
+  func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+    self.model(self.model, didFinishLoadingData: [])
+  }
+
 }
 
 private extension LookupViewController {

@@ -14,6 +14,7 @@ class StoreViewController: TableViewController {
   internal var storeID: Int?
   internal var store: Store?
   
+  @IBOutlet var scrollView: UIScrollView!
   @IBOutlet var mapView: MKMapView!
   @IBOutlet var addressLabel: UILabel!
   @IBOutlet var postalLabel: UILabel!
@@ -22,8 +23,12 @@ class StoreViewController: TableViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.tableView.delegate = self
+    
     self.registerNib(Constants.Nib.OpenHourCell.rawValue)
+    
+    self.tableView.delegate = self
+    self.scrollView.addSubview(self.refreshControl)
+    
     self.loadDataSource()
     if self.store != nil {
       self.configureViews()
@@ -48,6 +53,10 @@ class StoreViewController: TableViewController {
     self.model.loadData()
   }
   
+  override func didRequestRefresh(sender: AnyObject) {
+    self.model.refreshData()
+  }
+  
   override func model(_: Model, didFinishLoadingData data: [Item]) {
     if let store = data.first as? Store {
       self.store = store
@@ -57,6 +66,7 @@ class StoreViewController: TableViewController {
   }
   
   override func didFinishLoadDataSource(_: DataSource) {
+    self.refreshControl.endRefreshing()
     self.tableView.reloadData()
     // Dynamically sets the height of the table view.
     self.tableViewHeightConstraint.constant = CGFloat(self.tableView.numberOfRowsInSection(0)) * self.tableView.rowHeight

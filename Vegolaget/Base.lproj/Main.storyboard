@@ -498,6 +498,7 @@
                         <outlet property="addressLabel" destination="Pqf-Gy-f45" id="XU9-il-ndd"/>
                         <outlet property="mapView" destination="faq-BP-DfP" id="6qr-P1-oJV"/>
                         <outlet property="postalLabel" destination="SH9-8o-kXr" id="Rzr-EH-nhS"/>
+                        <outlet property="scrollView" destination="Y13-Qb-R9l" id="ji5-el-EpJ"/>
                         <outlet property="tableView" destination="Z56-bA-JCe" id="iHp-0d-9Zy"/>
                         <outlet property="tableViewHeightConstraint" destination="DTJ-O0-ovf" id="Xrb-R6-wou"/>
                     </connections>
