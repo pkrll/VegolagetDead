@@ -48,42 +48,58 @@ class LookupModel: Model {
    *  - parameter response: The response.
    */
   override func managerDidCompleteRequest(response: APIResponse) {
-    var results = [Int]()
-    if let data = response.returnData {
-      let data = JSON(data: data)
-      
-      for (_, json): (String, JSON) in data {
-        let id = json["id"].intValue
-          results.append(id)
+    var results = [String: [Int]]()
+    if let datas = response.returnData {
+      let data = JSON(data: datas)
+      // The data returned from a search will consist of a multidimensional JSON array, with the type of the object as the key. Creating a dictionary mimicking this structure allows for a little more flexibility when creating objects out of the search result.
+      for (key, value): (String, JSON) in data {
+        // Initialize the dictionary key if it does not exist already.
+        if results[key] == nil {
+          results[key] = []
+        }
+
+        for (_, json): (String, JSON) in value {
+          let id = json["id"].intValue
+          results[key]?.append(id)
+        }
       }
     }
     // If the search turned zero results, then just give up, man. Otherwise, attempt to load the items from core data by using the retrieved ids.
-    if results.isEmpty {
-      self.didPerformSearch()
-    } else {
+    if results.values.count > 0 {
       self.loadFromCoreData(results)
+    } else {
+      self.didPerformSearch()
     }
   }
-  /**
-   *  The type of Item returned depends on the search scope.
-   *  - parameter json: The JSON object containing the information to use to create the item.
-   *  - Returns: An Item object.
-   */
-  override func createItem(json: JSON) -> Item {
-    let item: Item
-    
-    switch self.searchScope {
-    case "producer":
-      item = Producer(data: json)
-    case "product":
-      item = Product(data: json)
-    case "store":
-      item = Store(data: json)
-    default:
-      item = Item(data: json)
+  
+  override func parseResponseData(data: NSData?) -> [Item] {
+    var list = [Item]()
+    if let data = data {
+      let data = JSON(data: data)
+      // The data returned from a search will consist of a multidimensional JSON array, with the type of the object as the key. Creating a dictionary mimicking this structure allows for a little more flexibility when creating objects out of the search result.
+      for (key, value): (String, JSON) in data {
+        for (_, json): (String, JSON) in value {
+          let item: Item
+          
+          switch key {
+            case "Producer":
+              item = Producer(data: json)
+            case "Product":
+              item = Product(data: json)
+            case "ProductInStock":
+              item = ProductInStock(data: json)
+            case "Store":
+              item = Store(data: json)
+            default:
+              item = Item(data: json)
+          }
+          
+          list.append(item)
+        }
+      }
     }
     
-    return item
+    return list
   }
 
   // MARK: - Empty Overriden Methods
@@ -117,31 +133,37 @@ private extension LookupModel {
   /**
    *  Loads items from Core Data.
    */
-  func loadFromCoreData(itemIDs: [Int]) {
-    guard let entity = self.coreDataEntity?.rawValue else {
-      self.didPerformSearch()
-      return
-    }
+  func loadFromCoreData(results: [String: [Int]]) {
+    var missing: [Int]
     
-    self.coreDataHelper.load(fromEntity: entity, withPredicate: self.constructPredicate(withArray: itemIDs), sortByKeys: self.coreDataSortKeys) { (success, data: [AnyObject]?, error) -> Void in
-      if let data = data where data.count > 0 {
-        self.searchResults = self.createItemFromObject(data)
-        // Filter out any of the retrieved ids that are missing in the group of items fetched from Core Data
-          let missing = itemIDs.filter({ (id: Int) -> Bool in
-          if self.searchResults.contains({ $0.id == id }) {
-            return false
-          }
-          
-          return true
-        })
-        // If some items are missing attempts to call the server to get the information.
-        if missing.count > 0 {
-          self.loadFromServer(missing)
-          return
-        }
+    let completionHandler = {
+      // If some items are missing attempts to call the server to get the information.
+      if missing.count > 0 {
+        self.loadFromServer(missing)
+        return
       }
       
       self.didPerformSearch()
+    }()
+    for (key, resultArray): (String, [Int]) in results {
+      guard let entity = CoreDataEntities(rawValue: key)?.rawValue else {
+        self.didPerformSearch()
+        return
+      }
+      
+      self.coreDataHelper.load(fromEntity: entity, withPredicate: self.constructPredicate(withArray: resultArray), sortByKeys: self.coreDataSortKeys) { (success, data: [AnyObject]?, error) -> Void in
+        if let data = data where data.count > 0 {
+          self.searchResults = self.createItemFromObject(data)
+          // Filter out any of the retrieved ids that are missing in the group of items fetched from Core Data
+          missing = resultArray.filter({ (id: Int) -> Bool in
+            if self.searchResults.contains({ $0.id == id }) {
+              return false
+            }
+            
+            return true
+          })
+        }
+      }
     }
   }
   /**
@@ -202,6 +224,22 @@ private extension LookupModel {
           "doesLiquor": producer.doesLiquor
         ])
         item = Producer(data: json)
+      } else if let product = object as? ProductInStockManagedObject {
+        let json = JSON([
+          "id": product.id,
+          "companyID": product.companyID,
+          "locationID": product.locationID,
+          "name": product.name,
+          "detailName": product.detailName,
+          "type": product.type,
+          "price": product.price,
+          "volume": product.volume,
+          "package": product.package,
+          "year": product.year,
+          "alcohol": product.alcohol,
+          "organic": product.organic
+        ])
+        item = ProductInStock(data: json)
       } else if let product = object as? ProductManagedObject {
         let json = JSON([
           "id": product.id,
