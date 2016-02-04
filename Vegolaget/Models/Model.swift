@@ -35,7 +35,7 @@ class Model: NSObject, APIManagerDelegate {
     super.init()
     self.manager.delegate = self
     self.coreDataSortKeys = ["name"]
-  }
+  }  
   /**
    *  Saves to core data, If an entity is set in the property coreDataEntity.
    *  - Note: Invoked by *manager(_:didCompleteRequest:)*.

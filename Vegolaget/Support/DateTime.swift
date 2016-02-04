@@ -61,4 +61,12 @@ struct DateTime {
     return components[2]
   }
   
+  static func daysSince(fromDate: NSDate) -> Int {
+    let toDate = NSDate()
+    let calendar = NSCalendar.currentCalendar()
+    let components = calendar.components(NSCalendarUnit.Day, fromDate: fromDate, toDate: toDate, options: [])
+    
+    return components.day
+  }
+  
 }

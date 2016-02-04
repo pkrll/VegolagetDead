@@ -181,6 +181,7 @@ private extension LookupModel {
         if ++index == results.count {
           // If some items are missing, attempts to call the server to get the information.
           if missing.count > 0 {
+            print("Doing it...!")
             self.loadFromServer(missing)
             return
           }
@@ -195,12 +196,12 @@ private extension LookupModel {
    *  - Parameter itemIDs: An array containing all the missing ids.
    */
   func loadFromServer(items: [String: [Int]]) {
-    var requestURL = "/" + self.searchScope
+    var requestURL = "/" + self.searchScope + "/"
     let parameters = [
       "items": JSON(items[self.searchScope] ?? [:])
     ]
 
-    switch requestURL {
+    switch self.searchScope {
       case APIEndPoint.Producer.rawValue:
         requestURL = APIEndPoint.producer()
       case APIEndPoint.Product.rawValue:

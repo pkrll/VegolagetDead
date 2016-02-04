@@ -23,7 +23,11 @@ class CoreDataStack: NSObject {
   /**
    *  Set true before using the store coordinator to remove it and start with a fresh one.
    */
-  var shouldResetStoreCoordinator: Bool = false
+  var shouldResetStoreCoordinator: Bool = false {
+    didSet {
+      print("Reset store coordinator")
+    }
+  }
   
   // MARK: - Public Methods
   
@@ -127,7 +131,6 @@ class CoreDataStack: NSObject {
       
       try coordinator.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: self.storeURL, options: options)
     } catch {
-      // Deletes the store upon error. Will create a new store when launched again.
       var dict = [String: AnyObject]()
       dict[NSLocalizedDescriptionKey] = "Failed to initialize the application's saved data"
       dict[NSLocalizedFailureReasonErrorKey] = "There was an error creating or loading the application's saved data."
@@ -148,9 +151,9 @@ class CoreDataStack: NSObject {
     
     return coordinator
   }()
-
+  
   func removePersistentStoreCoordinator() throws {
     try NSFileManager.defaultManager().removeItemAtURL(self.storeURL)
   }
-  
+
 }

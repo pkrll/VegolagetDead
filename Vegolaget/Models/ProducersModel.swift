@@ -16,6 +16,19 @@ class ProducersModel: Model {
     self.endPoint = APIEndPoint.producer()
   }
   
+  override func loadData() {
+    if let lastUpdate = Settings.valueForKey("lastUpdate") as? NSDate where DateTime.daysSince(lastUpdate) < 2 {
+      super.loadData()
+    } else {
+      self.refreshData()
+    }
+  }
+  
+  override func saveData(data: [Item]) {
+    super.saveData(data)
+    Settings.set(Value: NSDate(), forKey: "lastUpdate")
+  }
+  
   override func didLoadFromCoreData(data: [AnyObject]) -> [Item] {
     var items: [Producer] = []
     

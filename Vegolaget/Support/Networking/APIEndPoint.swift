@@ -24,15 +24,15 @@ enum APIEndPoint: String {
     return self.address + self.version
   }
   
-  case Category       = "/Category"
-  case Producer       = "/Producer"
-  case Product        = "/Product"
-  case ProductInStock = "/ProductInStock"
-  case Store          = "/Store"
-  case Search         = "/Search"
+  case Category       = "Category"
+  case Producer       = "Producer"
+  case Product        = "Product"
+  case ProductInStock = "ProductInStock"
+  case Store          = "Store"
+  case Search         = "Search"
   
   var string: String {
-    return APIEndPoint.baseURL + self.rawValue
+    return APIEndPoint.baseURL + "/" + self.rawValue
   }
   /**
    *  **Endpoint:**
@@ -209,7 +209,7 @@ enum APIEndPoint: String {
    *  - Note: Returns information for Product, Producer, ProductInStock or Store objects.
    */
   static func search(forType type: APIEndPoint) -> String {
-    return APIEndPoint.Search.string + type.rawValue
+    return APIEndPoint.Search.string + "/" + type.rawValue
   }
   
 }
