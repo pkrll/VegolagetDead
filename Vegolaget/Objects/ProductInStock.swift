@@ -12,6 +12,7 @@ class ProductInStock: Product {
   
   let locationID: Int
   let detailName: String
+  let producer: String
   let price: Double
   let volume: Double
   let package: String
@@ -22,6 +23,7 @@ class ProductInStock: Product {
   override init(data: JSON) {
     self.locationID = data["locationID"].intValue
     self.detailName = data["detailName"].stringValue
+    self.producer = data["producer"].stringValue
     self.price = data["price"].doubleValue
     self.volume = data["volume"].doubleValue
     self.package = data["package"].stringValue

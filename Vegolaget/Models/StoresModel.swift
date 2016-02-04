@@ -22,7 +22,7 @@ class StoresModel: Model {
     
     self.coreDataEntity = .Store
     self.coreDataPredicate = NSPredicate(format: "id IN %@", self.cities)
-    self.endPoint = APIEndPoint.Store.City.string
+//    self.endPoint = APIEndPoint.store()
   }
     
   override func didLoadFromCoreData(data: [AnyObject]) -> [Item] {

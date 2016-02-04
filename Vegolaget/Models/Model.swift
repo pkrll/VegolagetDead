@@ -96,10 +96,12 @@ class Model: NSObject, APIManagerDelegate {
     var list = [Item]()
     if let data = data {
       let data = JSON(data: data)
-      
-      for (_, json): (String, JSON) in data {
-        let item = self.createItem(json)
-        list.append(item)
+      // The data returned will always be organized after its type, with the type as the dictionary key. Therefore, we need to go deeeep.
+      for (_, value) in data {
+        for (_, json): (String, JSON) in value {
+          let item = self.createItem(json)
+          list.append(item)
+        }
       }
     }
     
@@ -162,6 +164,11 @@ class Model: NSObject, APIManagerDelegate {
    */
   func managerFailedRequest(response: APIResponse) {
     dispatch_async(dispatch_get_main_queue()) { () -> Void in
+      response.returnData
+      if let data = response.returnData {
+        let debugMessage = String(data: data, encoding: NSUTF8StringEncoding)
+        print(debugMessage)
+      }
       let errorString = response.error ?? "Okänt fel"
       self.delegate?.model(self, didFinishLoadingWithError: errorString)
     }

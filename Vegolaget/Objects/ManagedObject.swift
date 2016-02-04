@@ -43,6 +43,7 @@ class ProductInStockManagedObject: ItemManagedObject {
   @NSManaged var companyID: NSNumber
   @NSManaged var locationID: NSNumber
   @NSManaged var detailName: String
+  @NSManaged var producer: String
   @NSManaged var type: String
   @NSManaged var price: Double
   @NSManaged var volume: Double

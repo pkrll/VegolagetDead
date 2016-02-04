@@ -35,7 +35,9 @@ class LookupDataSource: DataSource {
     if let view = cell.viewWithTag(102) as? UILabel {
       var description: String = ""
       
-      if let item = item as? Product {
+      if let item = item as? ProductInStock {
+        description = (item.detailName.isEmpty) ? item.producer : item.detailName
+      } else if let item = item as? Product {
         description = VeganStatusType(rawValue: item.vegan)?.description.localized ?? "UNKNOWN".localized
       } else if let item = item as? Producer {
         description = VeganStatusType(rawValue: item.vegan)?.description.localized ?? "UNKNOWN".localized

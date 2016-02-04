@@ -14,7 +14,7 @@ class CategoryModel: Model {
     super.init()
     self.coreDataSortKeys = ["id"]
     self.coreDataEntity = .Category
-    self.endPoint = APIEndPoint.Category.Root.string
+    self.endPoint = APIEndPoint.category()
   }
   
   override func didLoadFromCoreData(data: [AnyObject]) -> [Item] {

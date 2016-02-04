@@ -17,7 +17,7 @@ class ProductModel: Model {
     super.init()
     self.coreDataEntity = .Location
     self.coreDataPredicate = NSPredicate(format: "locationID = %i", self.locationID)
-    self.endPoint = APIEndPoint.Product.withId(locationID)
+    self.endPoint = APIEndPoint.storesWithProductInStock(withLocationId: locationID)
   }
   
   override func saveData(data: [Item]) {
@@ -64,13 +64,14 @@ class ProductModel: Model {
     if let data = data {
       let data = JSON(data: data)
       
-      for (_, json): (String, JSON) in data {
-        // The API returns a JSON object with the stores information, but we want to create two different objects out of it.
-        // Create both the Store object, but also the Location object from parts of the Store information that will be used by this model's controller.
-        let location = Location(data: json)
-        list.append(location)
-        let store = Store(data: json)
-        list.append(store)
+      for (_, value) in data {
+        for (_, json): (String, JSON) in value {
+          // The API returns a JSON object with the stores information, but we want to create two different objects out of it. Create both the Store object, but also the Location object from parts of the Store information that will be used by this model's controller.
+          let location = Location(data: json)
+          list.append(location)
+          let store = Store(data: json)
+          list.append(store)
+        }
       }
     }
     

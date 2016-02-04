@@ -50,6 +50,16 @@ class APIManager {
     self.URLRequest.HTTPBody = httpBody.dataUsingEncoding(NSUTF8StringEncoding)
   }
   
+  func setParameters(parameters: [String: JSON]) {
+    var httpBody = String()
+    
+    for (key, json) in parameters {
+      httpBody += "\(key)=\(json.rawString(NSUTF8StringEncoding, options: []) ?? "")&"
+    }
+    
+    self.URLRequest.HTTPBody = httpBody.dataUsingEncoding(NSUTF8StringEncoding)
+  }
+  
   func executeRequest(success: APIManagerCallback?, failure: APIManagerCallback?) {
     self.URLRequest.URL = self.requestedURL
     print("Calling \(self.requestedURL)")

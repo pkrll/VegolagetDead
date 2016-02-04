@@ -20,6 +20,10 @@ class CoreDataStack: NSObject {
    *  Returns the shared instance of the Core Data Stack.
    */
   static let sharedManager = CoreDataStack()
+  /**
+   *  Set true before using the store coordinator to remove it and start with a fresh one.
+   */
+  var shouldResetStoreCoordinator: Bool = false
   
   // MARK: - Public Methods
   
@@ -104,6 +108,16 @@ class CoreDataStack: NSObject {
   }()
   
   private lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator? = { [unowned self] in
+    if self.shouldResetStoreCoordinator {
+      do {
+        try self.removePersistentStoreCoordinator()
+      } catch {
+        print(error)
+      }
+      
+      self.shouldResetStoreCoordinator = false
+    }
+    
     let coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
     do {
       let options = [
@@ -124,7 +138,7 @@ class CoreDataStack: NSObject {
       NSLog("Unresolved error \(wrappedError), \(wrappedError.userInfo)")
       NSLog("Deleting it...")
       do {
-        try NSFileManager.defaultManager().removeItemAtURL(self.storeURL)
+        try self.removePersistentStoreCoordinator()
       } catch {
         print(error)
       }
@@ -135,4 +149,8 @@ class CoreDataStack: NSObject {
     return coordinator
   }()
 
+  func removePersistentStoreCoordinator() throws {
+    try NSFileManager.defaultManager().removeItemAtURL(self.storeURL)
+  }
+  
 }

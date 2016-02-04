@@ -19,7 +19,7 @@ class StoreModel: Model {
     super.init()
     self.coreDataEntity = CoreDataEntities.Store
     self.coreDataPredicate = NSPredicate(format: "id = %i", self.storeID)
-    self.endPoint = APIEndPoint.Store.withId(self.storeID)
+    self.endPoint = APIEndPoint.store(withId: store.id)
   }
   
   init(storeID: Int) {
@@ -28,7 +28,7 @@ class StoreModel: Model {
     super.init()
     self.coreDataEntity = CoreDataEntities.Store
     self.coreDataPredicate = NSPredicate(format: "id = %i", storeID)
-    self.endPoint = APIEndPoint.Store.withId(storeID)
+    self.endPoint = APIEndPoint.store(withId: storeID)
   }
   
   override func loadData() {

@@ -14,6 +14,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   var coreDataHelper = CoreDataHelper()
 
   func application(application: UIApplication, willFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
+    self.checkApplicationSettings()
+    
     if #available(iOS 9.0, *) {
       let key = launchOptions?.filter { $0.0 == UIApplicationLaunchOptionsShortcutItemKey }.first?.1 as? String
       return self.handleShortcutAction(key)

@@ -38,9 +38,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sök efter en produkt, producent eller butik genom att använda sökfältet ovan." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k0i-NJ-ezn">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k0i-NJ-ezn">
                                 <rect key="frame" x="20" y="164" width="335" height="176"/>
-                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
+                                <string key="text">Använd sökfältet ovan för att söka efter en producent, produkt eller butik. Du kan också leta efter produkter i Systembolagets lager.</string>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="21"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -49,7 +50,8 @@
                                 <segments>
                                     <segment title="Producent"/>
                                     <segment title="Produkt"/>
-                                    <segment title="Butik"/>
+                                    <segment title="Butikslager"/>
+                                    <segment title="Systembolag"/>
                                 </segments>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eyg-pa-QTx">

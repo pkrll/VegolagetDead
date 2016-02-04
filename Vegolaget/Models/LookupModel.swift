@@ -24,7 +24,7 @@ class LookupModel: Model {
    *  Performs the search.
    */
   override func loadData() {
-    self.coreDataEntity = CoreDataEntities(rawValue: self.searchScope.capitalizedString)
+    self.coreDataEntity = CoreDataEntities(rawValue: self.searchScope)
     // Cancel search if the query is empty or the scope does not match an entity.
     if self.coreDataEntity == nil || self.searchQuery.isEmpty {
       self.didPerformSearch()
@@ -33,7 +33,7 @@ class LookupModel: Model {
     
     self.searchResults.removeAll(keepCapacity: false)
     
-    let requestURL = APIEndPoint.Search.Root.string + self.searchScope
+    let requestURL = APIEndPoint.search(forType: APIEndPoint(rawValue: self.searchScope)!)
     let parameters = [
       "query": self.searchQuery
     ]
@@ -49,8 +49,8 @@ class LookupModel: Model {
    */
   override func managerDidCompleteRequest(response: APIResponse) {
     var results = [String: [Int]]()
-    if let datas = response.returnData {
-      let data = JSON(data: datas)
+    if let data = response.returnData {
+      let data = JSON(data: data)
       // The data returned from a search will consist of a multidimensional JSON array, with the type of the object as the key. Creating a dictionary mimicking this structure allows for a little more flexibility when creating objects out of the search result.
       for (key, value): (String, JSON) in data {
         // Initialize the dictionary key if it does not exist already.
@@ -82,13 +82,13 @@ class LookupModel: Model {
           let item: Item
           
           switch key {
-            case "Producer":
+            case "\(Producer.self)":
               item = Producer(data: json)
-            case "Product":
+            case "\(Product.self)":
               item = Product(data: json)
-            case "ProductInStock":
+            case "\(ProductInStock.self)":
               item = ProductInStock(data: json)
-            case "Store":
+            case "\(Store.self)":
               item = Store(data: json)
             default:
               item = Item(data: json)
@@ -98,8 +98,24 @@ class LookupModel: Model {
         }
       }
     }
-    
+
     return list
+  }
+  
+  override func saveData(data: [Item]) {
+    switch self.searchScope.capitalizedString {
+      case CoreDataEntities.Producer.rawValue:
+        self.coreDataHelper.save(data, toEntity: CoreDataEntities.Producer.rawValue)
+      case CoreDataEntities.Product.rawValue:
+        let listing = data.filter { $0 is ProductInStock == false }
+        let inStock = data.filter { $0 is ProductInStock == true }
+        self.coreDataHelper.save(listing, toEntity: CoreDataEntities.Product.rawValue)
+        self.coreDataHelper.save(inStock, toEntity: CoreDataEntities.ProductInStock.rawValue)
+      case CoreDataEntities.Store.rawValue:
+        self.coreDataHelper.save(data, toEntity: CoreDataEntities.Store.rawValue)
+      default:
+        return
+    }
   }
 
   // MARK: - Empty Overriden Methods
@@ -134,17 +150,9 @@ private extension LookupModel {
    *  Loads items from Core Data.
    */
   func loadFromCoreData(results: [String: [Int]]) {
-    var missing: [Int]
+    var index = 0
+    var missing = [String: [Int]]()
     
-    let completionHandler = {
-      // If some items are missing attempts to call the server to get the information.
-      if missing.count > 0 {
-        self.loadFromServer(missing)
-        return
-      }
-      
-      self.didPerformSearch()
-    }()
     for (key, resultArray): (String, [Int]) in results {
       guard let entity = CoreDataEntities(rawValue: key)?.rawValue else {
         self.didPerformSearch()
@@ -153,15 +161,31 @@ private extension LookupModel {
       
       self.coreDataHelper.load(fromEntity: entity, withPredicate: self.constructPredicate(withArray: resultArray), sortByKeys: self.coreDataSortKeys) { (success, data: [AnyObject]?, error) -> Void in
         if let data = data where data.count > 0 {
-          self.searchResults = self.createItemFromObject(data)
-          // Filter out any of the retrieved ids that are missing in the group of items fetched from Core Data
-          missing = resultArray.filter({ (id: Int) -> Bool in
-            if self.searchResults.contains({ $0.id == id }) {
-              return false
-            }
-            
-            return true
-          })
+          let items = self.createItemFromObject(data)
+          self.searchResults.appendContentsOf(items)
+        }
+        // Filter out any of the retrieved ids that are missing in the group of items fetched from Core Data
+        let array = resultArray.filter({ (id: Int) -> Bool in
+          if self.searchResults.contains({ $0.id == id }) {
+            return false
+          }
+          
+          return true
+        })
+        
+        if array.count > 0 {
+          missing[key] = array
+        }
+
+        // Runs at the end of the loop, checking if there are any ids missing.
+        if ++index == results.count {
+          // If some items are missing, attempts to call the server to get the information.
+          if missing.count > 0 {
+            self.loadFromServer(missing)
+            return
+          }
+          
+          self.didPerformSearch()
         }
       }
     }
@@ -170,19 +194,21 @@ private extension LookupModel {
    *  Loads the information from the server. Called when a search results id was not matched in the database.
    *  - Parameter itemIDs: An array containing all the missing ids.
    */
-  func loadFromServer(itemIDs: [Int]) {
-    var requestURL = "/" + self.searchScope.capitalizedString + "/"
+  func loadFromServer(items: [String: [Int]]) {
+    var requestURL = "/" + self.searchScope
     let parameters = [
-      "ids": JSON(itemIDs).stringValue
+      "items": JSON(items[self.searchScope] ?? [:])
     ]
-    
+
     switch requestURL {
-      case APIEndPoint.Producer.Root.rawValue:
-        requestURL = APIEndPoint.Producer.Root.string
-      case APIEndPoint.Product.Root.rawValue:
-        requestURL = APIEndPoint.Product.Root.string
-      case APIEndPoint.Store.Root.rawValue:
-        requestURL = APIEndPoint.Store.Root.string
+      case APIEndPoint.Producer.rawValue:
+        requestURL = APIEndPoint.producer()
+      case APIEndPoint.Product.rawValue:
+        requestURL = APIEndPoint.product()
+      case APIEndPoint.ProductInStock.rawValue:
+        requestURL = APIEndPoint.productInStock()
+      case APIEndPoint.Store.rawValue:
+        requestURL = APIEndPoint.store()
       default:
         self.didPerformSearch()
         return
@@ -193,10 +219,9 @@ private extension LookupModel {
     self.manager.setHttpMethod("POST")
     self.manager.executeRequest({ (response: APIResponse) -> Void in
       let elements = self.parseResponseData(response.returnData)
-      
+
       if elements.isEmpty == false {
         self.saveData(elements)
-      } else {
         self.searchResults.appendContentsOf(elements)
       }
       
@@ -231,6 +256,7 @@ private extension LookupModel {
           "locationID": product.locationID,
           "name": product.name,
           "detailName": product.detailName,
+          "producer": product.producer,
           "type": product.type,
           "price": product.price,
           "volume": product.volume,
@@ -269,5 +295,5 @@ private extension LookupModel {
     
     return items
   }
-  
+
 }

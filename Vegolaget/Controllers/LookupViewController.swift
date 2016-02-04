@@ -10,7 +10,7 @@ import UIKit
 
 class LookupViewController: SearchViewController {
   
-  private var searchScope = ["producer", "product", "store"]
+  private var searchScope = ["Producer", "Product", "ProductInStock", "Store"]
   
   override internal var viewTitle: String {
     return ""
@@ -87,11 +87,13 @@ class LookupViewController: SearchViewController {
     var segue = String()
     // Should rewrite this part somehow
     switch scope {
-      case "producer":
+      case "Producer":
         segue = Constants.Segue.ShowProducer.rawValue
-      case "product":
+      case "Product":
+        fallthrough
+      case "ProductInStock":
         segue = Constants.Segue.ShowProduct.rawValue
-      case "store":
+      case "Store":
         segue = Constants.Segue.ShowStore.rawValue
       default:
         return

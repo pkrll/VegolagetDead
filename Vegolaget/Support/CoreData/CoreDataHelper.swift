@@ -112,13 +112,15 @@ class CoreDataHelper {
         error = loadError
       }
       
-//      dispatch_async(dispatch_get_main_queue()) {
-        print("Loading \(results?.count) objects.")
-        completionHandler(success: success, data: results, error: error)
-//      }
+      print("Loading \(results?.count) objects.")
+      completionHandler(success: success, data: results, error: error)
     }
   }
 
+  func reset() {
+    self.stack.shouldResetStoreCoordinator = true
+  }
+  
 }
 // MARK: - Private Methods
 private extension CoreDataHelper {
