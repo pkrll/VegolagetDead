@@ -31,6 +31,8 @@ class LookupViewController: SearchViewController {
     self.registerNib(Constants.Nib.StoreCell.rawValue)
     self.tableView.delegate = self
     self.tableView.hidden = true
+    self.tableView.rowHeight = UITableViewAutomaticDimension
+    self.tableView.estimatedRowHeight = 80.0
     
     self.configureSearchBar()
     self.navigationItem.titleView = self.searchBar
@@ -87,10 +89,10 @@ class LookupViewController: SearchViewController {
     var segue = String()
     // Should rewrite this part somehow
     switch scope {
-      case "Producer":
-        segue = Constants.Segue.ShowProducer.rawValue
       case "Product":
         fallthrough
+      case "Producer":
+        segue = Constants.Segue.ShowProducer.rawValue
       case "ProductInStock":
         segue = Constants.Segue.ShowProduct.rawValue
       case "Store":
@@ -108,10 +110,14 @@ class LookupViewController: SearchViewController {
       return
     }
 
-    if let viewController = viewController as? ProducerViewController, let sender = sender as? Producer {
-      viewController.producer = sender
-    } else if let viewController = viewController as? ProductViewController, let sender = sender as? Product {
-
+    if let viewController = viewController as? ProducerViewController {
+      if let sender = sender as? Producer {
+        viewController.producer = sender
+      } else if let sender = sender as? Product {
+        viewController.producerID = sender.companyID
+      }
+    } else if let viewController = viewController as? ProductViewController, let sender = sender as? ProductInStock {
+      viewController.product = sender
     } else if let viewController = viewController as? StoreViewController, let sender = sender as? Store {
       viewController.store = sender
     }

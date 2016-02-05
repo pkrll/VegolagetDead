@@ -12,6 +12,7 @@ class ProducerViewController: TableViewController {
   @IBOutlet var tableView: UITableView!
   
   internal var producer: Producer?
+  internal var producerID: Int?
   
   override internal var viewTitle: String {
     return self.producer?.name ?? "Producent"
@@ -38,7 +39,15 @@ class ProducerViewController: TableViewController {
   }
   
   override func loadModel() {
+    var producerID: Int? = nil
+    
     if let id = self.producer?.id {
+      producerID = id
+    } else if let id = self.producerID {
+      producerID = id
+    }
+    
+    if let id = producerID {
       self.model = ProducerModel(producerID: id)
       self.model.delegate = self
       self.model.loadData()

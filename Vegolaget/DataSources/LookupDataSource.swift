@@ -37,6 +37,7 @@ class LookupDataSource: DataSource {
       
       if let item = item as? ProductInStock {
         description = (item.detailName.isEmpty) ? item.producer : item.detailName
+        description = description + "\n" + item.type
       } else if let item = item as? Product {
         description = VeganStatusType(rawValue: item.vegan)?.description.localized ?? "UNKNOWN".localized
       } else if let item = item as? Producer {
@@ -44,8 +45,26 @@ class LookupDataSource: DataSource {
       } else if let item = item as? Store {
         description = "\(item.postalCode) \(item.city)"
       }
-
+      
+      view.numberOfLines = 0
       view.text = description
+      view.sizeToFit()
+    }
+    
+    if let imageView = cell.viewWithTag(100) as? UIImageView {
+      var imageName = String()
+      
+      if let item = item as? Product {
+        if item.type.localized.containsString("vin", caseInsensitive: true) {
+          imageName = "wine"
+        } else if item.type.localized.containsString("öl", caseInsensitive: true) {
+          imageName = "beer"
+        } else {
+          imageName = "liquor"
+        }
+      }
+
+      imageView.image = UIImage(named: imageName)
     }
     
     return cell

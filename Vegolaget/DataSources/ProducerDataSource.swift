@@ -60,14 +60,9 @@ class ProducerDataSource: DataSource {
     }
     
     var detailText = String()
-    
-    if item is ProductInStock {
-      let item = item as! ProductInStock
-      if item.detailName.isEmpty == false {
-        detailText = item.detailName + "\n"
-      }
-      
-      detailText += item.type
+
+    if let item = item as? ProductInStock {
+      detailText = item.detailName + "\n" + item.type
     } else {
       let veganStatus = VeganStatusType(rawValue: item.vegan)?.description.localized ?? "UNKNOWN".localized
       detailText = item.type.localized + "\n" + veganStatus
