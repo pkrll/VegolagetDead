@@ -43,6 +43,7 @@ class ProducerViewController: TableViewController {
     
     if let id = self.producer?.id {
       producerID = id
+      self.producer = nil
     } else if let id = self.producerID {
       producerID = id
     }

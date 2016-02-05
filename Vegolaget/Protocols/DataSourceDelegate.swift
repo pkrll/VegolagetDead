@@ -7,6 +7,6 @@
 //
 import Foundation
 
-protocol DataSourceDelegate {
+protocol DataSourceDelegate: class {
   func didFinishLoadDataSource(_: DataSource)
 }

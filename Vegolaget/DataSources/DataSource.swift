@@ -13,7 +13,7 @@ import CoreData
  */
 class DataSource: NSObject, UITableViewDataSource {
   
-  internal var delegate: DataSourceDelegate?
+  internal weak var delegate: DataSourceDelegate?
   /**
    *  The items to be displayed.
    */
