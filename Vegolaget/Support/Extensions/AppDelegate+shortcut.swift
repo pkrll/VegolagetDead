@@ -16,14 +16,15 @@ extension AppDelegate {
   
   @available(iOS 9.0, *)
   func handleShortcutAction(shortcutItemKey: String?) -> Bool {
-    guard let shortcutItemKey = shortcutItemKey, let action = ApplicationShortcutType(rawValue: shortcutItemKey) else {
+    guard let shortcutItemKey = shortcutItemKey, let action = AppShortcutType(rawValue: shortcutItemKey) else {
       return false
     }
     
     return self.launchWithAction(action)
   }
   
-  func launchWithAction(shortcutType: ApplicationShortcutType) -> Bool {
+  @available(iOS 9.0, *)
+  private func launchWithAction(shortcutType: AppShortcutType) -> Bool {
     guard let tabBarController = self.window?.rootViewController as? UITabBarController else {
       return false
     }

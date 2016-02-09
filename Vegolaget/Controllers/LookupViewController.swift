@@ -26,9 +26,9 @@ class LookupViewController: SearchViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    self.registerNib(Constants.Nib.ProducerCell.rawValue)
-    self.registerNib(Constants.Nib.ProductCell.rawValue)
-    self.registerNib(Constants.Nib.StoreCell.rawValue)
+    self.registerNib(Nib.ProducerCell.rawValue)
+    self.registerNib(Nib.ProductCell.rawValue)
+    self.registerNib(Nib.StoreCell.rawValue)
     self.tableView.delegate = self
     self.tableView.hidden = true
     self.tableView.rowHeight = UITableViewAutomaticDimension
@@ -37,7 +37,7 @@ class LookupViewController: SearchViewController {
     self.configureSearchBar()
     self.navigationItem.titleView = self.searchBar
     self.searchController.searchResultsUpdater = self
-    self.segmentedControl.tintColor = Constants.UserInterface.greenColor
+    self.segmentedControl.tintColor = UserInterface.greenColor
     
     self.resizeSearchBar()
     self.hideLoadingView()
@@ -85,24 +85,25 @@ class LookupViewController: SearchViewController {
   }
 
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    let scope = self.searchScope[self.segmentedControl.selectedSegmentIndex]
-    var segue = String()
-    // Should rewrite this part somehow
-    switch scope {
-      case "Product":
+    if let scope = Entities(rawValue: self.searchScope[self.segmentedControl.selectedSegmentIndex]) {
+      var segue = String()
+      // Should rewrite this part somehow
+      switch scope {
+      case .Producer:
         fallthrough
-      case "Producer":
-        segue = Constants.Segue.ShowProducer.rawValue
-      case "ProductInStock":
-        segue = Constants.Segue.ShowProduct.rawValue
-      case "Store":
-        segue = Constants.Segue.ShowStore.rawValue
+      case .Producer:
+        segue = Segue.ShowProducer.rawValue
+      case .ProductInStock:
+        segue = Segue.ShowProduct.rawValue
+      case .Store:
+        segue = Segue.ShowStore.rawValue
       default:
         return
+      }
+      
+      let item = self.dataSource.itemAtIndexPath(indexPath)
+      self.performSegueWithIdentifier(segue, sender: item)
     }
-    
-    let item = self.dataSource.itemAtIndexPath(indexPath)
-    self.performSegueWithIdentifier(segue, sender: item)
   }
   
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

@@ -8,6 +8,12 @@
 import UIKit
 
 enum Font: String {
+
+  enum FontStyle: String {
+    case Regular
+    case Light
+    case Thin
+  }
   
   case Roboto
   
@@ -15,13 +21,5 @@ enum Font: String {
     let fontName = self.rawValue + "-" + style.rawValue
     return UIFont(name: fontName, size: size)
   }
-  
-}
 
-enum FontStyle: String {
-  
-  case Regular
-  case Light
-  case Thin
-  
 }

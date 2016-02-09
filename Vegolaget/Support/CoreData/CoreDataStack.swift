@@ -91,7 +91,7 @@ class CoreDataStack: NSObject {
   /**
    *  Name of the Core Data store.
    */
-  private let storeName = Constants.Application.name
+  private let storeName = Application.name
   /**
    *  Name of the Core Data store file.
    */
@@ -136,7 +136,7 @@ class CoreDataStack: NSObject {
       dict[NSLocalizedFailureReasonErrorKey] = "There was an error creating or loading the application's saved data."
       
       dict[NSUnderlyingErrorKey] = error as NSError
-      let wrappedError = NSError(domain: Constants.Application.identifier, code: 9999, userInfo: dict)
+      let wrappedError = NSError(domain: Application.identifier, code: 9999, userInfo: dict)
       
       NSLog("Unresolved error \(wrappedError), \(wrappedError.userInfo)")
       NSLog("Deleting it...")

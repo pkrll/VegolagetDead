@@ -67,7 +67,7 @@ class SearchViewController: TableViewController, SearchDataSourceDelegate, UISea
     
     self.searchController.searchBar.delegate = self
     self.searchController.searchBar.barStyle = .Default
-    self.searchController.searchBar.tintColor = Constants.UserInterface.greenColor
+    self.searchController.searchBar.tintColor = UserInterface.greenColor
     self.searchController.searchBar.barTintColor = UIColor.whiteColor()
     self.searchController.searchBar.showsScopeBar = false
 

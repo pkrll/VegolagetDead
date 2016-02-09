@@ -20,6 +20,7 @@ class ProducersModel: Model {
     if let lastUpdate = Settings.valueForKey("lastUpdate") as? NSDate where DateTime.daysSince(lastUpdate) < 2 {
       super.loadData()
     } else {
+      print("Items out of date: refreshing data.")
       self.refreshData()
     }
   }

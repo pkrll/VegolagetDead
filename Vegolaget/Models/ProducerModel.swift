@@ -10,7 +10,7 @@ import SwiftyJSON
 
 class ProducerModel: Model {
   
-  private let coreDataEntities: [CoreDataEntities] = [.Product, .ProductInStock]
+  private let coreDataEntities: [Entities] = [.Product, .ProductInStock]
   
   init(producerID: Int) {
     super.init()

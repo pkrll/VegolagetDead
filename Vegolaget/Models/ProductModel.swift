@@ -32,8 +32,8 @@ class ProductModel: Model {
       }
     }
     
-    self.coreDataHelper.save(locations, toEntity: CoreDataEntities.Location.rawValue)
-    self.coreDataHelper.save(stores, toEntity: CoreDataEntities.Store.rawValue)
+    self.coreDataHelper.save(locations, toEntity: Entities.Location.rawValue)
+    self.coreDataHelper.save(stores, toEntity: Entities.Store.rawValue)
   }
   
   override func didLoadFromCoreData(data: [AnyObject]) -> [Item] {

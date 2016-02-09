@@ -41,12 +41,12 @@ class ProducersViewController: SearchViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    self.registerNib(Constants.Nib.ProducerCell.rawValue)
-    self.registerNib(Constants.Nib.LoadingCell.rawValue)
+    self.registerNib(Nib.ProducerCell.rawValue)
+    self.registerNib(Nib.LoadingCell.rawValue)
 
     self.configureSearchBar()
     self.setSearchBarPlaceholder("Sök efter producent")
-    self.searchBar.scopeButtonTitles = Constants.UserInterface.scopeButtonTitles
+    self.searchBar.scopeButtonTitles = UserInterface.scopeButtonTitles
     self.searchBar.delegate = self
     self.tableView.delegate = self
     self.tableView.tableHeaderView = self.searchBar
@@ -110,12 +110,12 @@ class ProducersViewController: SearchViewController {
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     let sender = tableView.cellForRowAtIndexPath(indexPath)!
     
-    if sender.reuseIdentifier == Constants.Nib.LoadingCell.rawValue {
+    if sender.reuseIdentifier == Nib.LoadingCell.rawValue {
       if let dataSource = self.dataSource as? ProducersDataSource where dataSource.hasMoreItemsToLoad(atRow: indexPath.row) {
         self.tableView.reloadData()
       }
     } else {
-      self.performSegueWithIdentifier(Constants.Segue.ShowProducer.rawValue, sender: sender)
+      self.performSegueWithIdentifier(Segue.ShowProducer.rawValue, sender: sender)
     }
   }
   

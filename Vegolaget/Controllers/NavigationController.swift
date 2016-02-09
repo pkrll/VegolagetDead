@@ -12,9 +12,9 @@ class NavigationController: UINavigationController {
   override func viewDidLoad() {
     super.viewDidLoad()
     self.navigationBar.barTintColor = UIColor.whiteColor()
-    self.navigationBar.tintColor = Constants.UserInterface.greenColor
+    self.navigationBar.tintColor = UserInterface.greenColor
     self.navigationBar.titleTextAttributes = [
-      NSForegroundColorAttributeName: Constants.UserInterface.greenColor,
+      NSForegroundColorAttributeName: UserInterface.greenColor,
       NSFontAttributeName: Font.Roboto.withStyle(.Regular, size: 18.0)!
     ]
     self.navigationBar.backIndicatorImage = UIImage(named: "arrow")

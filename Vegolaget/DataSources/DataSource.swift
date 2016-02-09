@@ -39,10 +39,10 @@ class DataSource: NSObject, UITableViewDataSource {
   }
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    var cell = tableView.dequeueReusableCellWithIdentifier(Constants.Nib.BaseCell.rawValue)
+    var cell = tableView.dequeueReusableCellWithIdentifier(Nib.BaseCell.rawValue)
     
     if cell == nil {
-      cell = UITableViewCell(style: .Default, reuseIdentifier: Constants.Nib.BaseCell.rawValue)
+      cell = UITableViewCell(style: .Default, reuseIdentifier: Nib.BaseCell.rawValue)
     }
     
     return cell!

@@ -1,13 +1,15 @@
 //
-//  ApplicationShortcutType.swift
+//  AppShortcutType.swift
 //  Vegolaget
 //
-//  Created by Ardalan Samimi on 22/01/16.
+//  Created by Ardalan Samimi on 09/02/16.
 //  Copyright © 2016 Saturn Five. All rights reserved.
 //
 import Foundation
-
-enum ApplicationShortcutType: String {
+/**
+ *  This enum represents the different application short cut types.
+ */
+enum AppShortcutType: String {
   
   case Nearby
   case Search
@@ -28,4 +30,3 @@ enum ApplicationShortcutType: String {
   }
   
 }
-

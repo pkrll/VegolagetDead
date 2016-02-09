@@ -24,7 +24,7 @@ class StoreViewController: TableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    self.registerNib(Constants.Nib.OpenHourCell.rawValue)
+    self.registerNib(Nib.OpenHourCell.rawValue)
     
     self.tableView.delegate = self
     self.scrollView.addSubview(self.refreshControl)

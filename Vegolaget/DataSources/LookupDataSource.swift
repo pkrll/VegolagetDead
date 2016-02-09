@@ -15,13 +15,13 @@ class LookupDataSource: DataSource {
 
     switch item {
       case is Producer:
-        cell = tableView.dequeueReusableCellWithIdentifier(Constants.Nib.ProducerCell.rawValue)!
+        cell = tableView.dequeueReusableCellWithIdentifier(Nib.ProducerCell.rawValue)!
       case is Product:
-        cell = tableView.dequeueReusableCellWithIdentifier(Constants.Nib.ProductCell.rawValue)!
+        cell = tableView.dequeueReusableCellWithIdentifier(Nib.ProductCell.rawValue)!
       case is Store:
-        cell = tableView.dequeueReusableCellWithIdentifier(Constants.Nib.StoreCell.rawValue)!
+        cell = tableView.dequeueReusableCellWithIdentifier(Nib.StoreCell.rawValue)!
       default:
-        cell = UITableViewCell(style: .Default, reuseIdentifier: Constants.Nib.BaseCell.rawValue)
+        cell = UITableViewCell(style: .Default, reuseIdentifier: Nib.BaseCell.rawValue)
     }
     
     if let view = cell.viewWithTag(101) as? UILabel {

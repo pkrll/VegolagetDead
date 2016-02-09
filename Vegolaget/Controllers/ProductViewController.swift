@@ -26,7 +26,7 @@ class ProductViewController: TableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    self.registerNib(Constants.Nib.StoreLocationCell.rawValue)
+    self.registerNib(Nib.StoreLocationCell.rawValue)
     self.tableView.delegate = self
     
     self.loadTextLabels()
@@ -63,10 +63,10 @@ class ProductViewController: TableViewController {
       let segue: String
       
       if locations.count == 1 {
-        segue = Constants.Segue.ShowStore.rawValue
+        segue = Segue.ShowStore.rawValue
         sender = locations.first
       } else {
-        segue = Constants.Segue.ShowStores.rawValue
+        segue = Segue.ShowStores.rawValue
         sender = locations
       }
       

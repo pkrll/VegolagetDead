@@ -21,7 +21,7 @@ class StoresViewController: TableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     self.tableView.delegate = self
-    self.registerNib(Constants.Nib.StoreCell.rawValue)
+    self.registerNib(Nib.StoreCell.rawValue)
     self.loadDataSource()
     self.loadModel()
   }
@@ -44,7 +44,7 @@ class StoresViewController: TableViewController {
   
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     if let location = self.dataSource.itemAtIndexPath(indexPath) as? Store {
-      self.performSegueWithIdentifier(Constants.Segue.ShowStore.rawValue, sender: location)
+      self.performSegueWithIdentifier(Segue.ShowStore.rawValue, sender: location)
     }
   }
   

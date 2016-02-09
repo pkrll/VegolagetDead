@@ -80,7 +80,7 @@ class ProductDataSource: DataSource {
   }
   
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier(Constants.Nib.StoreLocationCell.rawValue)!
+    let cell = tableView.dequeueReusableCellWithIdentifier(Nib.StoreLocationCell.rawValue)!
     let index = self.indexTitle[indexPath.section]
     let item = self.locations[index]?[indexPath.row]
     

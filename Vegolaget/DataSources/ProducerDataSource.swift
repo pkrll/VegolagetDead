@@ -52,7 +52,7 @@ class ProducerDataSource: DataSource {
   }
   
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier(Constants.Nib.ProductCell.rawValue)!
+    let cell = tableView.dequeueReusableCellWithIdentifier(Nib.ProductCell.rawValue)!
     let item = self.joinedItems[indexPath.section]![indexPath.row] as! Product
     
     if let textLabel = cell.viewWithTag(101) as? UILabel {

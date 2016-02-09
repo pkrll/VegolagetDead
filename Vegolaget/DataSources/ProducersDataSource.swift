@@ -117,7 +117,7 @@ class ProducersDataSource: SearchDataSource {
   }
   
   func tableView(tableView: UITableView, producerCellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier(Constants.Nib.ProducerCell.rawValue)!
+    let cell = tableView.dequeueReusableCellWithIdentifier(Nib.ProducerCell.rawValue)!
     let item = self.visibleItems[indexPath.row] as! Producer
     
     if let imageView = cell.viewWithTag(100) as? UIImageView {
@@ -139,7 +139,7 @@ class ProducersDataSource: SearchDataSource {
   }
   
   func tableView(tableView: UITableView, loadingCellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier(Constants.Nib.LoadingCell.rawValue)!
+    let cell = tableView.dequeueReusableCellWithIdentifier(Nib.LoadingCell.rawValue)!
     
     return cell
   }

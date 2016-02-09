@@ -17,7 +17,7 @@ class StoreModel: Model {
     self.store = store
     self.storeID = store.id
     super.init()
-    self.coreDataEntity = CoreDataEntities.Store
+    self.coreDataEntity = Entities.Store
     self.coreDataPredicate = NSPredicate(format: "id = %i", self.storeID)
     self.endPoint = APIEndPoint.store(withId: store.id)
   }
@@ -26,7 +26,7 @@ class StoreModel: Model {
     self.store = nil
     self.storeID = storeID
     super.init()
-    self.coreDataEntity = CoreDataEntities.Store
+    self.coreDataEntity = Entities.Store
     self.coreDataPredicate = NSPredicate(format: "id = %i", storeID)
     self.endPoint = APIEndPoint.store(withId: storeID)
   }

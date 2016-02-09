@@ -14,7 +14,7 @@ class CategoryViewController: TableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    self.registerNib(Constants.Nib.CategoryCell.rawValue)
+    self.registerNib(Nib.CategoryCell.rawValue)
     self.tableView.delegate = self
     self.tableView.addSubview(self.refreshControl)
     self.loadDataSource()
@@ -50,7 +50,7 @@ class CategoryViewController: TableViewController {
   
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     if let item = self.dataSource.itemAtIndexPath(indexPath) {
-      self.performSegueWithIdentifier(Constants.Segue.ShowCategory.rawValue, sender: item)
+      self.performSegueWithIdentifier(Segue.ShowCategory.rawValue, sender: item)
     }
   }
   

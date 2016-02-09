@@ -19,7 +19,7 @@ class TableViewController: ViewController, ModelDelegate, DataSourceDelegate, UI
   internal var dataSource: DataSource!
   /**
    *  The refresh control allows the user to reload the table views content.
-   *  - Note: Must be added to the table view as a sub view.
+   *  - Note: Must be added as a sub view to the table view.
    */
   internal lazy var refreshControl: UIRefreshControl = {
     let refreshControl = UIRefreshControl()

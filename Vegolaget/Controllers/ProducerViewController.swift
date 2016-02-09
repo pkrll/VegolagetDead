@@ -21,7 +21,7 @@ class ProducerViewController: TableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    self.registerNib(Constants.Nib.ProductCell.rawValue)
+    self.registerNib(Nib.ProductCell.rawValue)
     
     self.tableView.delegate = self
     self.tableView.rowHeight = UITableViewAutomaticDimension
@@ -72,7 +72,7 @@ class ProducerViewController: TableViewController {
     // Barnivore items and System Company items differ
     if indexPath.section == 1 {
       let sender = self.dataSource.itemAtIndexPath(indexPath) as? ProductInStock
-      self.performSegueWithIdentifier(Constants.Segue.ShowProduct.rawValue, sender: sender)
+      self.performSegueWithIdentifier(Segue.ShowProduct.rawValue, sender: sender)
     }
   }
   

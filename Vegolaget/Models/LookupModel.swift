@@ -24,7 +24,7 @@ class LookupModel: Model {
    *  Performs the search.
    */
   override func loadData() {
-    self.coreDataEntity = CoreDataEntities(rawValue: self.searchScope)
+    self.coreDataEntity = Entities(rawValue: self.searchScope)
     // Cancel search if the query is empty or the scope does not match an entity.
     if self.coreDataEntity == nil || self.searchQuery.isEmpty {
       self.didPerformSearch()
@@ -103,16 +103,17 @@ class LookupModel: Model {
   }
   
   override func saveData(data: [Item]) {
+    // Allowed items to save
+    let savableEntitiesArray = [
+      Entities.Producer.rawValue,
+      Entities.Product.rawValue,
+      Entities.ProductInStock.rawValue,
+      Entities.Store.rawValue
+    ]
+    
     switch self.searchScope.capitalizedString {
-      case CoreDataEntities.Producer.rawValue:
-        self.coreDataHelper.save(data, toEntity: CoreDataEntities.Producer.rawValue)
-      case CoreDataEntities.Product.rawValue:
-        let listing = data.filter { $0 is ProductInStock == false }
-        let inStock = data.filter { $0 is ProductInStock == true }
-        self.coreDataHelper.save(listing, toEntity: CoreDataEntities.Product.rawValue)
-        self.coreDataHelper.save(inStock, toEntity: CoreDataEntities.ProductInStock.rawValue)
-      case CoreDataEntities.Store.rawValue:
-        self.coreDataHelper.save(data, toEntity: CoreDataEntities.Store.rawValue)
+      case let entity where savableEntitiesArray.contains(entity):
+        self.coreDataHelper.save(data, toEntity: entity)
       default:
         return
     }
@@ -154,7 +155,7 @@ private extension LookupModel {
     var missing = [String: [Int]]()
     
     for (key, resultArray): (String, [Int]) in results {
-      guard let entity = CoreDataEntities(rawValue: key)?.rawValue else {
+      guard let entity = Entities(rawValue: key)?.rawValue else {
         self.didPerformSearch()
         return
       }
@@ -181,7 +182,6 @@ private extension LookupModel {
         if ++index == results.count {
           // If some items are missing, attempts to call the server to get the information.
           if missing.count > 0 {
-            print("Doing it...!")
             self.loadFromServer(missing)
             return
           }

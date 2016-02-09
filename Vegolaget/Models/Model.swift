@@ -15,7 +15,7 @@ class Model: NSObject, APIManagerDelegate {
   
   internal weak var delegate: ModelDelegate?
   
-  internal var coreDataEntity: CoreDataEntities?
+  internal var coreDataEntity: Entities?
   
   internal var coreDataPredicate: NSPredicate?
   

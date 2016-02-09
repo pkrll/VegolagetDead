@@ -21,7 +21,7 @@ class StoreDataSource: DataSource {
   }
   
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier(Constants.Nib.OpenHourCell.rawValue)!
+    let cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier(Nib.OpenHourCell.rawValue)!
     let item: (text: String, time: String, color: UIColor) = {
       var color: UIColor
       let item = self.dateTime[indexPath.row]
