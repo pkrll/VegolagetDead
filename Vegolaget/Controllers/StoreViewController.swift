@@ -25,6 +25,7 @@ class StoreViewController: TableViewController {
     super.viewDidLoad()
     
     self.registerNib(Nib.OpenHourCell.rawValue)
+    self.registerNib(Nib.BaseCell.rawValue)
     
     self.tableView.delegate = self
     self.scrollView.addSubview(self.refreshControl)
@@ -68,10 +69,11 @@ class StoreViewController: TableViewController {
     self.refreshControl.endRefreshing()
     self.tableView.reloadData()
     // Dynamically sets the height of the table view.
-    self.tableViewHeightConstraint.constant = CGFloat(self.tableView.numberOfRowsInSection(0)) * self.tableView.rowHeight
+    let constant = (self.tableView.numberOfRowsInSection(0) > 1) ? self.tableView.numberOfRowsInSection(0) : 5
+    self.tableViewHeightConstraint.constant = CGFloat(constant) * self.tableView.rowHeight
     self.view.layoutIfNeeded()
   }
-  
+
 }
 
 private extension StoreViewController {

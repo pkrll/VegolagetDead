@@ -62,6 +62,10 @@ class LookupDataSource: DataSource {
         } else {
           imageName = "liquor"
         }
+      } else if item is Store {
+        imageName = "store"
+      } else {
+        imageName = "search"
       }
 
       imageView.image = UIImage(named: imageName)

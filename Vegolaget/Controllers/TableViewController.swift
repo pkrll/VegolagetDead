@@ -23,7 +23,7 @@ class TableViewController: ViewController, ModelDelegate, DataSourceDelegate, UI
    */
   internal lazy var refreshControl: UIRefreshControl = {
     let refreshControl = UIRefreshControl()
-    refreshControl.attributedTitle = NSAttributedString(string: "Dra ned för att ladda om")
+    refreshControl.attributedTitle = NSAttributedString(string: "Pull down to refresh".localized)
     refreshControl.addTarget(self, action: "didRequestRefresh:", forControlEvents: .ValueChanged)
     
     return refreshControl

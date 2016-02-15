@@ -17,10 +17,34 @@ class StoreDataSource: DataSource {
   }
   
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return self.dateTime.count
+    if self.dateTime.count > 0 {
+      return self.dateTime.count
+    }
+
+    return 1
   }
   
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    let cell: UITableViewCell
+    
+    if self.dateTime.count > 0 {
+      cell = self.tableView(tableView, openHourCellAtIndexPath: indexPath)
+    } else {
+      cell = tableView.dequeueReusableCellWithIdentifier(Nib.BaseCell.rawValue)!
+      
+      if let label = cell.viewWithTag(100) as? UILabel {
+        label.text = "Pull down to refresh".localized
+      }
+    }
+    
+    return cell
+  }
+
+}
+
+private extension StoreDataSource {
+
+  func tableView(tableView: UITableView, openHourCellAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier(Nib.OpenHourCell.rawValue)!
     let item: (text: String, time: String, color: UIColor) = {
       var color: UIColor

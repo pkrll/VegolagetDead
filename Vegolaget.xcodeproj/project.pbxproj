@@ -33,6 +33,7 @@
 		6A4C5BFB1C4BCC3900A6C20D /* String+LocaleSensitive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4C5BFA1C4BCC3900A6C20D /* String+LocaleSensitive.swift */; };
 		6A4C5BFF1C4C06AA00A6C20D /* NSObject+isOfClassType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4C5BFE1C4C06AA00A6C20D /* NSObject+isOfClassType.swift */; };
 		6A53BB4D1C4E449E00A69860 /* LookupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A53BB4C1C4E449E00A69860 /* LookupViewController.swift */; };
+		6A72867C1C71E36500CEF15A /* BaseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A72867A1C71E36500CEF15A /* BaseCell.xib */; };
 		6A74E4B01C5271DB001457F6 /* AppDelegate+shortcut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A74E4AF1C5271DB001457F6 /* AppDelegate+shortcut.swift */; };
 		6A82967D1C44033E00012945 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A82967C1C44033E00012945 /* AppDelegate.swift */; };
 		6A8296821C44033E00012945 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A8296801C44033E00012945 /* Main.storyboard */; };
@@ -127,6 +128,7 @@
 		6A4C5BFA1C4BCC3900A6C20D /* String+LocaleSensitive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "String+LocaleSensitive.swift"; path = "Support/Extensions/String+LocaleSensitive.swift"; sourceTree = "<group>"; };
 		6A4C5BFE1C4C06AA00A6C20D /* NSObject+isOfClassType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSObject+isOfClassType.swift"; path = "Support/Extensions/NSObject+isOfClassType.swift"; sourceTree = "<group>"; };
 		6A53BB4C1C4E449E00A69860 /* LookupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LookupViewController.swift; path = Controllers/LookupViewController.swift; sourceTree = "<group>"; };
+		6A72867B1C71E36500CEF15A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/BaseCell.xib; sourceTree = "<group>"; };
 		6A74E4AF1C5271DB001457F6 /* AppDelegate+shortcut.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "AppDelegate+shortcut.swift"; path = "Support/Extensions/AppDelegate+shortcut.swift"; sourceTree = "<group>"; };
 		6A8296791C44033E00012945 /* Vegolaget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vegolaget.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A82967C1C44033E00012945 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -271,6 +273,7 @@
 			isa = PBXGroup;
 			children = (
 				6A8296801C44033E00012945 /* Main.storyboard */,
+				6A72867A1C71E36500CEF15A /* BaseCell.xib */,
 				6A3AED701C4532E5001364E5 /* CategoryCell.xib */,
 				6A83917A1C4694AF00D8E96A /* ProducerCell.xib */,
 				6ADCCFF01C47B09C00AAF1AA /* ProductCell.xib */,
@@ -513,6 +516,7 @@
 			files = (
 				6A8296871C44033E00012945 /* LaunchScreen.storyboard in Resources */,
 				6A8296841C44033E00012945 /* Assets.xcassets in Resources */,
+				6A72867C1C71E36500CEF15A /* BaseCell.xib in Resources */,
 				6AA17F051C5E88DF006C1A3E /* Roboto-Light.ttf in Resources */,
 				6ADCCFF21C47B09C00AAF1AA /* ProductCell.xib in Resources */,
 				6A8391831C469B7400D8E96A /* LoadingCell.xib in Resources */,
@@ -681,6 +685,14 @@
 				6A3AED711C4532E5001364E5 /* Base */,
 			);
 			name = CategoryCell.xib;
+			sourceTree = "<group>";
+		};
+		6A72867A1C71E36500CEF15A /* BaseCell.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6A72867B1C71E36500CEF15A /* Base */,
+			);
+			name = BaseCell.xib;
 			sourceTree = "<group>";
 		};
 		6A8296801C44033E00012945 /* Main.storyboard */ = {
