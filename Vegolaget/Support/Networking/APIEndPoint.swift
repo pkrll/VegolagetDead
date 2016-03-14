@@ -7,7 +7,6 @@
 //
 import Foundation
 
-
 enum APIEndPoint: String {
   /**
    *  The address for the API.

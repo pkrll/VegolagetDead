@@ -12,6 +12,7 @@ enum Segue: String {
   case ShowCategory
   case ShowProducer
   case ShowProduct
+  case ShowBrowser
   case ShowStores
   case ShowStore
   

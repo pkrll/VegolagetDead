@@ -70,14 +70,20 @@ class ProducerViewController: TableViewController {
   
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     // Barnivore items and System Company items differ
-    if indexPath.section == 1 {
+    if indexPath.section == 0 {
+      let sender = self.dataSource.itemAtIndexPath(indexPath) as? Product
+      self.performSegueWithIdentifier(Segue.ShowBrowser.rawValue, sender: sender)
+    } else if indexPath.section == 1 {
       let sender = self.dataSource.itemAtIndexPath(indexPath) as? ProductInStock
       self.performSegueWithIdentifier(Segue.ShowProduct.rawValue, sender: sender)
     }
   }
   
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    if let viewController = segue.destinationViewController as? ProductViewController, let sender = sender as? ProductInStock {
+    if let viewController = segue.destinationViewController as? WebViewController, let sender = sender as? Product {
+      viewController.primaryURL = NSURL(string: "\(Application.barnivoreProductURL)\(sender.id)")
+      viewController.pageTitle = sender.name
+    } else if let viewController = segue.destinationViewController as? ProductViewController, let sender = sender as? ProductInStock {
       viewController.product = sender
     }
   }

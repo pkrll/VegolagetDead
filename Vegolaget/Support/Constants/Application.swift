@@ -18,5 +18,9 @@ enum Application {
    *  The identifier of the app bundle.
    */
   static let identifier: String = NSBundle.mainBundle().bundleIdentifier!
+  /**
+   *  The beginning of the URL String for Barnivore products page.
+   */
+  static let barnivoreProductURL: String = "http://www.barnivore.com/products/"
   
 }

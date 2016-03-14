@@ -81,11 +81,45 @@
                         <segue destination="BbZ-ZG-Pll" kind="show" identifier="ShowStore" id="9sh-EQ-hUc"/>
                         <segue destination="zjO-CF-hRw" kind="show" identifier="ShowProducer" id="xK1-sf-56g"/>
                         <segue destination="Zf2-cr-tg8" kind="show" identifier="ShowProduct" id="7Wm-DF-jyN"/>
+                        <segue destination="RDA-oq-UCV" kind="show" identifier="ShowBrowser" id="ghD-co-3Ez"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="45J-xA-CrX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="878.5" y="-376.5"/>
+        </scene>
+        <!--WebViewController-->
+        <scene sceneID="T3k-GR-cSr">
+            <objects>
+                <viewController title="WebViewController" automaticallyAdjustsScrollViewInsets="NO" id="RDA-oq-UCV" customClass="WebViewController" customModule="Vegolaget" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="TPV-cF-SNv"/>
+                        <viewControllerLayoutGuide type="bottom" id="u5U-uz-3Tk"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fL8-Hy-VPX">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8W3-mW-82h">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="8W3-mW-82h" firstAttribute="bottom" secondItem="u5U-uz-3Tk" secondAttribute="top" id="Nua-1f-apy"/>
+                            <constraint firstAttribute="trailing" secondItem="8W3-mW-82h" secondAttribute="trailing" id="THd-Pa-8aH"/>
+                            <constraint firstItem="8W3-mW-82h" firstAttribute="leading" secondItem="fL8-Hy-VPX" secondAttribute="leading" id="gHc-Qx-Pr8"/>
+                            <constraint firstItem="8W3-mW-82h" firstAttribute="top" secondItem="TPV-cF-SNv" secondAttribute="bottom" id="lro-51-NIs"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="8W3-mW-82h" id="V5k-qK-CDG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jrm-0u-iXG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2560.5" y="-1148.5"/>
         </scene>
         <!--Navigation Category-->
         <scene sceneID="PeL-i9-wI3">
@@ -236,11 +270,12 @@
                     <connections>
                         <outlet property="tableView" destination="BQi-bU-vKM" id="ICN-iY-P8i"/>
                         <segue destination="Zf2-cr-tg8" kind="show" identifier="ShowProduct" id="bQJ-UA-V7D"/>
+                        <segue destination="RDA-oq-UCV" kind="show" identifier="ShowBrowser" id="qKf-gJ-hWo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TfJ-XK-Usn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1717.5" y="334.5"/>
+            <point key="canvasLocation" x="1722.5" y="334.5"/>
         </scene>
         <!--Product View Controller-->
         <scene sceneID="uDh-aR-TNC">
@@ -516,8 +551,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="7Wm-DF-jyN"/>
-        <segue reference="9sh-EQ-hUc"/>
         <segue reference="xK1-sf-56g"/>
+        <segue reference="ghD-co-3Ez"/>
+        <segue reference="bQJ-UA-V7D"/>
+        <segue reference="g8a-5I-mE4"/>
     </inferredMetricsTieBreakers>
 </document>
