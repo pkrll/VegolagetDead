@@ -17,7 +17,7 @@ class ProducersModel: Model {
   }
   
   override func loadData() {
-    if let lastUpdate = Settings.valueForKey("lastUpdate") as? NSDate where DateTime.daysSince(lastUpdate) < 2 {
+    if let lastUpdate = Settings.valueForKey("lastUpdate") as? Date, DateTime.daysSince(lastUpdate) < 2 {
       super.loadData()
     } else {
       print("Items out of date: refreshing data.")
@@ -25,16 +25,17 @@ class ProducersModel: Model {
     }
   }
   
-  override func saveData(data: [Item]) {
+  override func saveData(_ data: [Item]) {
     super.saveData(data)
-    Settings.set(Value: NSDate(), forKey: "lastUpdate")
+    Settings.set(Value: Date() as AnyObject, forKey: "lastUpdate")
   }
   
-  override func didLoadFromCoreData(data: [AnyObject]) -> [Item] {
+  override func didLoadFromCoreData(_ data: [AnyObject]) -> [Item] {
     var items: [Producer] = []
-    
+
     if let producers = data as? [ProducerManagedObject] {
       for producer in producers {
+        print(producer)
         let json = JSON(
           [
             "id": producer.id,
@@ -56,16 +57,16 @@ class ProducersModel: Model {
     return items
   }
   
-  override func createItem(json: JSON) -> Item {
+  override func createItem(_ json: JSON) -> Item {
     return Producer(data: json)
   }
   
-  override func willPassDataToDelegate(data: [Item]) {
+  override func willPassDataToDelegate(_ data: [Item]) {
     var data = data
     // The model will, for various reasons, fetch all three categories (wine, beer, liquor) at once. This will make sure only the correct category show upon first fetch, depending on the predicate set in the different sub classes of Producers Model.
     // * Only when fetched via the API.
     if let predicate = self.coreDataPredicate {
-      data = data.filter { predicate.evaluateWithObject($0) }
+//      data = data.filter { predicate.evaluate(with: $0) }
     }
     
     super.willPassDataToDelegate(data)

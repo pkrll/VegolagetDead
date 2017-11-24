@@ -13,11 +13,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   var window: UIWindow?
   var coreDataHelper = CoreDataHelper()
 
-  func application(application: UIApplication, willFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
+  func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     self.checkApplicationSettings()
     
     if #available(iOS 9.0, *) {
-      let key = launchOptions?.filter { $0.0 == UIApplicationLaunchOptionsShortcutItemKey }.first?.1 as? String
+      let key = launchOptions?.filter { $0.0 == UIApplicationLaunchOptionsKey.shortcutItem }.first?.1 as? String
       return self.handleShortcutAction(key)
     }
     

@@ -12,7 +12,7 @@ class StoresModel: Model {
   
   let locations: [Location]
   
-  private var cities: [Int] {
+  fileprivate var cities: [Int] {
     return self.locations.map { $0.storeID }
   }
   
@@ -25,7 +25,7 @@ class StoresModel: Model {
 //    self.endPoint = APIEndPoint.store()
   }
     
-  override func didLoadFromCoreData(data: [AnyObject]) -> [Item] {
+  override func didLoadFromCoreData(_ data: [AnyObject]) -> [Item] {
     var items: [Store] = []
     
     if let stores = data as? [StoreManagedObject] {
@@ -48,7 +48,7 @@ class StoresModel: Model {
     return items
   }
   
-  override func createItem(json: JSON) -> Item {
+  override func createItem(_ json: JSON) -> Item {
     return Store(data: json)
   }
   

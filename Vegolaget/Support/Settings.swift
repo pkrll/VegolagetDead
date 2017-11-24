@@ -9,12 +9,12 @@ import Foundation
 
 struct Settings {
   
-  static func valueForKey(key: String) -> AnyObject? {
-    return NSUserDefaults.standardUserDefaults().valueForKey(key)
+  static func valueForKey(_ key: String) -> AnyObject? {
+    return UserDefaults.standard.value(forKey: key) as AnyObject
   }
   
   static func set(Value value: AnyObject, forKey key: String) {
-    NSUserDefaults.standardUserDefaults().setValue(value, forKey: key)
+    UserDefaults.standard.setValue(value, forKey: key)
   }
   
 }

@@ -24,7 +24,7 @@ class Model: NSObject, APIManagerDelegate {
   internal var endPoint: String = String()
   
   internal lazy var coreDataHelper: CoreDataHelper = {
-    return (UIApplication.sharedApplication().delegate as! AppDelegate).coreDataHelper
+    return (UIApplication.shared.delegate as! AppDelegate).coreDataHelper
   }()
   
   internal lazy var manager = {
@@ -41,7 +41,7 @@ class Model: NSObject, APIManagerDelegate {
    *  - Note: Invoked by *manager(_:didCompleteRequest:)*.
    *  - Parameter data: An array of elements to save.
    */
-  func saveData(data: [Item]) {
+  func saveData(_ data: [Item]) {
     if let entity = self.coreDataEntity?.rawValue {
       self.coreDataHelper.save(data, toEntity: entity)
     }
@@ -56,7 +56,7 @@ class Model: NSObject, APIManagerDelegate {
     }
     
     self.coreDataHelper.load(fromEntity: entity, withPredicate: self.coreDataPredicate, sortByKeys: self.coreDataSortKeys) { (success: Bool, data: [AnyObject]?, error: NSError?) -> Void in
-      if let data = data where data.count > 0 {
+      if let data = data, data.count > 0 {
         let items = self.didLoadFromCoreData(data)
         self.willPassDataToDelegate(items)
       } else {
@@ -77,7 +77,7 @@ class Model: NSObject, APIManagerDelegate {
    *  - Note: This method must be subclassed if actual objects are to be created. Also, extend the method *createItem(_:)* to create objects from a JSON object created in this method.
    *  - Returns: An array of Item object.
    */
-  func didLoadFromCoreData(data: [AnyObject]) -> [Item] {
+  func didLoadFromCoreData(_ data: [AnyObject]) -> [Item] {
     let elements: [Item] = []
     // Create an object from the core data object in sub classes
     return elements
@@ -85,14 +85,14 @@ class Model: NSObject, APIManagerDelegate {
   /**
    *  Called before the model passes on the fetched items to the delegate.
    */
-  func willPassDataToDelegate(data: [Item]) {
+  func willPassDataToDelegate(_ data: [Item]) {
     self.delegate?.model(self, didFinishLoadingData: data)
   }
   /**
    *  Parses the returned data from the request to create objects of type Item.
    *  - Note: This method invokes *createItem(_:)*, which should be extended if the object is a sub class of Item.
    */
-  func parseResponseData(data: NSData?) -> [Item] {
+  func parseResponseData(_ data: Data?) -> [Item] {
     var list = [Item]()
     if let data = data {
       let data = JSON(data: data)
@@ -112,7 +112,7 @@ class Model: NSObject, APIManagerDelegate {
    *  - Note: Override this method to create subtypes of Item.
    *  - Parameter json: The JSON object must contain the basic information to satisfy the Item type.
    */
-  func createItem(json: JSON) -> Item {
+  func createItem(_ json: JSON) -> Item {
     return Item(data: json)
   }
   
@@ -146,14 +146,14 @@ class Model: NSObject, APIManagerDelegate {
    *  - Parameters:
    *      - response: The response from the request.
    */
-  func managerDidCompleteRequest(response: APIResponse) {
-    let elements = self.parseResponseData(response.returnData)
+  func managerDidCompleteRequest(_ response: APIResponse) {
+    let elements = self.parseResponseData(response.returnData!)
     
     if elements.isEmpty == false {
       self.saveData(elements)
     }
     
-    dispatch_async(dispatch_get_main_queue()) { () -> Void in
+    DispatchQueue.main.async { () -> Void in
       self.willPassDataToDelegate(elements)
     }
   }
@@ -162,11 +162,11 @@ class Model: NSObject, APIManagerDelegate {
    *  - Parameters:
    *      - response: The response from the request.
    */
-  func managerFailedRequest(response: APIResponse) {
-    dispatch_async(dispatch_get_main_queue()) { () -> Void in
+  func managerFailedRequest(_ response: APIResponse) {
+    DispatchQueue.main.async { () -> Void in
       response.returnData
       if let data = response.returnData {
-        let debugMessage = String(data: data, encoding: NSUTF8StringEncoding)
+        let debugMessage = String(data: data as Data, encoding: String.Encoding.utf8)
         print(debugMessage)
       }
       let errorString = response.error ?? "Okänt fel"

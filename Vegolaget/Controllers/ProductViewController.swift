@@ -57,7 +57,7 @@ class ProductViewController: TableViewController {
     self.model.loadData()
   }
   
-  func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+  func tableView(_ tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath) {
     if let locations = (self.dataSource as! ProductDataSource).itemsAtIndexPath(indexPath) as? [Location] {
       let sender: AnyObject?
       let segue: String
@@ -67,17 +67,17 @@ class ProductViewController: TableViewController {
         sender = locations.first
       } else {
         segue = Segue.ShowStores.rawValue
-        sender = locations
+        sender = locations as AnyObject
       }
       
-      self.performSegueWithIdentifier(segue, sender: sender)
+      self.performSegue(withIdentifier: segue, sender: sender)
     }
   }
   
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    if let sender = sender as? [Location], let viewController = segue.destinationViewController as? StoresViewController {
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if let sender = sender as? [Location], let viewController = segue.destination as? StoresViewController {
       viewController.locations = sender
-    } else if let sender = sender as? Location, let viewController = segue.destinationViewController as? StoreViewController {
+    } else if let sender = sender as? Location, let viewController = segue.destination as? StoreViewController {
       viewController.storeID = sender.storeID
     }
   }

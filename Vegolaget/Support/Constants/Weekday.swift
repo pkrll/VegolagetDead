@@ -9,31 +9,31 @@ import Foundation
 
 enum WeekDay: Int {
   
-  case Sunday = 1
-  case Monday
-  case Tuesday
-  case Wednesday
-  case Thursday
-  case Friday
-  case Saturday
+  case sunday = 1
+  case monday
+  case tuesday
+  case wednesday
+  case thursday
+  case friday
+  case saturday
   
   var description: String {
     var weekDay: String!
     
     switch (self) {
-    case .Sunday:
+    case .sunday:
       weekDay = "Sunday"
-    case .Monday:
+    case .monday:
       weekDay = "Monday"
-    case .Tuesday:
+    case .tuesday:
       weekDay = "Tuesday"
-    case .Wednesday:
+    case .wednesday:
       weekDay = "Wednesday"
-    case .Thursday:
+    case .thursday:
       weekDay = "Thursday"
-    case .Friday:
+    case .friday:
       weekDay = "Friday"
-    case .Saturday:
+    case .saturday:
       weekDay = "Saturday"
     }
     

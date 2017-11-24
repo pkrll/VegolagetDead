@@ -12,16 +12,16 @@ class CoreDataHelper {
   
   // MARK: - Public Type Aliases
   
-  internal typealias HelperLoadCompletionHandler = (success: Bool, data: [AnyObject]?, error: NSError?) -> Void
+  internal typealias HelperLoadCompletionHandler = (_ success: Bool, _ data: [AnyObject]?, _ error: NSError?) -> Void
   
-  internal typealias HelperSaveCompletionHandler = (success: Bool, error: NSError?) -> Void
+  internal typealias HelperSaveCompletionHandler = (_ success: Bool, _ error: NSError?) -> Void
   
   // MARK: - Private Properties
   
   /**
    *  The shared instance of the Core Data Stack.
    */
-  private lazy var stack: CoreDataStack = {
+  fileprivate lazy var stack: CoreDataStack = {
     return CoreDataStack.sharedManager
   }()
 
@@ -33,24 +33,24 @@ class CoreDataHelper {
    *    - items: An array consisting of the objects to be saved. The items must be a subclass of *CoreDataHelperItem* and have the same attributes as the entity.
    *    - toEntity: The entity of the objects.
    */
-  func save(items: [CoreDataHelperItem], toEntity: String) {
+  func save(_ items: [CoreDataHelperItem], toEntity: String) {
     guard let context = self.stack.newBackgroundQueueContext() else {
       return
     }
     print("Saving or updating \(items.count) objects.")
-    context.performBlock { () -> Void in
+    context.perform { () -> Void in
       for item in items {
         // Attempts to retrieve the item
         var entityItem = self.load(fromEntity: toEntity, inManagedObjectContext: context, itemWithID: (item as! Item).id) as? NSManagedObject
         // Nil means it does not exist, so insert a new one
         if entityItem == nil {
-          entityItem = NSEntityDescription.insertNewObjectForEntityForName(toEntity, inManagedObjectContext: context)
+          entityItem = NSEntityDescription.insertNewObject(forEntityName: toEntity, into: context)
         }
         // Retrieves the attributes (properties) of the current item being looped over. The attributes will be compared to the NS Managed Object item's attributes.
         let attributes = item.attributes()
         for (key, value) in attributes {
           // Ignore attributes not present in the entity. Though, the Core Data Helper Item objects must have a value for all of the entities non-optional attributes.
-          if entityItem!.respondsToSelector(Selector(key)) {
+          if entityItem!.responds(to: Selector(key)) {
             entityItem!.setValue(value, forKey: key)
           }
         }
@@ -64,7 +64,7 @@ class CoreDataHelper {
             print("Saved \(items)")
           }
         } else {
-          print(error)
+          print(error ?? "Error")
         }
 
       }
@@ -78,17 +78,17 @@ class CoreDataHelper {
    *    - sortByKeys: The sort keys.
    *    - completionHandler: The callback.
    */
-  func load(fromEntity entity: String, withPredicate: NSPredicate?, sortByKeys: [String]?, completionHandler: HelperLoadCompletionHandler) {
+  func load(fromEntity entity: String, withPredicate: NSPredicate?, sortByKeys: [String]?, completionHandler: @escaping HelperLoadCompletionHandler) {
     guard let context = self.stack.getMainQueueContext() else {
-      completionHandler(success: false, data: nil, error: nil)
+      completionHandler(false, nil, nil)
       return
     }
     
-    context.performBlock { () -> Void in
+    context.perform { () -> Void in
       var error: NSError?
-      var results = [NSManagedObject]?()
+      var results = [NSManagedObject].init()
       var success = false
-      let request = NSFetchRequest(entityName: entity)
+      let request = NSFetchRequest<NSFetchRequestResult>(entityName: entity)
       // Filter out unwanted items
       if let predicate = withPredicate {
         request.predicate = predicate
@@ -106,14 +106,14 @@ class CoreDataHelper {
       }
       
       do {
-        results = try context.executeFetchRequest(request) as? [NSManagedObject]
+        results = try context.fetch(request) as! [NSManagedObject]
         success = true
       } catch let loadError as NSError {
         error = loadError
       }
       
-      print("Loading \(results?.count) objects.")
-      completionHandler(success: success, data: results, error: error)
+      print("Loading \(results.count) objects.")
+      completionHandler(success, results, error)
     }
   }
 
@@ -133,19 +133,19 @@ private extension CoreDataHelper {
    *  - Returns: An object of any type.
    */
   func load(fromEntity entity: String, inManagedObjectContext: NSManagedObjectContext, itemWithID id: Int) -> AnyObject? {
-    var results = [AnyObject]?()
-    let request = NSFetchRequest(entityName: entity)
+    var results = [AnyObject].init()
+    let request = NSFetchRequest<NSFetchRequestResult>(entityName: entity)
     let predicate = NSPredicate(format: "id = %i", id)
     request.predicate = predicate
     request.fetchLimit = 1
 
     do {
-      results = try inManagedObjectContext.executeFetchRequest(request)
+      results = try inManagedObjectContext.fetch(request)
     } catch  {
       print(error)
     }
 
-    return results?.first
+    return results.first
   }
 
 }

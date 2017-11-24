@@ -21,16 +21,16 @@ class SearchDataSource: DataSource {
     return self.items
   }
   
-  private var searchControllerIsActive: Bool {
+  fileprivate var searchControllerIsActive: Bool {
     if let delegate = self.delegate as? SearchDataSourceDelegate {
-      return delegate.searchController.active
+      return delegate.searchController.isActive
     }
     
     return false
   }
   
-  func filterBySearchString(string: String) {
-    self.filteredItems.removeAll(keepCapacity: false)
+  func filterBySearchString(_ string: String) {
+    self.filteredItems.removeAll(keepingCapacity: false)
     self.filteredItems = self.items.filter({ (item: Item) -> Bool in
       return item.name.containsString(string, caseInsensitive: true)
     })
@@ -38,11 +38,11 @@ class SearchDataSource: DataSource {
     (self.delegate as? SearchDataSourceDelegate)?.didFinishFilterDataSource(self)
   }
   
-  override func itemAtIndexPath(indexPath: NSIndexPath) -> Item? {
+  override func itemAtIndexPath(_ indexPath: IndexPath) -> Item? {
     return self.visibleItems.count > 0 ? self.visibleItems[indexPath.row] : nil
   }
   
-  override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return self.visibleItems.count
   }
   

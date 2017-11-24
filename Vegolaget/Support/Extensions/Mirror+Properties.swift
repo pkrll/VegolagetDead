@@ -21,7 +21,7 @@ extension Mirror {
       }
     }
     // Get the parent attributes too
-    if let superClass = self.superclassMirror() {
+    if let superClass = self.superclassMirror {
       for (name, value) in superClass.properties() {
         properties[name] = value
       }

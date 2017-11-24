@@ -21,7 +21,7 @@ class DataSource: NSObject, UITableViewDataSource {
   /**
    *  Loads and sorts the items.
    */
-  func loadData(data: [Item]) {
+  func loadData(_ data: [Item]) {
     self.items = data
     self.delegate?.didFinishLoadDataSource(self)
   }
@@ -30,19 +30,19 @@ class DataSource: NSObject, UITableViewDataSource {
    *  - Parameter indexPath: A table view index path.
    *  - Returns: An object of type Item.
    */
-  func itemAtIndexPath(indexPath: NSIndexPath) -> Item? {
+  func itemAtIndexPath(_ indexPath: IndexPath) -> Item? {
     return (self.items.count > 0) ? self.items[indexPath.row] : nil
   }
   
-  func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return self.items.count
   }
   
-  func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    var cell = tableView.dequeueReusableCellWithIdentifier(Nib.BaseCell.rawValue)
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    var cell = tableView.dequeueReusableCell(withIdentifier: Nib.BaseCell.rawValue)
     
     if cell == nil {
-      cell = UITableViewCell(style: .Default, reuseIdentifier: Nib.BaseCell.rawValue)
+      cell = UITableViewCell(style: .default, reuseIdentifier: Nib.BaseCell.rawValue)
     }
     
     return cell!

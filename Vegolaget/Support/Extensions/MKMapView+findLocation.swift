@@ -10,14 +10,14 @@ import MapKit
 extension MKMapView {
 
   typealias CLLocationDegreesTuple = (longitude: Double, latitude: Double)
-  typealias MapViewCompletionHandler = (mapView: MKMapView) -> Void
+  typealias MapViewCompletionHandler = (_ mapView: MKMapView) -> Void
   
-  func findLocation(forAddress: String, withSpan: CLLocationDegreesTuple, completion: MapViewCompletionHandler) {
+  func findLocation(_ forAddress: String, withSpan: CLLocationDegreesTuple, completion: @escaping MapViewCompletionHandler) {
     let request = MKLocalSearchRequest()
     request.naturalLanguageQuery = forAddress
     let search = MKLocalSearch(request: request)
     
-    search.startWithCompletionHandler { (response: MKLocalSearchResponse?, error: NSError?) -> Void in
+    search.start { (response, error) -> Void in
       guard let region = response?.boundingRegion else {
         return
       }
@@ -28,9 +28,8 @@ extension MKMapView {
       self.setRegion(coordinate, animated: false)
       self.showsUserLocation = false
       
-      completion(mapView: self)
+      completion(self)
     }
-    
   }
   
 }

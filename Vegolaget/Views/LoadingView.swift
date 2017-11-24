@@ -23,15 +23,15 @@ class LoadingView: UIView {
   }
   
   func startProgress() {
-    self.backgroundColor = UIColor.blackColor()
+    self.backgroundColor = UIColor.black
     self.alpha = 0.75
     
     let bounds = self.bounds
     let autoresizingMask: UIViewAutoresizing = [
-      .FlexibleRightMargin,
-      .FlexibleLeftMargin,
-      .FlexibleBottomMargin,
-      .FlexibleTopMargin
+      .flexibleRightMargin,
+      .flexibleLeftMargin,
+      .flexibleBottomMargin,
+      .flexibleTopMargin
     ]
     
     let labelHeight: Double = 22.0
@@ -39,7 +39,7 @@ class LoadingView: UIView {
     let centerX: Double = Double(bounds.width / 2)
     let centerY: Double = Double(bounds.height / 2)
     
-    self.spinner = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
+    self.spinner = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
     self.spinner!.frame = CGRect(
       x: centerX - Double(self.spinner!.frame.width / 2),
       y: centerY - Double(self.spinner!.frame.height - 20),
@@ -58,10 +58,10 @@ class LoadingView: UIView {
         height: labelHeight
       )
     )
-    self.label?.backgroundColor = UIColor.clearColor()
-    self.label?.textColor = UIColor.whiteColor()
+    self.label?.backgroundColor = UIColor.clear
+    self.label?.textColor = UIColor.white
     self.label?.text = "Laddar..."
-    self.label?.textAlignment = NSTextAlignment.Center
+    self.label?.textAlignment = NSTextAlignment.center
     self.label?.autoresizingMask = autoresizingMask
     self.addSubview(self.label!)
   }

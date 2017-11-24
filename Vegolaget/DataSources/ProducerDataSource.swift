@@ -6,21 +6,45 @@
 //  Copyright © 2016 Saturn Five. All rights reserved.
 //
 import UIKit
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 class ProducerDataSource: DataSource {
   /**
    *  JoinedItems consist of Product items and ProductInStock items. These will be displayed depending on section.
    */
-  private var joinedItems: [Int: [Item]] = [:]
+  fileprivate var joinedItems: [Int: [Item]] = [:]
   /**
    *  The table view section header titles.
    */
-  private let headerTitle: [Int: String] = [
+  fileprivate let headerTitle: [Int: String] = [
     0: "Listade på Barnivore.com",
     1: "I Systembolagets lager"
   ]
   
-  override func loadData(data: [Item]) {
+  override func loadData(_ data: [Item]) {
 //    let data = data.sort( { $0.0.name < $0.1.name } )
     let listing = data.filter { return $0 is ProductInStock == false }
     let inStock = data.filter { return $0 is ProductInStock == true }
@@ -31,7 +55,7 @@ class ProducerDataSource: DataSource {
     self.delegate?.didFinishLoadDataSource(self)
   }
   
-  override func itemAtIndexPath(indexPath: NSIndexPath) -> Item? {
+  override func itemAtIndexPath(_ indexPath: IndexPath) -> Item? {
     if self.joinedItems[indexPath.section]?.count > 0 {
       return self.joinedItems[indexPath.section]![indexPath.row]
     }
@@ -39,20 +63,20 @@ class ProducerDataSource: DataSource {
     return nil
   }
   
-  func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+  func numberOfSectionsInTableView(_ tableView: UITableView) -> Int {
     return self.joinedItems.keys.count
   }
   
-  override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return self.joinedItems[section]?.count ?? 0
   }
   
-  func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+  func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
     return self.headerTitle[section]
   }
   
-  override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier(Nib.ProductCell.rawValue)!
+  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCell(withIdentifier: Nib.ProductCell.rawValue)!
     let item = self.joinedItems[indexPath.section]![indexPath.row] as! Product
     
     if let textLabel = cell.viewWithTag(101) as? UILabel {

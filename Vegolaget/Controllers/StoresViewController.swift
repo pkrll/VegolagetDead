@@ -42,14 +42,14 @@ class StoresViewController: TableViewController {
     self.locations = nil
   }
   
-  func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+  func tableView(_ tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath) {
     if let location = self.dataSource.itemAtIndexPath(indexPath) as? Store {
-      self.performSegueWithIdentifier(Segue.ShowStore.rawValue, sender: location)
+      self.performSegue(withIdentifier: Segue.ShowStore.rawValue, sender: location)
     }
   }
   
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    if let viewController = segue.destinationViewController as? StoreViewController, let sender = sender as? Store {
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if let viewController = segue.destination as? StoreViewController, let sender = sender as? Store {
       viewController.store = sender
     }
   }

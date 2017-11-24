@@ -14,59 +14,59 @@ struct DateTime {
   let isToday: Bool
   let hasPassed: Bool
   
-  private let dateFormat = "yyyy-MM-dd"
-  private let dateLocale = "se"
-  private let dateFormatter: NSDateFormatter
+  fileprivate let dateFormat = "yyyy-MM-dd"
+  fileprivate let dateLocale = "se"
+  fileprivate let dateFormatter: DateFormatter
   
   init(date: String, time: String) {
     self.date = date
     self.time = time
     
-    let dateFormatter = NSDateFormatter()
+    let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = self.dateFormat
-    dateFormatter.locale = NSLocale(localeIdentifier: self.dateLocale)
+    dateFormatter.locale = Locale(identifier: self.dateLocale)
     
-    let todayString = dateFormatter.stringFromDate(NSDate())
-    let definedDate = dateFormatter.dateFromString(self.date) as NSDate!
-    let compareDate = dateFormatter.dateFromString(todayString) as NSDate!
-    let comparision = compareDate.compare(definedDate).rawValue
+    let todayString = dateFormatter.string(from: Date())
+    let definedDate = dateFormatter.date(from: self.date) as Date!
+    let compareDate = dateFormatter.date(from: todayString) as Date!
+    let comparision = compareDate?.compare(definedDate!).rawValue
     
     self.isToday = comparision == 0
-    self.hasPassed = comparision > 0
+    self.hasPassed = comparision! > 0
     
     self.dateFormatter = dateFormatter
   }
   
   func weekDay() -> String {
-    let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
-    let date = self.dateFormatter.dateFromString(self.date) as NSDate!
-    let components = calendar.components(.Weekday, fromDate: date)
+    let calendar = Calendar(identifier: Calendar.Identifier.gregorian)
+    let date = self.dateFormatter.date(from: self.date) as Date!
+    let components = (calendar as NSCalendar).components(.weekday, from: date!)
     
-    return WeekDay(rawValue: components.weekday)?.description ?? ""
+    return WeekDay(rawValue: components.weekday!)?.description ?? ""
   }
   
   func month() -> String {
-    let components = self.date.componentsSeparatedByString("-")
+    let components = self.date.components(separatedBy: "-")
     let month = Month(rawValue: Int(components[1])!)?.description ?? ""
     return month
   }
   
   func day() -> String {
-    let components = self.date.componentsSeparatedByString("-")
+    let components = self.date.components(separatedBy: "-")
     if components[2].characters.first == "0" {
-      let range = Range(start: components[2].startIndex.advancedBy(1), end: components[2].endIndex)
-      return components[2].substringWithRange(range)
+      let range = (components[2].characters.index(components[2].startIndex, offsetBy: 1) ..< components[2].endIndex)
+      return components[2].substring(with: range)
     }
     
     return components[2]
   }
   
-  static func daysSince(fromDate: NSDate) -> Int {
-    let toDate = NSDate()
-    let calendar = NSCalendar.currentCalendar()
-    let components = calendar.components(NSCalendarUnit.Day, fromDate: fromDate, toDate: toDate, options: [])
+  static func daysSince(_ fromDate: Date) -> Int {
+    let toDate = Date()
+    let calendar = Calendar.current
+    let components = (calendar as NSCalendar).components(NSCalendar.Unit.day, from: fromDate, to: toDate, options: [])
     
-    return components.day
+    return components.day!
   }
   
 }

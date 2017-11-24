@@ -15,7 +15,7 @@ enum AppShortcutType: String {
   case Search
   
   init?(rawValue: String) {
-    if let rawValue = rawValue.componentsSeparatedByString(".").last {
+    if let rawValue = rawValue.components(separatedBy: ".").last {
       switch rawValue {
       case "Nearby":
         self = .Nearby

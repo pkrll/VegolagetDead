@@ -10,12 +10,12 @@ import UIKit
 extension AppDelegate {
   
   @available(iOS 9.0, *)
-  func application(application: UIApplication, performActionForShortcutItem shortcutItem: UIApplicationShortcutItem, completionHandler: (Bool) -> Void) {
+  func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
     completionHandler(self.handleShortcutAction(shortcutItem.type))
   }
   
   @available(iOS 9.0, *)
-  func handleShortcutAction(shortcutItemKey: String?) -> Bool {
+  func handleShortcutAction(_ shortcutItemKey: String?) -> Bool {
     guard let shortcutItemKey = shortcutItemKey, let action = AppShortcutType(rawValue: shortcutItemKey) else {
       return false
     }
@@ -24,7 +24,7 @@ extension AppDelegate {
   }
   
   @available(iOS 9.0, *)
-  private func launchWithAction(shortcutType: AppShortcutType) -> Bool {
+  fileprivate func launchWithAction(_ shortcutType: AppShortcutType) -> Bool {
     guard let tabBarController = self.window?.rootViewController as? UITabBarController else {
       return false
     }

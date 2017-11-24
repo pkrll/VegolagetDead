@@ -9,46 +9,46 @@ import Foundation
 
 enum Month: Int {
   
-  case January = 1
-  case February
-  case March
-  case April
-  case May
-  case June
-  case July
-  case August
-  case September
-  case October
-  case November
-  case December
+  case january = 1
+  case february
+  case march
+  case april
+  case may
+  case june
+  case july
+  case august
+  case september
+  case october
+  case november
+  case december
   
   var description: String {
     var month: String!
     
     switch (self) {
-    case .January:
+    case .january:
       month = "January"
-    case .February:
+    case .february:
       month = "February"
-    case .March:
+    case .march:
       month = "March"
-    case .April:
+    case .april:
       month = "April"
-    case .May:
+    case .may:
       month = "May"
-    case .June:
+    case .june:
       month = "June"
-    case .July:
+    case .july:
       month = "July"
-    case .August:
+    case .august:
       month = "August"
-    case .September:
+    case .september:
       month = "September"
-    case .October:
+    case .october:
       month = "October"
-    case .November:
+    case .november:
       month = "November"
-    case .December:
+    case .december:
       month = "December"
     }
     

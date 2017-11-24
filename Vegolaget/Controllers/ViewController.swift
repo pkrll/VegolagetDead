@@ -26,8 +26,8 @@ class ViewController: UIViewController {
   internal lazy var backBarButtonItem: UIBarButtonItem = {
     let text = UserInterface.backButtonTitle.localized
     let font = Font.Roboto.withStyle(.Light, size: 17.0)!
-    let item = UIBarButtonItem(title: text, style: .Plain, target: nil, action: nil)
-    item.setTitleTextAttributes([NSFontAttributeName: font], forState: UIControlState.Normal)
+    let item = UIBarButtonItem(title: text, style: .plain, target: nil, action: nil)
+    item.setTitleTextAttributes([NSFontAttributeName: font], for: UIControlState())
     
     return item
   }()
@@ -72,9 +72,9 @@ class ViewController: UIViewController {
   *  - Note: Has only one action, "Dismiss".
   */
   final func showAlert(withMessage message: String) {
-    let alertController = UIAlertController(title: Application.name, message: message, preferredStyle: .Alert)
-    alertController.addAction(UIAlertAction(title: "Dismiss", style: .Default, handler: nil))
-    self.presentViewController(alertController, animated: true, completion: nil)
+    let alertController = UIAlertController(title: Application.name, message: message, preferredStyle: .alert)
+    alertController.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
+    self.present(alertController, animated: true, completion: nil)
   }
 
 }

@@ -10,7 +10,7 @@ import UIKit
 
 class LookupViewController: SearchViewController {
   
-  private var searchScope = ["Producer", "Product", "ProductInStock", "Store"]
+  fileprivate var searchScope = ["Producer", "Product", "ProductInStock", "Store"]
   
   override internal var viewTitle: String {
     return ""
@@ -30,7 +30,7 @@ class LookupViewController: SearchViewController {
     self.registerNib(Nib.ProductCell.rawValue)
     self.registerNib(Nib.StoreCell.rawValue)
     self.tableView.delegate = self
-    self.tableView.hidden = true
+    self.tableView.isHidden = true
     self.tableView.rowHeight = UITableViewAutomaticDimension
     self.tableView.estimatedRowHeight = 80.0
     
@@ -58,20 +58,20 @@ class LookupViewController: SearchViewController {
   
   override func model(_: Model, didFinishLoadingData data: [Item]) {
     self.dataSource.loadData(data)
-    self.tableView.hidden = data.isEmpty
+    self.tableView.isHidden = data.isEmpty
     self.hideLoadingView()
   }
   
-  func didPresentSearchController(searchController: UISearchController) {
+  func didPresentSearchController(_ searchController: UISearchController) {
     // This makes sure the search bar keeps its right size.
     self.resizeSearchBar()
   }
   
-  override func updateSearchResultsForSearchController(searchController: UISearchController) {
+  override func updateSearchResults(for searchController: UISearchController) {
     // Override to not cause it to call the API Manager each and everytime a change is made. The call is instead made through Search Bar Delegate Method searchBarCancelButtonClicked(_:), which is invoked when the user has pressed enter.
   }
   
-  func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+  func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
     if let model = self.model as? LookupModel {
       self.showLoadingView()
       model.searchQuery = searchController.searchBar.text ?? ""
@@ -80,11 +80,11 @@ class LookupViewController: SearchViewController {
     }
   }
   
-  func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+  func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
     self.model(self.model, didFinishLoadingData: [])
   }
 
-  func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+  func tableView(_ tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath) {
     if let scope = Entities(rawValue: self.searchScope[self.segmentedControl.selectedSegmentIndex]) {
       var segue = String()
       // Should rewrite this part somehow
@@ -102,12 +102,12 @@ class LookupViewController: SearchViewController {
       }
       
       let item = self.dataSource.itemAtIndexPath(indexPath)
-      self.performSegueWithIdentifier(segue, sender: item)
+      self.performSegue(withIdentifier: segue, sender: item)
     }
   }
   
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    guard let viewController = segue.destinationViewController as? ViewController, let sender = sender as? Item else {
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    guard let viewController = segue.destination as? ViewController, let sender = sender as? Item else {
       return
     }
 
@@ -130,7 +130,7 @@ private extension LookupViewController {
   
   func resizeSearchBar() {
     if let width = self.navigationController?.navigationBar.frame.width {
-      self.searchController.searchBar.frame = CGRectMake(0, 0, width-30, 44)
+      self.searchController.searchBar.frame = CGRect(x: 0, y: 0, width: width-30, height: 44)
     }
   }
   

@@ -11,7 +11,7 @@ class NavigationController: UINavigationController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.navigationBar.barTintColor = UIColor.whiteColor()
+    self.navigationBar.barTintColor = UIColor.white
     self.navigationBar.tintColor = UserInterface.greenColor
     self.navigationBar.titleTextAttributes = [
       NSForegroundColorAttributeName: UserInterface.greenColor,
@@ -21,8 +21,8 @@ class NavigationController: UINavigationController {
     self.navigationBar.backIndicatorTransitionMaskImage = UIImage(named: "arrow")
   }
   
-  override func preferredStatusBarStyle() -> UIStatusBarStyle {
-    return UIStatusBarStyle.Default
+  override var preferredStatusBarStyle : UIStatusBarStyle {
+    return UIStatusBarStyle.default
   }
   
 }

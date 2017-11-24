@@ -10,71 +10,74 @@ import SwiftyJSON
 
 class APIManager {
   
-  typealias APIManagerCallback = (response: APIResponse) -> Void
+  typealias APIManagerCallback = (_ response: APIResponse) -> Void
   
   internal weak var delegate: APIManagerDelegate?
   /**
    *  Returns the last requested URL.
    */
-  private(set) var requestedURL: NSURL?
+  fileprivate(set) var requestedURL: URL?
   /**
    *  The parameters of the request.
    */
-  private(set) var parameters: NSData?
+  fileprivate(set) var parameters: Data?
   
-  private lazy var URLRequest: NSMutableURLRequest = {
-    return NSMutableURLRequest()
+  fileprivate lazy var urlRequest: URLRequest = {
+    return URLRequest(url: URL(string: "https://api.saturnfive.se/")!)
   }()
   /**
    *  Returns a shared singleton session object.
    */
-  private lazy var session: NSURLSession = {
-    return NSURLSession.sharedSession()
+  fileprivate lazy var session: URLSession = {
+    return URLSession.shared
   }()
   
-  func setRequestURL(string: String) {
-    self.requestedURL = NSURL(string: string)!
+  func setRequestURL(_ string: String) {
+    self.requestedURL = URL(string: string)!
   }
   
-  func setHttpMethod(httpMethod: String) {
-    self.URLRequest.HTTPMethod = httpMethod
+  func setHttpMethod(_ httpMethod: String) {
+    self.urlRequest.httpMethod = httpMethod
   }
   
-  func setParameters(parameters: [String: String]) {
+  func setParameters(_ parameters: [String: String]) {
     var httpBody = String()
     
     for (key, value) in parameters {
       httpBody += "\(key)=\(value)&"
     }
     
-    self.URLRequest.HTTPBody = httpBody.dataUsingEncoding(NSUTF8StringEncoding)
+    self.urlRequest.httpBody = httpBody.data(using: String.Encoding.utf8)
   }
   
-  func setParameters(parameters: [String: JSON]) {
+  func setParameters(_ parameters: [String: JSON]) {
     var httpBody = String()
     
     for (key, json) in parameters {
-      httpBody += "\(key)=\(json.rawString(NSUTF8StringEncoding, options: []) ?? "")&"
+      httpBody += "\(key)=\(json.rawString(String.Encoding.utf8, options: []) ?? "")&"
     }
     
-    self.URLRequest.HTTPBody = httpBody.dataUsingEncoding(NSUTF8StringEncoding)
+    self.urlRequest.httpBody = httpBody.data(using: String.Encoding.utf8)
   }
   
-  func executeRequest(success: APIManagerCallback?, failure: APIManagerCallback?) {
-    self.URLRequest.URL = self.requestedURL
-    print("Calling \(self.requestedURL)")
-    self.session.dataTaskWithRequest(self.URLRequest) { (data, URLResponse, error) -> Void in
+  func executeRequest(_ success: APIManagerCallback?, failure: APIManagerCallback?) {
+    self.urlRequest.url = self.requestedURL
+    
+    print("Calling \(String(describing: self.requestedURL))")
+    let urlRequest = URLRequest(url: self.requestedURL!)
+    
+    self.session.dataTask(with: self.urlRequest) { (data, URLResponse, error) -> Void in
       let response = self.handleResponse(data, URLResponse: URLResponse, error: error)
       
       if response.didSucceed() {
         if let success = success {
-          success(response: response)
+          success(response)
         } else {
           self.delegate?.manager(self, didCompleteRequest: response)
         }
       } else {
         if let failure = failure {
-          failure(response: response)
+          failure(response)
         } else {
           self.delegate?.manager(self, failedRequest: response)
         }
@@ -86,7 +89,7 @@ class APIManager {
 // MARK: - Private Methods
 private extension APIManager {
   
-  func handleResponse(data: NSData?, URLResponse: NSURLResponse?, error: NSError?) -> APIResponse {
+  func handleResponse(_ data: Data?, URLResponse: Foundation.URLResponse?, error: Error?) -> APIResponse {
     var response: APIResponse
     
     if let URLResponse = URLResponse {

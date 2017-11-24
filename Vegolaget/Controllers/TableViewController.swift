@@ -24,7 +24,7 @@ class TableViewController: ViewController, ModelDelegate, DataSourceDelegate, UI
   internal lazy var refreshControl: UIRefreshControl = {
     let refreshControl = UIRefreshControl()
     refreshControl.attributedTitle = NSAttributedString(string: "Pull down to refresh".localized)
-    refreshControl.addTarget(self, action: "didRequestRefresh:", forControlEvents: .ValueChanged)
+    refreshControl.addTarget(self, action: #selector(TableViewController.didRequestRefresh(_:)), for: .valueChanged)
     
     return refreshControl
   }()
@@ -47,9 +47,9 @@ class TableViewController: ViewController, ModelDelegate, DataSourceDelegate, UI
    *  - Note: Will reload the table view if there is one set. Override this method if there are other operations needed to be run.
    */
   func didFinishLoadDataSource(_: DataSource) {
-    if self.respondsToSelector("tableView") {
-      let tableView = self.valueForKey("tableView")
-      tableView?.reloadData()
+    if self.responds(to: #selector(getter: UITableViewController.tableView)) {
+      let tableView = self.value(forKey: "tableView")
+      (tableView as AnyObject).reloadData()
     }
   }
   
@@ -69,18 +69,18 @@ class TableViewController: ViewController, ModelDelegate, DataSourceDelegate, UI
    *  Invoked when the table view was pulled to refresh its content.
    *  - Note: You must add *refreshControl* as a sub view to the table view to use it.
    */
-  func didRequestRefresh(sender: AnyObject) {
+  func didRequestRefresh(_ sender: AnyObject) {
     self.refreshControl.endRefreshing()
   }
   /**
    *  Registers a nib object containing a cell with the table view under a specified identifier.
    *  - Note: Call this method for the table view to know which cells to use.
    */
-  func registerNib(nibName: String, forCellReuseIdentifier identifier: String? = nil) {
-    if self.respondsToSelector("tableView") {
-      let tableView = self.valueForKey("tableView")
+  func registerNib(_ nibName: String, forCellReuseIdentifier identifier: String? = nil) {
+    if self.responds(to: #selector(getter: UITableViewController.tableView)) {
+      let tableView = self.value(forKey: "tableView")
       let nib = UINib(nibName: nibName, bundle: nil)
-      tableView?.registerNib(nib, forCellReuseIdentifier: identifier ?? nibName)
+      (tableView as AnyObject).register(nib, forCellReuseIdentifier: identifier ?? nibName)
     }
   }
   

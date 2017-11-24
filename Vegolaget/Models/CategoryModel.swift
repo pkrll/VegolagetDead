@@ -17,7 +17,7 @@ class CategoryModel: Model {
     self.endPoint = APIEndPoint.category()
   }
   
-  override func didLoadFromCoreData(data: [AnyObject]) -> [Item] {
+  override func didLoadFromCoreData(_ data: [AnyObject]) -> [Item] {
     var items: [Category] = []
     
     if let categories = data as? [CategoryManagedObject] {
@@ -37,7 +37,7 @@ class CategoryModel: Model {
     return items
   }
   
-  override func createItem(json: JSON) -> Item {
+  override func createItem(_ json: JSON) -> Item {
     return Category(data: json)
   }
   

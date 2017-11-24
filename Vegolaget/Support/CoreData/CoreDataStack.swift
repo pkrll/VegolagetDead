@@ -40,8 +40,8 @@ class CoreDataStack: NSObject {
       return nil
     }
     
-    let context = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
-    context.parentContext = mainQueueContext
+    let context = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
+    context.parent = mainQueueContext
     context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
     
     return context
@@ -59,13 +59,13 @@ class CoreDataStack: NSObject {
   /**
   *  The main queue context.
   */
-  private lazy var mainQueueContext: NSManagedObjectContext? = { [unowned self] in
+  fileprivate lazy var mainQueueContext: NSManagedObjectContext? = { [unowned self] in
     guard let parentContext = self.parentContext else {
       return nil
     }
     
-    let context = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
-    context.parentContext = parentContext
+    let context = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
+    context.parent = parentContext
     context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
     
     return context
@@ -74,12 +74,12 @@ class CoreDataStack: NSObject {
    *  The parent context.
    *  - Note: The main queue context will use this context as the parent.
    */
-  private lazy var parentContext: NSManagedObjectContext? = { [unowned self] in
+  fileprivate lazy var parentContext: NSManagedObjectContext? = { [unowned self] in
     guard let coordinator = self.persistentStoreCoordinator else {
       return nil
     }
     
-    let context = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
+    let context = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
     context.persistentStoreCoordinator = coordinator
     context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
     
@@ -91,27 +91,27 @@ class CoreDataStack: NSObject {
   /**
    *  Name of the Core Data store.
    */
-  private let storeName = Application.name
+  fileprivate let storeName = Application.name
   /**
    *  Name of the Core Data store file.
    */
-  private lazy var storeFileName: String = { [unowned self] in
+  fileprivate lazy var storeFileName: String = { [unowned self] in
     return self.storeName + ".sqlite"
   }()
   /**
    *  URL to the Core Data store file.
    */
-  private lazy var storeURL: NSURL = {
-    let URLs = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
-    return URLs.last!.URLByAppendingPathComponent(self.storeFileName)
+  fileprivate lazy var storeURL: URL = {
+    let URLs = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+    return URLs.last!.appendingPathComponent(self.storeFileName)
   }()
   
-  private lazy var managedObjectModel: NSManagedObjectModel = { [unowned self] in
-    let URL = NSBundle.mainBundle().URLForResource(self.storeName, withExtension: "momd")!
-    return NSManagedObjectModel(contentsOfURL: URL)!
+  fileprivate lazy var managedObjectModel: NSManagedObjectModel = { [unowned self] in
+    let URL = Bundle.main.url(forResource: self.storeName, withExtension: "momd")!
+    return NSManagedObjectModel(contentsOf: URL)!
   }()
   
-  private lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator? = { [unowned self] in
+  fileprivate lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator? = { [unowned self] in
     if self.shouldResetStoreCoordinator {
       do {
         try self.removePersistentStoreCoordinator()
@@ -129,11 +129,11 @@ class CoreDataStack: NSObject {
         NSInferMappingModelAutomaticallyOption: true
       ]
       
-      try coordinator.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: self.storeURL, options: options)
+      try coordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: self.storeURL, options: options)
     } catch {
       var dict = [String: AnyObject]()
-      dict[NSLocalizedDescriptionKey] = "Failed to initialize the application's saved data"
-      dict[NSLocalizedFailureReasonErrorKey] = "There was an error creating or loading the application's saved data."
+      dict[NSLocalizedDescriptionKey] = "Failed to initialize the application's saved data" as AnyObject
+      dict[NSLocalizedFailureReasonErrorKey] = "There was an error creating or loading the application's saved data." as AnyObject
       
       dict[NSUnderlyingErrorKey] = error as NSError
       let wrappedError = NSError(domain: Application.identifier, code: 9999, userInfo: dict)
@@ -153,7 +153,7 @@ class CoreDataStack: NSObject {
   }()
   
   func removePersistentStoreCoordinator() throws {
-    try NSFileManager.defaultManager().removeItemAtURL(self.storeURL)
+    try FileManager.default.removeItem(at: self.storeURL)
   }
 
 }

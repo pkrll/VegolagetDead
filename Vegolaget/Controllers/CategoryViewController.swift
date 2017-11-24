@@ -33,7 +33,7 @@ class CategoryViewController: TableViewController {
     self.model.loadData()
   }
   
-  override func didRequestRefresh(sender: AnyObject) {
+  override func didRequestRefresh(_ sender: AnyObject) {
     self.model.refreshData()
   }
     
@@ -42,15 +42,15 @@ class CategoryViewController: TableViewController {
     self.refreshControl.endRefreshing()
   }
   
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    if let viewController = segue.destinationViewController as? ProducersViewController, let sender = sender as? Category {
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if let viewController = segue.destination as? ProducersViewController, let sender = sender as? Category {
       viewController.category = sender
     }
   }
   
-  func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+  func tableView(_ tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath) {
     if let item = self.dataSource.itemAtIndexPath(indexPath) {
-      self.performSegueWithIdentifier(Segue.ShowCategory.rawValue, sender: item)
+      self.performSegue(withIdentifier: Segue.ShowCategory.rawValue, sender: item)
     }
   }
   

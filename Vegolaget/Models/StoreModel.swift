@@ -40,7 +40,7 @@ class StoreModel: Model {
     self.willPassDataToDelegate([store])
   }
   
-  override func didLoadFromCoreData(data: [AnyObject]) -> [Item] {
+  override func didLoadFromCoreData(_ data: [AnyObject]) -> [Item] {
     var items = [Store]()
     
     if let stores = data as? [StoreManagedObject] {
@@ -64,7 +64,7 @@ class StoreModel: Model {
     return items
   }
   
-  override func createItem(json: JSON) -> Item {
+  override func createItem(_ json: JSON) -> Item {
     return Store(data: json)
   }
   

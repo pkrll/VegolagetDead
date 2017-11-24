@@ -7,13 +7,13 @@
 //
 import Foundation
 
-extension NSURLResponse {
+extension URLResponse {
   /**
    *  The receiver’s HTTP status code.
    *  - Returns: The status code or 0 on error.
    */
   var statusCode: Int {
-    if let httpURLResponse = self as? NSHTTPURLResponse {
+    if let httpURLResponse = self as? HTTPURLResponse {
       return httpURLResponse.statusCode
     }
     
@@ -24,7 +24,7 @@ extension NSURLResponse {
    *  - Returns: A dictionary with string keys and values.
    */
   var allHeaders: Dictionary<String, String> {
-    if let httpURLResponse = self as? NSHTTPURLResponse {
+    if let httpURLResponse = self as? HTTPURLResponse {
       if let headerFields = httpURLResponse.allHeaderFields as? Dictionary<String, String> {
         return headerFields
       }

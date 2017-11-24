@@ -55,35 +55,35 @@ class ProducerViewController: TableViewController {
     }
   }
   
-  override func didRequestRefresh(sender: AnyObject) {
+  override func didRequestRefresh(_ sender: AnyObject) {
     self.model.refreshData()
   }
   
   // MARK: - Model Delegate Methods
   
-  override func model(model: Model, didFinishLoadingData data: [Item]) {
+  override func model(_ model: Model, didFinishLoadingData data: [Item]) {
     self.refreshControl.endRefreshing()
     super.model(model, didFinishLoadingData: data)
   }
   
   // MARK: - Table View Delegate Methods
   
-  func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+  func tableView(_ tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath) {
     // Barnivore items and System Company items differ
     if indexPath.section == 0 {
       let sender = self.dataSource.itemAtIndexPath(indexPath) as? Product
-      self.performSegueWithIdentifier(Segue.ShowBrowser.rawValue, sender: sender)
+      self.performSegue(withIdentifier: Segue.ShowBrowser.rawValue, sender: sender)
     } else if indexPath.section == 1 {
       let sender = self.dataSource.itemAtIndexPath(indexPath) as? ProductInStock
-      self.performSegueWithIdentifier(Segue.ShowProduct.rawValue, sender: sender)
+      self.performSegue(withIdentifier: Segue.ShowProduct.rawValue, sender: sender)
     }
   }
   
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    if let viewController = segue.destinationViewController as? WebViewController, let sender = sender as? Product {
-      viewController.primaryURL = NSURL(string: "\(Application.barnivoreProductURL)\(sender.id)")
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if let viewController = segue.destination as? WebViewController, let sender = sender as? Product {
+      viewController.primaryURL = URL(string: "\(Application.barnivoreProductURL)\(sender.id)")
       viewController.pageTitle = sender.name
-    } else if let viewController = segue.destinationViewController as? ProductViewController, let sender = sender as? ProductInStock {
+    } else if let viewController = segue.destination as? ProductViewController, let sender = sender as? ProductInStock {
       viewController.product = sender
     }
   }

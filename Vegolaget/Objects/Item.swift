@@ -15,7 +15,7 @@ class Item: CoreDataHelperItem {
   
   init(data: JSON) {
     self.id = data["id"].intValue
-    self.name = data["name"].stringValue.capitalizedString
+    self.name = data["name"].stringValue
     
     super.init()
   }

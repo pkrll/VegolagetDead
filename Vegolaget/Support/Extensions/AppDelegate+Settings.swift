@@ -10,11 +10,11 @@ import UIKit
 extension AppDelegate {
   
   func checkApplicationSettings() {
-    let defaults = NSUserDefaults.standardUserDefaults()
+    let defaults = UserDefaults.standard
     
-    if defaults.boolForKey("resetData") {
+    if defaults.bool(forKey: "resetData") {
       self.coreDataHelper.reset()
-      defaults.setBool(false, forKey: "resetData")
+      defaults.set(false, forKey: "resetData")
       defaults.setValue(nil, forKey: "lastUpdate")
     }
   }

@@ -66,28 +66,28 @@ class SearchViewController: TableViewController, SearchDataSourceDelegate, UISea
     let font = Font.Roboto.withStyle(.Light, size: 16.0)!
     
     self.searchController.searchBar.delegate = self
-    self.searchController.searchBar.barStyle = .Default
+    self.searchController.searchBar.barStyle = .default
     self.searchController.searchBar.tintColor = UserInterface.greenColor
-    self.searchController.searchBar.barTintColor = UIColor.whiteColor()
+    self.searchController.searchBar.barTintColor = UIColor.white
     self.searchController.searchBar.showsScopeBar = false
 
     // The tint color of the search bar will also change the search fields color. This should fix that.
-    if let textField = self.searchController.searchBar.valueForKey("_searchField") as? UITextField {
-      textField.textColor = UIColor.blackColor()
-      textField.tintColor = UIColor.blackColor()
+    if let textField = self.searchController.searchBar.value(forKey: "_searchField") as? UITextField {
+      textField.textColor = UIColor.black
+      textField.tintColor = UIColor.black
       textField.backgroundColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 0.2)
-      textField.attributedPlaceholder = NSAttributedString(string: self.searchBarPlaceholder, attributes:[NSForegroundColorAttributeName: UIColor.blackColor(), NSFontAttributeName: font])
+      textField.attributedPlaceholder = NSAttributedString(string: self.searchBarPlaceholder, attributes:[NSForegroundColorAttributeName: UIColor.black, NSFontAttributeName: font])
     }
 
 
-    self.searchController.searchBar.setScopeBarButtonTitleTextAttributes([NSFontAttributeName: font], forState: .Normal)
-    self.searchController.searchBar.setImage(UIImage(named: "search"), forSearchBarIcon: .Search, state: .Normal)
+    self.searchController.searchBar.setScopeBarButtonTitleTextAttributes([NSFontAttributeName: font], for: UIControlState())
+    self.searchController.searchBar.setImage(UIImage(named: "search"), for: .search, state: UIControlState())
   }
   
-  func setSearchBarPlaceholder(string: String) {
-    if let textField = self.searchController.searchBar.valueForKey("_searchField") as? UITextField {
+  func setSearchBarPlaceholder(_ string: String) {
+    if let textField = self.searchController.searchBar.value(forKey: "_searchField") as? UITextField {
       let font = Font.Roboto.withStyle(.Light, size: 16.0)!
-      textField.attributedPlaceholder = NSAttributedString(string: string, attributes:[NSForegroundColorAttributeName: UIColor.blackColor(), NSFontAttributeName: font])
+      textField.attributedPlaceholder = NSAttributedString(string: string, attributes:[NSForegroundColorAttributeName: UIColor.black, NSFontAttributeName: font])
     }
   }
   /**
@@ -95,39 +95,39 @@ class SearchViewController: TableViewController, SearchDataSourceDelegate, UISea
    *  - Parameters:
    *      - withAnimation: Set true if the hiding should be animated.
    */
-  func hideSearchBar(withAnimation: Bool) {
-    if self.respondsToSelector("tableView") {
-      let tableView = self.valueForKey("tableView")
-      let contentOffset = CGPointMake(0, self.searchBar.bounds.height)
-      tableView?.setContentOffset(contentOffset, animated: withAnimation)
+  func hideSearchBar(_ withAnimation: Bool) {
+    if self.responds(to: #selector(getter: UITableViewController.tableView)) {
+      let tableView = self.value(forKey: "tableView")
+      let contentOffset = CGPoint(x: 0, y: self.searchBar.bounds.height)
+      (tableView as AnyObject).setContentOffset(contentOffset, animated: withAnimation)
     }
   }
   
   // MARK: - Model Delegate Methods
   
-  override func model(model: Model, didFinishLoadingData data: [Item]) {
+  override func model(_ model: Model, didFinishLoadingData data: [Item]) {
     self.hideSearchBar(true)
     super.model(model, didFinishLoadingData: data)
   }
   
   // MARK: - Search Data Source Delegate Methods
   
-  func didFinishFilterDataSource(dataSource: SearchDataSource) {
+  func didFinishFilterDataSource(_ dataSource: SearchDataSource) {
     super.didFinishLoadDataSource(dataSource)
   }
   
   // MARK: - Search Results Updating Delegate Methods
   
-  func updateSearchResultsForSearchController(searchController: UISearchController) {
-    if self.dataSource.respondsToSelector("filterBySearchString:") {
+  func updateSearchResults(for searchController: UISearchController) {
+    if self.dataSource.responds(to: "filterBySearchString:") {
       let searchString = searchController.searchBar.text!
-      self.dataSource.performSelector("filterBySearchString:", withObject: searchString)
+      self.dataSource.perform("filterBySearchString:", with: searchString)
     }
   }
   
   // MARK: - Table View Delegate Methods
   
-  func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+  func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
     // This fixes an apparent bug where xcode would cry out endDisablingInterfaceAutorotationAnimated not matched with beginDisablingInterfaceAutorotation, whenever the keyboard was dismissed.
     self.searchBar.resignFirstResponder()
   }

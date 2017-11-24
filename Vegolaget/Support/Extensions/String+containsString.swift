@@ -14,16 +14,16 @@ extension String {
    *      - string: The string to compare with.
    *      - caseInsensitive: Set true if the case should be ignore.
    */
-  func containsString(string: String, caseInsensitive: Bool = false) -> Bool {
+  func containsString(_ string: String, caseInsensitive: Bool = false) -> Bool {
     var haystack = self
     var search = string
     
     if caseInsensitive {
-      search = search.lowercaseString
-      haystack = haystack.lowercaseString
+      search = search.lowercased()
+      haystack = haystack.lowercased()
     }
     
-    return (haystack.rangeOfString(search) != nil)
+    return (haystack.range(of: search) != nil)
   }
   
 }

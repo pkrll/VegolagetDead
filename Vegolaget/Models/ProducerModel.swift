@@ -10,7 +10,7 @@ import SwiftyJSON
 
 class ProducerModel: Model {
   
-  private let coreDataEntities: [Entities] = [.Product, .ProductInStock]
+  fileprivate let coreDataEntities: [Entities] = [.Product, .ProductInStock]
   
   init(producerID: Int) {
     super.init()
@@ -23,15 +23,15 @@ class ProducerModel: Model {
     // This model handles two different item types
     self.loadFromEntity(self.coreDataEntities[0].rawValue) { (results) -> Void in
       if let results = results {
-        items.appendContentsOf(results)
+        items.append(contentsOf: results)
       }
       
       self.loadFromEntity(self.coreDataEntities[1].rawValue, completionHandler: { (results) -> Void in
         if let results = results {
-          items.appendContentsOf(results)
+          items.append(contentsOf: results)
         }
         
-        dispatch_async(dispatch_get_main_queue()) {
+        DispatchQueue.main.async {
           if items.count > 0 {
             let items = self.didLoadFromCoreData(items)
             self.willPassDataToDelegate(items)
@@ -43,13 +43,13 @@ class ProducerModel: Model {
     }
   }
   
-  func loadFromEntity(entity: String, completionHandler: (results: [AnyObject]?) -> Void) {
+  func loadFromEntity(_ entity: String, completionHandler: @escaping (_ results: [AnyObject]?) -> Void) {
     self.coreDataHelper.load(fromEntity: entity, withPredicate: self.coreDataPredicate, sortByKeys: self.coreDataSortKeys) { (success, data, error) -> Void in
-      completionHandler(results: data)
+      completionHandler(data)
     }
   }
   
-  override func didLoadFromCoreData(data: [AnyObject]) -> [Item] {
+  override func didLoadFromCoreData(_ data: [AnyObject]) -> [Item] {
     var items: [Item] = []
     // Depending on the Managed Object type, a different object should be created here.
     for product in data {
@@ -93,7 +93,7 @@ class ProducerModel: Model {
     return items
   }
   
-  override func saveData(data: [Item]) {
+  override func saveData(_ data: [Item]) {
     let listing = data.filter { $0 is ProductInStock == false }
     let inStock = data.filter { $0 is ProductInStock == true }
     
@@ -101,7 +101,7 @@ class ProducerModel: Model {
     self.coreDataHelper.save(inStock, toEntity: self.coreDataEntities[1].rawValue)
   }
   
-  override func parseResponseData(data: NSData?) -> [Item] {
+  override func parseResponseData(_ data: Data?) -> [Item] {
     var items = [Item]()
     if let data = data {
       let data = JSON(data: data)

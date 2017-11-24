@@ -34,8 +34,8 @@ class ProducersViewController: SearchViewController {
     return title
   }
   
-  private lazy var tag: CategoryType? = { [unowned self] in
-    return CategoryType(rawValue: self.category!.tag.capitalizedString)
+  fileprivate lazy var tag: CategoryType? = { [unowned self] in
+    return CategoryType(rawValue: self.category!.tag.capitalized)
   }()
   
   override func viewDidLoad() {
@@ -72,7 +72,7 @@ class ProducersViewController: SearchViewController {
         .Beer: NSPredicate(format: "doesBeer = %i", 1),
         .Liquor: NSPredicate(format: "doesLiquor = %i", 1)
       ]
-      
+
       self.model.coreDataPredicate = coreDataPredicates[tag]
       self.model.delegate = self
       self.model.loadData()
@@ -81,11 +81,11 @@ class ProducersViewController: SearchViewController {
     self.category = nil
   }
   
-  override func didRequestRefresh(sender: AnyObject) {
+  override func didRequestRefresh(_ sender: AnyObject) {
     self.model.refreshData()
   }
   
-  override func model(model: Model, didFinishLoadingData data: [Item]) {
+  override func model(_ model: Model, didFinishLoadingData data: [Item]) {
     let placeholder = String(format: self.searchBarPlaceholder, data.count)
     self.setSearchBarPlaceholder(placeholder)
     self.refreshControl.endRefreshing()
@@ -99,27 +99,27 @@ class ProducersViewController: SearchViewController {
     super.didFinishFilterDataSource(dataSource)
   }
   
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    if let viewController = segue.destinationViewController as? ProducerViewController, let sender = sender as? UITableViewCell {
-      let indexPath = self.tableView.indexPathForCell(sender)!
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if let viewController = segue.destination as? ProducerViewController, let sender = sender as? UITableViewCell {
+      let indexPath = self.tableView.indexPath(for: sender)!
       let producer = self.dataSource.itemAtIndexPath(indexPath) as! Producer
       viewController.producer = producer
     }
   }
   
-  func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    let sender = tableView.cellForRowAtIndexPath(indexPath)!
+  func tableView(_ tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath) {
+    let sender = tableView.cellForRow(at: indexPath)!
     
     if sender.reuseIdentifier == Nib.LoadingCell.rawValue {
-      if let dataSource = self.dataSource as? ProducersDataSource where dataSource.hasMoreItemsToLoad(atRow: indexPath.row) {
+      if let dataSource = self.dataSource as? ProducersDataSource, dataSource.hasMoreItemsToLoad(atRow: indexPath.row) {
         self.tableView.reloadData()
       }
     } else {
-      self.performSegueWithIdentifier(Segue.ShowProducer.rawValue, sender: sender)
+      self.performSegue(withIdentifier: Segue.ShowProducer.rawValue, sender: sender)
     }
   }
   
-  func searchBar(searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+  func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
     let dataSource = self.dataSource as! ProducersDataSource
     dataSource.selectedScopeIndex = selectedScope
     dataSource.filterBySearchString(searchBar.text!)

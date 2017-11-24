@@ -11,15 +11,15 @@ enum APIEndPoint: String {
   /**
    *  The address for the API.
    */
-  private static let address = ""
+  fileprivate static let address = "http://api.saturnfive.se/"
   /**
    *  The version of the API.
    */
-  private static let version = "1.0"
+  fileprivate static let version = "1.0"
   /**
    *  The base API URL.
    */
-  private static var baseURL: String {
+  fileprivate static var baseURL: String {
     return self.address + self.version
   }
   
@@ -84,7 +84,7 @@ enum APIEndPoint: String {
    *  - Note: Returns both information for Product and ProductInStock objects.
    *  - Parameter id: The id of the producer.
    */
-  static func productsForProducer(id: Int) -> String {
+  static func productsForProducer(_ id: Int) -> String {
     return APIEndPoint.producer(withId: id) + "/products"
   }
   /**

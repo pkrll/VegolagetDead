@@ -9,8 +9,8 @@ import UIKit
 
 class StoresDataSource: DataSource {
   
-  override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier(Nib.StoreCell.rawValue)!
+  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCell(withIdentifier: Nib.StoreCell.rawValue)!
     let item = self.itemAtIndexPath(indexPath) as! Store
     
     if let view = cell.viewWithTag(101) as? UILabel {

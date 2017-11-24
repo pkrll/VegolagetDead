@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		007A473EC5721DA26E162D93 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E62223F48BECB61C7B994FF /* Pods.framework */; };
+		192F9722431201C6B280FFA9 /* Pods_Vegolaget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 576F5BF1CF9787CE419772FA /* Pods_Vegolaget.framework */; };
 		6A0080781C60983700BC60ED /* LookupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A0080771C60983700BC60ED /* LookupModel.swift */; };
 		6A0D974A1C96BFBB00D1B8CC /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A0D97491C96BFBB00D1B8CC /* WebViewController.swift */; };
 		6A0FF9661C62107F00B4F5ED /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6A0FF9651C62107F00B4F5ED /* Settings.bundle */; };
@@ -100,9 +100,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		173AA0CB98450AD3DDC30F77 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		1E62223F48BECB61C7B994FF /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		324E82C322EA8389B3CAE82D /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		576F5BF1CF9787CE419772FA /* Pods_Vegolaget.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Vegolaget.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A0080771C60983700BC60ED /* LookupModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LookupModel.swift; path = Models/LookupModel.swift; sourceTree = "<group>"; };
 		6A0D97491C96BFBB00D1B8CC /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebViewController.swift; path = Controllers/WebViewController.swift; sourceTree = "<group>"; };
 		6A0FF9651C62107F00B4F5ED /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = Resources/Settings.bundle; sourceTree = "<group>"; };
@@ -195,6 +194,8 @@
 		6AF5E23C1C451B4B00B9EF59 /* DataSourceDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataSourceDelegate.swift; path = Protocols/DataSourceDelegate.swift; sourceTree = "<group>"; };
 		6AF5E23E1C451F1000B9EF59 /* CategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategoryViewController.swift; path = Controllers/CategoryViewController.swift; sourceTree = "<group>"; };
 		6AF5E2401C45207300B9EF59 /* CategoryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategoryModel.swift; path = Models/CategoryModel.swift; sourceTree = "<group>"; };
+		AD69C6B464A10CA8B1CC95F0 /* Pods-Vegolaget.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vegolaget.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Vegolaget/Pods-Vegolaget.debug.xcconfig"; sourceTree = "<group>"; };
+		FACE74412E01A36D343ABEB8 /* Pods-Vegolaget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vegolaget.release.xcconfig"; path = "Pods/Target Support Files/Pods-Vegolaget/Pods-Vegolaget.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -202,18 +203,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				007A473EC5721DA26E162D93 /* Pods.framework in Frameworks */,
+				192F9722431201C6B280FFA9 /* Pods_Vegolaget.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		652A23D0526985EC534550D1 /* Pods */ = {
+		18C3AD2708BC0D60B0185936 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				324E82C322EA8389B3CAE82D /* Pods.debug.xcconfig */,
-				173AA0CB98450AD3DDC30F77 /* Pods.release.xcconfig */,
+				AD69C6B464A10CA8B1CC95F0 /* Pods-Vegolaget.debug.xcconfig */,
+				FACE74412E01A36D343ABEB8 /* Pods-Vegolaget.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -240,8 +241,8 @@
 			children = (
 				6A82967B1C44033E00012945 /* Vegolaget */,
 				6A82967A1C44033E00012945 /* Products */,
-				652A23D0526985EC534550D1 /* Pods */,
 				E8C8939E5484E43053E7DA9C /* Frameworks */,
+				18C3AD2708BC0D60B0185936 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -450,6 +451,7 @@
 			isa = PBXGroup;
 			children = (
 				1E62223F48BECB61C7B994FF /* Pods.framework */,
+				576F5BF1CF9787CE419772FA /* Pods_Vegolaget.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -461,13 +463,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6A82968B1C44033E00012945 /* Build configuration list for PBXNativeTarget "Vegolaget" */;
 			buildPhases = (
-				E47E0977B99E21AA99238598 /* Check Pods Manifest.lock */,
+				9A6DF468217500669D52B882 /* [CP] Check Pods Manifest.lock */,
 				6A8296751C44033E00012945 /* Sources */,
 				6A8296761C44033E00012945 /* Frameworks */,
 				6A8296771C44033E00012945 /* Resources */,
 				6A8296901C44040500012945 /* ShellScript */,
-				7AD2DF8FC7AA5836C94A3DDC /* Embed Pods Frameworks */,
-				EFFA5CC91F955D6F797699F7 /* Copy Pods Resources */,
+				E3831CF1A7D100CA89C46259 /* [CP] Embed Pods Frameworks */,
+				7ADF288198CEFC66456C73F6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -485,12 +487,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0910;
 				ORGANIZATIONNAME = "Saturn Five";
 				TargetAttributes = {
 					6A8296781C44033E00012945 = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = V957W2XWQV;
+						LastSwiftMigration = 0830;
 					};
 				};
 			};
@@ -551,49 +554,49 @@
 			shellPath = /bin/bash;
 			shellScript = "#!/bin/bash\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\nbuildNumber=$((0x$buildNumber))\nbuildNumber=$(($buildNumber + 1))\nbuildNumber=$(printf \"%04X\" $buildNumber)\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$INFOPLIST_FILE\"";
 		};
-		7AD2DF8FC7AA5836C94A3DDC /* Embed Pods Frameworks */ = {
+		7ADF288198CEFC66456C73F6 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Vegolaget/Pods-Vegolaget-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E47E0977B99E21AA99238598 /* Check Pods Manifest.lock */ = {
+		9A6DF468217500669D52B882 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		EFFA5CC91F955D6F797699F7 /* Copy Pods Resources */ = {
+		E3831CF1A7D100CA89C46259 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Vegolaget/Pods-Vegolaget-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -774,13 +777,21 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -818,13 +829,21 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -843,13 +862,14 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
 		6A82968C1C44033E00012945 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 324E82C322EA8389B3CAE82D /* Pods.debug.xcconfig */;
+			baseConfigurationReference = AD69C6B464A10CA8B1CC95F0 /* Pods-Vegolaget.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Vegolaget/Info.plist;
@@ -857,12 +877,13 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ardalansamimi.Vegolaget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		6A82968D1C44033E00012945 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 173AA0CB98450AD3DDC30F77 /* Pods.release.xcconfig */;
+			baseConfigurationReference = FACE74412E01A36D343ABEB8 /* Pods-Vegolaget.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Vegolaget/Info.plist;
@@ -870,6 +891,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ardalansamimi.Vegolaget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

@@ -10,7 +10,7 @@ import UIKit
 
 class WebViewController: ViewController {
   
-  internal var primaryURL: NSURL?
+  internal var primaryURL: URL?
   internal var pageTitle: String?
   
   @IBOutlet var webView: UIWebView!
@@ -30,8 +30,8 @@ class WebViewController: ViewController {
     }
   }
 
-  private func loadURL(URL: NSURL) {
-    let request = NSURLRequest(URL: URL)
+  fileprivate func loadURL(_ URL: Foundation.URL) {
+    let request = URLRequest(url: URL)
     self.webView.delegate = self
     self.webView.loadRequest(request)
   }
@@ -40,7 +40,7 @@ class WebViewController: ViewController {
 
 extension WebViewController: UIWebViewDelegate {
 
-  func webViewDidFinishLoad(webView: UIWebView) {
+  func webViewDidFinishLoad(_ webView: UIWebView) {
     self.hideLoadingView()
   }
   

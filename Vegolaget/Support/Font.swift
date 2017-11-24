@@ -17,7 +17,7 @@ enum Font: String {
   
   case Roboto
   
-  func withStyle(style: FontStyle, size: CGFloat) -> UIFont? {
+  func withStyle(_ style: FontStyle, size: CGFloat) -> UIFont? {
     let fontName = self.rawValue + "-" + style.rawValue
     return UIFont(name: fontName, size: size)
   }

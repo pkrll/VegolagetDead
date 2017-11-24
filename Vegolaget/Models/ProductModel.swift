@@ -20,7 +20,7 @@ class ProductModel: Model {
     self.endPoint = APIEndPoint.storesWithProductInStock(withLocationId: locationID)
   }
   
-  override func saveData(data: [Item]) {
+  override func saveData(_ data: [Item]) {
     var locations = [Location]()
     var stores = [Store]()
     // Save both the Stores and Locations object.
@@ -36,7 +36,7 @@ class ProductModel: Model {
     self.coreDataHelper.save(stores, toEntity: Entities.Store.rawValue)
   }
   
-  override func didLoadFromCoreData(data: [AnyObject]) -> [Item] {
+  override func didLoadFromCoreData(_ data: [AnyObject]) -> [Item] {
     var list = [Location]()
     
     if let items = data as? [ItemManagedObject] {
@@ -58,7 +58,7 @@ class ProductModel: Model {
     return list
   }
   
-  override func parseResponseData(data: NSData?) -> [Item] {
+  override func parseResponseData(_ data: Data?) -> [Item] {
     var list = [Item]()
     
     if let data = data {
@@ -78,7 +78,7 @@ class ProductModel: Model {
     return list
   }
   
-  override func willPassDataToDelegate(data: [Item]) {
+  override func willPassDataToDelegate(_ data: [Item]) {
     // Only the Location objects should be passed on. Disregard the Store objects, as they now have been saved.
     let data = data.filter { $0 is Location }
     super.willPassDataToDelegate(data)

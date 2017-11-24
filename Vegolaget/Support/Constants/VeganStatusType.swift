@@ -9,19 +9,19 @@ import Foundation
 
 enum VeganStatusType: Int {
   
-  case NonVegan  = 0
-  case AllVegan  = 1
-  case SomeVegan = 2
+  case nonVegan  = 0
+  case allVegan  = 1
+  case someVegan = 2
   
   var description: String {
     var string = String()
     
     switch (self) {
-    case .NonVegan:
+    case .nonVegan:
       string = "Not Vegan Friendly"
-    case .AllVegan:
+    case .allVegan:
       string = "Vegan Friendly"
-    case .SomeVegan:
+    case .someVegan:
       string = "Has Some Vegan Options"
     }
     

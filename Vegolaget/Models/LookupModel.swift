@@ -13,7 +13,7 @@ class LookupModel: Model {
   internal var searchQuery = String()
   internal var searchScope = String()
 
-  private(set) var searchResults = [Item]()
+  fileprivate(set) var searchResults = [Item]()
   
   override init() {
     super.init()
@@ -31,7 +31,7 @@ class LookupModel: Model {
       return
     }
     
-    self.searchResults.removeAll(keepCapacity: false)
+    self.searchResults.removeAll(keepingCapacity: false)
     
     let requestURL = APIEndPoint.search(forType: APIEndPoint(rawValue: self.searchScope)!)
     let parameters = [
@@ -47,7 +47,7 @@ class LookupModel: Model {
    *  This method will parse the search result and depending on if the search turned out zero results, it will cancel the operation or attempt to load the items from Core Data by using the retrieved IDs.
    *  - parameter response: The response.
    */
-  override func managerDidCompleteRequest(response: APIResponse) {
+  override func managerDidCompleteRequest(_ response: APIResponse) {
     var results = [String: [Int]]()
     if let data = response.returnData {
       let data = JSON(data: data)
@@ -72,7 +72,7 @@ class LookupModel: Model {
     }
   }
   
-  override func parseResponseData(data: NSData?) -> [Item] {
+  override func parseResponseData(_ data: Data?) -> [Item] {
     var list = [Item]()
     if let data = data {
       let data = JSON(data: data)
@@ -102,7 +102,7 @@ class LookupModel: Model {
     return list
   }
   
-  override func saveData(data: [Item]) {
+  override func saveData(_ data: [Item]) {
     // Allowed items to save
     let savableEntitiesArray = [
       Entities.Producer.rawValue,
@@ -111,7 +111,7 @@ class LookupModel: Model {
       Entities.Store.rawValue
     ]
     
-    switch self.searchScope.capitalizedString {
+    switch self.searchScope.capitalized {
       case let entity where savableEntitiesArray.contains(entity):
         self.coreDataHelper.save(data, toEntity: entity)
       default:
@@ -121,11 +121,11 @@ class LookupModel: Model {
 
   // MARK: - Empty Overriden Methods
   
-  override func didLoadFromCoreData(data: [AnyObject]) -> [Item] {
+  override func didLoadFromCoreData(_ data: [AnyObject]) -> [Item] {
     return []
   }
 
-  override func willPassDataToDelegate(data: [Item]) {
+  override func willPassDataToDelegate(_ data: [Item]) {
   }
   
 }
@@ -142,15 +142,15 @@ private extension LookupModel {
    *  Last method invoked after a search.
    */
   func didPerformSearch() {
-    dispatch_async(dispatch_get_main_queue()) {
+    DispatchQueue.main.async {
       self.delegate?.model(self, didFinishLoadingData: self.searchResults)
-      self.searchResults.removeAll(keepCapacity: false)
+      self.searchResults.removeAll(keepingCapacity: false)
     }
   }
   /**
    *  Loads items from Core Data.
    */
-  func loadFromCoreData(results: [String: [Int]]) {
+  func loadFromCoreData(_ results: [String: [Int]]) {
     var index = 0
     var missing = [String: [Int]]()
     
@@ -160,14 +160,14 @@ private extension LookupModel {
         return
       }
       
-      self.coreDataHelper.load(fromEntity: entity, withPredicate: self.constructPredicate(withArray: resultArray), sortByKeys: self.coreDataSortKeys) { (success, data: [AnyObject]?, error) -> Void in
-        if let data = data where data.count > 0 {
+      self.coreDataHelper.load(fromEntity: entity, withPredicate: self.constructPredicate(withArray: resultArray as [AnyObject]), sortByKeys: self.coreDataSortKeys) { (success, data: [AnyObject]?, error) -> Void in
+        if let data = data, data.count > 0 {
           let items = self.createItemFromObject(data)
-          self.searchResults.appendContentsOf(items)
+          self.searchResults.append(contentsOf: items)
         }
         // Filter out any of the retrieved ids that are missing in the group of items fetched from Core Data
         let array = resultArray.filter({ (id: Int) -> Bool in
-          if self.searchResults.contains({ $0.id == id }) {
+          if self.searchResults.contains(where: { $0.id == id }) {
             return false
           }
           
@@ -179,7 +179,8 @@ private extension LookupModel {
         }
 
         // Runs at the end of the loop, checking if there are any ids missing.
-        if ++index == results.count {
+        index += 1
+        if index == results.count {
           // If some items are missing, attempts to call the server to get the information.
           if missing.count > 0 {
             self.loadFromServer(missing)
@@ -195,10 +196,10 @@ private extension LookupModel {
    *  Loads the information from the server. Called when a search results id was not matched in the database.
    *  - Parameter itemIDs: An array containing all the missing ids.
    */
-  func loadFromServer(items: [String: [Int]]) {
+  func loadFromServer(_ items: [String: [Int]]) {
     var requestURL = "/" + self.searchScope + "/"
     let parameters = [
-      "items": JSON(items[self.searchScope] ?? [:])
+      "items": JSON(items[self.searchScope]!)
     ]
 
     switch self.searchScope {
@@ -223,7 +224,7 @@ private extension LookupModel {
 
       if elements.isEmpty == false {
         self.saveData(elements)
-        self.searchResults.appendContentsOf(elements)
+        self.searchResults.append(contentsOf: elements)
       }
       
       self.didPerformSearch()
@@ -233,7 +234,7 @@ private extension LookupModel {
    *  Create Item objects from the core data results.
    *  - Parameter objects: An array of Item Managed Object classes.
    */
-  func createItemFromObject(objects: [AnyObject]) -> [Item] {
+  func createItemFromObject(_ objects: [AnyObject]) -> [Item] {
     var items = [Item]()
     for object in objects {
       var item: Item?

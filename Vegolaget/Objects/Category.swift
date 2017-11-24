@@ -17,7 +17,7 @@ class Category: Item {
   override init(data: JSON) {
     self.tag = data["tag"].stringValue
     self.count = data["count"].intValue
-    self.title = data["title"].stringValue.stringByReplacingOccurrencesOfString("($)", withString: "\(self.count)")
+    self.title = data["title"].stringValue.replacingOccurrences(of: "($)", with: "\(self.count)")
     
     super.init(data: data)
   }

@@ -53,7 +53,7 @@ class StoreViewController: TableViewController {
     self.model.loadData()
   }
   
-  override func didRequestRefresh(sender: AnyObject) {
+  override func didRequestRefresh(_ sender: AnyObject) {
     self.model.refreshData()
   }
   
@@ -69,7 +69,7 @@ class StoreViewController: TableViewController {
     self.refreshControl.endRefreshing()
     self.tableView.reloadData()
     // Dynamically sets the height of the table view.
-    let constant = (self.tableView.numberOfRowsInSection(0) > 1) ? self.tableView.numberOfRowsInSection(0) : 5
+    let constant = (self.tableView.numberOfRows(inSection: 0) > 1) ? self.tableView.numberOfRows(inSection: 0) : 5
     self.tableViewHeightConstraint.constant = CGFloat(constant) * self.tableView.rowHeight
     self.view.layoutIfNeeded()
   }

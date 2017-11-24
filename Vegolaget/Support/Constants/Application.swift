@@ -13,11 +13,11 @@ enum Application {
   /**
    *  The name of the application as set in the bundle.
    */
-  static let name: String = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleName") as! String
+  static let name: String = Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as! String
   /**
    *  The identifier of the app bundle.
    */
-  static let identifier: String = NSBundle.mainBundle().bundleIdentifier!
+  static let identifier: String = Bundle.main.bundleIdentifier!
   /**
    *  The beginning of the URL String for Barnivore products page.
    */

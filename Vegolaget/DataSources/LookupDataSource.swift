@@ -9,19 +9,19 @@ import UIKit
 
 class LookupDataSource: DataSource {
   
-  override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let item = self.items[indexPath.row]
     let cell: UITableViewCell
 
     switch item {
       case is Producer:
-        cell = tableView.dequeueReusableCellWithIdentifier(Nib.ProducerCell.rawValue)!
+        cell = tableView.dequeueReusableCell(withIdentifier: Nib.ProducerCell.rawValue)!
       case is Product:
-        cell = tableView.dequeueReusableCellWithIdentifier(Nib.ProductCell.rawValue)!
+        cell = tableView.dequeueReusableCell(withIdentifier: Nib.ProductCell.rawValue)!
       case is Store:
-        cell = tableView.dequeueReusableCellWithIdentifier(Nib.StoreCell.rawValue)!
+        cell = tableView.dequeueReusableCell(withIdentifier: Nib.StoreCell.rawValue)!
       default:
-        cell = UITableViewCell(style: .Default, reuseIdentifier: Nib.BaseCell.rawValue)
+        cell = UITableViewCell(style: .default, reuseIdentifier: Nib.BaseCell.rawValue)
     }
     
     if let view = cell.viewWithTag(101) as? UILabel {

@@ -9,7 +9,7 @@ import UIKit
 
 class ProducersDataSource: SearchDataSource {
   
-  private let type: CategoryType?
+  fileprivate let type: CategoryType?
   /**
    *  Current page.
    */
@@ -56,8 +56,8 @@ class ProducersDataSource: SearchDataSource {
     super.init()
   }
   
-  override func filterBySearchString(string: String) {
-    self.filteredItems.removeAll(keepCapacity: false)
+  override func filterBySearchString(_ string: String) {
+    self.filteredItems.removeAll(keepingCapacity: false)
     self.filteredItems = self.items.filter({ (item: Item) -> Bool in
       var matchByType = true
       let matchByName = item.name.containsString(string, caseInsensitive: true)
@@ -86,14 +86,14 @@ class ProducersDataSource: SearchDataSource {
   func hasMoreItemsToLoad(atRow row: Int) -> Bool {
     // Because this method might also be called by the table view delegate method tableView(_:willDisplayCell:forRowAtIndexPath:) it should only return true if the current displayed row is the last visible row, so that it doesn't cause a bug.
     if row  == self.numberOfItemsInView && self.pageTotal > self.pageCurrent {
-      self.pageCurrent++
+      self.pageCurrent += 1
       return true
     }
     
     return false
   }
   
-  override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     let count = self.numberOfItemsInView
     let total = self.visibleItems.count
     // Return an extra row if there are more items to load; to show a LoadingCell at the bottom.
@@ -104,7 +104,7 @@ class ProducersDataSource: SearchDataSource {
     return count
   }
   
-  override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell: UITableViewCell
     // The last row, if there are more items to show, should be a different type of cell
     if indexPath.row == self.numberOfItemsInView {
@@ -116,13 +116,13 @@ class ProducersDataSource: SearchDataSource {
     return cell
   }
   
-  func tableView(tableView: UITableView, producerCellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier(Nib.ProducerCell.rawValue)!
+  func tableView(_ tableView: UITableView, producerCellForRowAtIndexPath indexPath: IndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCell(withIdentifier: Nib.ProducerCell.rawValue)!
     let item = self.visibleItems[indexPath.row] as! Producer
     
     if let imageView = cell.viewWithTag(100) as? UIImageView {
       // Displays the right icon depending on the type of producer
-      let imageName = self.type?.rawValue.lowercaseString ?? "wine"
+      let imageName = self.type?.rawValue.lowercased() ?? "wine"
       imageView.image = UIImage(named: imageName)
     }
     
@@ -138,8 +138,8 @@ class ProducersDataSource: SearchDataSource {
     return cell
   }
   
-  func tableView(tableView: UITableView, loadingCellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier(Nib.LoadingCell.rawValue)!
+  func tableView(_ tableView: UITableView, loadingCellForRowAtIndexPath indexPath: IndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCell(withIdentifier: Nib.LoadingCell.rawValue)!
     
     return cell
   }

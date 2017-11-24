@@ -17,22 +17,23 @@ class Store: Item {
   let openHours: String
   var dateTime: [DateTime]
 
-  override init(var data: JSON) {
+  override init(data: JSON) {
+    var data = data
     if data["id"].intValue == 0 {
       data["id"] = data["storeID"]
     }
 
-    self.address = data["address"].stringValue.capitalizedString
+    self.address = data["address"].stringValue
     self.postalCode = data["postalCode"].stringValue
-    self.city = data["city"].stringValue.capitalizedString
-    self.county = data["county"].stringValue.capitalizedString
+    self.city = data["city"].stringValue
+    self.county = data["county"].stringValue
     self.openHours = data["openHours"].stringValue
     self.dateTime = []
     // Parse open hours
     if self.openHours.isEmpty == false {
-      let array = self.openHours.componentsSeparatedByString("!")
+      let array = self.openHours.components(separatedBy: "!")
       for date in array {
-        let dateComponents = date.componentsSeparatedByString(";")
+        let dateComponents = date.components(separatedBy: ";")
         if dateComponents.count > 0 {
           let date = dateComponents[0]
           let hour = dateComponents[1] + "-" + dateComponents[2]
@@ -44,7 +45,7 @@ class Store: Item {
         }
       }
       
-      self.dateTime.sortInPlace { $0.0.date < $0.1.date }
+      self.dateTime.sort { $0.0.date < $0.1.date }
     }
     
     super.init(data: data)
